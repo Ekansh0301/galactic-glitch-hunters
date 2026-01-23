@@ -1,74 +1,98 @@
-# 🚀 Galactic Glitch Hunters
+# 🌌 Galactic Glitch Hunters
 
-> **A Narrative Logic-Puzzler about debugging bias in the galaxy.**
-> *Built with Godot 4 for the [Your University/Class Name] Project.*
+> **A Narrative Logic-Puzzler where you debug the galaxy's prejudice.**
+> *Project Nova | Built with Godot 4 | CS Capstone Project*
 
-![Project Status](https://img.shields.io/badge/Status-In%20Development-yellow)
-![Engine](https://img.shields.io/badge/Godot-4.x-blue?logo=godotengine)
+![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+![Engine](https://img.shields.io/badge/Godot-4.x-478cbf?logo=godotengine)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-## 📖 About The Project
+---
 
-**Galactic Glitch Hunters** is a 2D sci-fi narrative game designed for ages 8-12. The player takes on the role of a Cadet in the "Galactic Harmony Corps," tasked with fixing robots infected by "The Bias"—an ancient virus that corrupts logic and creates unfair stereotypes.
+## 📜 The Premise
+The year is 30XX. You are the newest Cadet in the **Galactic Harmony Corps**.
 
-Unlike traditional educational games, we treat social bias as a **"System Error."** Players must use logic, empathy, and debugging skills to patch the glitched robots and save the galaxy.
+An ancient, dormant virus known as **"The Bias"** has resurfaced. It does not destroy hardware; it corrupts logic. It rewrites the behavioral code of droids and citizens, forcing them to act on outdated, unfair, and toxic stereotypes.
 
-### 🎯 Core Objectives
-* **Gamify Empathy:** Framing "Toxic Masculinity" and "Exclusion" as inefficient code that causes system overheating.
-* **Logic Detective Gameplay:** No combat. Players win by choosing the correct logical response to dismantle biased arguments.
-* **Inclusion:** Features scenarios addressing gender roles, non-binary identity, and workplace respect.
+Your mission is not to fight enemies with lasers, but to **fight bad logic with better logic**. Accompanied by **Nova**, your hyper-intelligent AI co-pilot (who is often ignored by the glitching systems), you must travel to infected planets and "Debug" the population.
 
 ---
 
-## 🎮 Key Features
+## 🎮 Gameplay Mechanics
 
-* **randomized Mission Deck:** Every run selects 3 random planets from a pool of 10 unique scenarios, ensuring high replayability.
-* **The "Logic Battle" System:** A dialogue-driven mechanic where players must identify the logical fallacy in a robot's argument to "debug" them.
-* **Dynamic Visuals:** Robots visibly transform from "Glitched" (Red/Static) to "Fixed" (Blue/Clean) based on player choices.
-* **Real-time Feedback:** Your AI co-pilot, **Nova**, provides instant context and educational feedback if a player makes a toxic choice.
+**Galactic Glitch Hunters** is a 10-minute session-based game designed to be replayable.
+
+### 1. The Loop 
+* **The Deploy:** The game randomly selects **3 Planets** from a "Deck" of 10+ unique scenarios. No two runs are exactly the same.
+* **The Glitch:** Upon landing, an NPC blocks your path with a "System Error" (a biased statement).
+* **The Choice:** You must select the correct logical counter-argument from 3 options.
+* **The Result:**
+    * ** Debug Success:** The NPC's eyes turn Blue. You earn a **Gold Data Shard** (+100 Pts).
+    * ** Logic Failure:** The NPC remains corrupted. Nova interrupts the simulation to explain the logical fallacy. (+0 Pts).
+
+### 2. The Scoreboard 
+At the end of the patrol, you are ranked based on your debugging efficiency:
+* **0-100 Pts:** *Glitch Magnet* (Try Again)
+* **200 Pts:** *System Administrator*
+* **300 Pts (Max):** *Galactic Legend* (Perfect Run)
 
 ---
 
-## 🛠️ Built With
+##  The Scenario Deck
+The game tackles complex social issues by framing them as "System Errors." Current scenarios include:
 
-* **Engine:** [Godot 4.x](https://godotengine.org/) (Compatibility Mode / OpenGL 3)
+| Scenario | Setting | The "Glitch" (Theme) |
+| :--- | :--- | :--- |
+| **Engineering Bay** | Hangar | A robot claims female units cannot perform heavy repairs. (STEM Bias) |
+| **The Kitchen** | Restaurant | A Chef Bot refuses to let a male unit bake. (Gender Roles) |
+| **Security Gate** | Archive | A scanner rejects a Non-Binary user for not fitting "A or B". (Inclusion) |
+| **Battle Arena** | Boxing Ring | A fighter bot refuses to vent steam/cry because it is "weak." (Toxic Masculinity) |
+| **The Council** | Senate Hall | An Elder Bot interrupts Nova to speak to the male Cadet. (Respect/Allyship) |
+
+---
+
+## 🛠️ Technical Stack (For Developers)
+
+This project is built using **Godot 4.5+** and follows a component-based architecture.
+
+* **Engine:** Godot 4 (Compatibility Renderer / OpenGL 3)
 * **Language:** GDScript
-* **Plugins:**
-    * [Dialogue Manager](https://github.com/nathanhoad/godot_dialogue_manager) by Nathan Hoad (for complex narrative branching).
+* **Key Plugins:**
+    * **[Dialogue Manager](https://github.com/nathanhoad/godot_dialogue_manager):** Handles the branching narrative and state tracking.
+* **Architecture Patterns:**
+    * **Singleton Pattern (`GameState.gd`):** Manages global score, current planet index, and user settings across scenes.
+    * **Resource-Based Loading:** Scenarios are loaded as Resources to allow for an extensible "Deck" system.
 
 ---
 
-## 🚀 Getting Started
-
-To play the game or contribute to the code, follow these steps.
+## 🚀 Installation & Setup
 
 ### Prerequisites
-* Download **Godot Engine 4.x** (Standard Version).
+* [Godot Engine 4.x](https://godotengine.org/) (Standard Version)
+* Git
 
-### Installation
-1.  **Clone the repo:**
+### Quick Start
+1.  **Clone the Repository:**
     ```bash
     git clone [https://github.com/YOUR_USERNAME/galactic-glitch-hunters.git](https://github.com/YOUR_USERNAME/galactic-glitch-hunters.git)
     ```
-2.  **Import into Godot:**
-    * Open Godot Engine.
-    * Click **Import**.
-    * Navigate to the cloned folder and select the `project.godot` file.
-3.  **Run the Project:**
-    * Press the **Play** button (F5) in the top right corner.
+2.  **Import to Godot:**
+    * Open Godot -> `Import`.
+    * Select the `project.godot` file in the cloned folder.
+    * *Note: The first import may take a moment to re-import assets.*
+3.  **Run:**
+    * Press `F5` to run the Main Scene.
 
 ---
 
-## 📂 Project Structure
-
-For developers looking at the code, here is how we organized the project:
-
+## 📁 Project Structure
 ```text
 res://
-├── Assets/             # Sprites, Audio, and Fonts
-│   ├── Kenney/         # Third-party assets
-│   └── UI/
-├── Dialogue/           # .dialogue scripts (The narrative logic)
-├── Scenes/             # .tscn files (Levels, Menus, UI)
-├── Scripts/            # .gd files (Global Logic, GameState)
-└── project.godot       # Main configuration
+├── Assets/
+│   ├── Audio/          # SFX and Background Ambience
+│   ├── Sprites/        # Kenney Assets & Custom Shaders
+│   └── UI/             # Themes and Fonts
+├── Dialogue/           # .dialogue script files
+├── Scenes/             # .tscn files (MainMenu, PlanetTemplate, EndScreen)
+├── Scripts/            # .gd logic (Randomizer, ScoreManager)
+└── project.godot
