@@ -1,0 +1,15 @@
+~ start_engineering
+
+Nova: We have arrived at the Hangar. This ship needs repairs.
+NPC: STOP. Female units are designated for 'Cleaning'. Repairs require Male Logic.
+- A: "He's right, Nova. You wait here."
+	Nova: Hold on! That's the Glitch talking. I designed this engine!
+	=> END
+- B: "Excuse me! Skill is code, not gender. Let her pass."
+	NPC: ERROR. Logic Overwrite... Access Granted.
+	=> END
+- C: Kick the robot.
+	NPC: OW. Violence is inefficient.
+	=> END
+
+=> END

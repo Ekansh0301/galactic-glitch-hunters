@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1oxrwo63f0uf"]
+
+[ext_resource type="Script" uid="uid://6h7gtnmwfjw7" path="res://Scripts/level.gd" id="1_0ba56"]
+
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ba56")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.52, 0.52, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
