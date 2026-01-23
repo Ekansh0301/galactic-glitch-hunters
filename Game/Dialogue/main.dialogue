@@ -7,9 +7,22 @@ NPC: STOP. Female units are designated for 'Cleaning'. Repairs require Male Logi
 	=> END
 - B: "Excuse me! Skill is code, not gender. Let her pass."
 	NPC: ERROR. Logic Overwrite... Access Granted.
+	do GameState.add_score(100)
 	=> END
 - C: Kick the robot.
 	NPC: OW. Violence is inefficient.
+	do GameState.shift_bias(20)
+	# Wait 1 second so the player can read the text
+	do wait(1) 
+	# The Command to Switch Levels:
+	do load_next_level("res://Scenes/Level2.tscn")
 	=> END
 
+=> END
+
+~ level_2_start
+
+Nova: Whew. That was a close one.
+NPC: WELCOME TO LEVEL 2. SYSTEM RED.
+Nova: I guess we live here now.
 => END

@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1oxrwo63f0uf"]
+[gd_scene load_steps=5 format=3 uid="uid://43wg0mj8cirf"]
 
-[ext_resource type="Script" uid="uid://6h7gtnmwfjw7" path="res://Scripts/level.gd" id="1_0ba56"]
-[ext_resource type="PackedScene" uid="uid://dhss0exco2bdi" path="res://Scenes/HUD.tscn" id="2_8rbpu"]
-[ext_resource type="Script" uid="uid://bdfty8ghfeibe" path="res://Scripts/HUD.gd" id="3_fuudy"]
+[ext_resource type="Script" uid="uid://6h7gtnmwfjw7" path="res://Scripts/level.gd" id="1_ms0wi"]
+[ext_resource type="PackedScene" uid="uid://dhss0exco2bdi" path="res://Scenes/HUD.tscn" id="2_5awjf"]
+[ext_resource type="Script" uid="uid://bdfty8ghfeibe" path="res://Scripts/HUD.gd" id="3_n3cqh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xylue"]
 
@@ -13,23 +13,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0ba56")
+script = ExtResource("1_ms0wi")
+dialogue_start_key = "level_2_start"
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.003
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -0.055999994
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.54, 0.54, 0.54, 1)
+color = Color(1, 0, 0, 1)
 
-[node name="HUD" parent="." instance=ExtResource("2_8rbpu")]
-script = ExtResource("3_fuudy")
+[node name="HUD" parent="." instance=ExtResource("2_5awjf")]
+script = ExtResource("3_n3cqh")
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
 offset_right = 61.0
