@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://sdyu33ebtywp"]
+
+[ext_resource type="Script" uid="uid://f837spq8sjnj" path="res://Scripts/Hub.gd" id="1_x21iy"]
+[ext_resource type="Texture2D" uid="uid://eg3fcyox7ja" path="res://Assets/f5e20728-df27-4b68-9a27-1640a0e34607.jpg" id="2_l5ww0"]
+
+[node name="Hub" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_x21iy")
+
+[node name="CockpitBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1112.0
+offset_bottom = 605.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_l5ww0")
+expand_mode = 1
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerNameLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+
+[node name="RankLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+
+[node name="MainDisplay" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainDisplay"]
+layout_mode = 2
+
+[node name="TotalScoreLabel" type="Label" parent="MainDisplay/VBoxContainer"]
+layout_mode = 2
+
+[node name="BiasMeter" type="ProgressBar" parent="MainDisplay/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartMissionButton" type="Button" parent="MainDisplay/VBoxContainer"]
+layout_mode = 2
+
+[node name="SidePanel" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SettingsButton" type="Button" parent="SidePanel"]
+layout_mode = 2
+
+[node name="LeaderboardButton" type="Button" parent="SidePanel"]
+layout_mode = 2
