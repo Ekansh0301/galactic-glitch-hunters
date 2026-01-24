@@ -30,21 +30,21 @@ func reset_game():
 	visited_planets.clear()
 
 # This function is called by the Character Creation screen
-func save_player_selection(name: String, gender_id: int):
-	player_name = name
+# This function is called by the Character Creation screen
+# We changed 'name' to 'p_name' to fix the shadowing warning
+func save_player_selection(p_name: String, gender_id: int):
+	player_name = p_name
 	
 	# UPDATE BOTH VARIABLES (Keeps everything in sync)
 	selected_gender_id = gender_id
 	selected_avatar_id = gender_id 
 	
 	# LOGIC: Set Nova opposite to Player
-	# If Player is Male (1) -> Nova is Female
-	# If Player is Female (2) -> Nova is Male
 	if gender_id == 1:
 		selected_nova = "female"
 	elif gender_id == 2:
 		selected_nova = "male"
 	else:
-		selected_nova = "female" # Default
+		selected_nova = "female"
 		
 	is_logged_in = true
