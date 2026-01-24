@@ -1,19 +1,34 @@
 extends Node
 
+# We keep this just in case, but we won't use it yet
 @onready var dialogue_resource = preload("res://Dialogue/main.dialogue")
 
-# THIS IS THE MAGIC LINE YOU ARE MISSING:
-# It creates the "Dialogue Start Key" box in the Inspector
-@export var dialogue_start_key: String = "start_engineering" 
-
 func _ready():
-	# 1. Wait 1 second so the game doesn't start instantly
-	await get_tree().create_timer(1.0).timeout
+	# --- 1. HIDE EVERYONE FIRST ---
+	# We use 'visible = false' on the Parent Node. 
+	# This automatically hides all children (Eyes, Mouth, Hair) too!
+	if has_node("Nova_Female"): $Nova_Female.visible = false
+	if has_node("Nova_Male"):   $Nova_Male.visible = false
 	
-	# 2. Start the Dialogue using the KEY from the Inspector
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start_key, [self])
+	# --- 2. CHECK THE BRAIN ---
+	# The Brain (GameManager) remembers if you are a Boy or Girl.
+	
+	if GameManager.selected_avatar_id == 1: 
+		# Player is Male (1) -> Show Female Guide
+		if has_node("Nova_Female"): $Nova_Female.visible = true
+		print("Logic: Player is Male. Showing FEMALE Nova.")
+			
+	elif GameManager.selected_avatar_id == 2: 
+		# Player is Female (2) -> Show Male Guide
+		if has_node("Nova_Male"): $Nova_Male.visible = true
+		print("Logic: Player is Female. Showing MALE Nova.")
+		
+	else:
+		# Fallback (Guest) -> Show Female Guide
+		if has_node("Nova_Female"): $Nova_Female.visible = true
 
-# --- THE WARP FUNCTION ---
-func load_next_level(next_scene_path: String):
-	print("WARPING TO: " + next_scene_path)
-	get_tree().change_scene_to_file(next_scene_path)
+# --- 3. THE WARP BUTTON ---
+func _on_warp_button_pressed():
+	print("Warp Button Clicked!")
+	# This will crash until we make the Loading Screen next!
+	get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")

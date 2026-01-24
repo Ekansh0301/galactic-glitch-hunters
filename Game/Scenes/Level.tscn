@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1oxrwo63f0uf"]
+[gd_scene load_steps=13 format=3 uid="uid://d1oxrwo63f0uf"]
 
 [ext_resource type="Script" uid="uid://6h7gtnmwfjw7" path="res://Scripts/level.gd" id="1_0ba56"]
 [ext_resource type="PackedScene" uid="uid://dhss0exco2bdi" path="res://Scenes/HUD.tscn" id="2_8rbpu"]
+[ext_resource type="Texture2D" uid="uid://eg3fcyox7ja" path="res://Assets/f5e20728-df27-4b68-9a27-1640a0e34607.jpg" id="2_or7tv"]
+[ext_resource type="Texture2D" uid="uid://bww2ddr8flhuw" path="res://Assets/Nova_Space_Girl_Sprite/Shades/shade2_base.png" id="3_133si"]
 [ext_resource type="Script" uid="uid://bdfty8ghfeibe" path="res://Scripts/HUD.gd" id="3_fuudy"]
+[ext_resource type="Texture2D" uid="uid://cjd5xemhojjf4" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/front_eyes_ver1.png" id="4_esopp"]
+[ext_resource type="Texture2D" uid="uid://bc80pj8042rrv" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/content_brow.png" id="5_b10nm"]
+[ext_resource type="Texture2D" uid="uid://d2w1fwo8v4ni7" path="res://Assets/Nova_Space_Girl_Sprite/Hair/short_hair.png" id="6_fhlu0"]
+[ext_resource type="Texture2D" uid="uid://b2icypux0vc46" path="res://Assets/Nova_Space_Girl_Sprite/mouth&extras/teeth_smile.png" id="7_bktio"]
+[ext_resource type="Texture2D" uid="uid://cxj64xfi8xlna" path="res://Assets/Nova_male/Blond.png" id="10_esopp"]
+[ext_resource type="Texture2D" uid="uid://cxkvt6s1bjt3h" path="res://Assets/Nova_male/Smile 1.png" id="11_b10nm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xylue"]
 
@@ -15,18 +23,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ba56")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.003
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -0.055999994
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.54, 0.54, 0.54, 1)
+texture = ExtResource("2_or7tv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Nova_Female" type="Sprite2D" parent="."]
+position = Vector2(868, 429.99997)
+scale = Vector2(0.45585936, 0.41435176)
+texture = ExtResource("3_133si")
+
+[node name="Eyes" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("4_esopp")
+
+[node name="Brow" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("5_b10nm")
+
+[node name="Hair" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("6_fhlu0")
+
+[node name="Mouth" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("7_bktio")
 
 [node name="HUD" parent="." instance=ExtResource("2_8rbpu")]
 script = ExtResource("3_fuudy")
@@ -44,3 +67,23 @@ offset_right = 1150.0
 offset_bottom = 27.0
 step = 1.0
 value = 50.0
+
+[node name="Nova_Male" type="Sprite2D" parent="."]
+position = Vector2(842.99994, 514)
+scale = Vector2(0.27318072, 0.25223616)
+texture = ExtResource("10_esopp")
+
+[node name="Expression" type="Sprite2D" parent="Nova_Male"]
+position = Vector2(1.4435273, -182.3687)
+scale = Vector2(1.0087221, 1.0272484)
+texture = ExtResource("11_b10nm")
+
+[node name="WarpButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 247.0
+offset_right = 656.0
+offset_bottom = 309.0
+text = "Start Mission"
+
+[connection signal="pressed" from="WarpButton" to="." method="_on_warp_button_pressed"]

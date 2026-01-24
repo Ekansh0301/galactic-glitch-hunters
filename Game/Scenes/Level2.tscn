@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://43wg0mj8cirf"]
+[gd_scene load_steps=14 format=3 uid="uid://43wg0mj8cirf"]
 
 [ext_resource type="Script" uid="uid://6h7gtnmwfjw7" path="res://Scripts/level.gd" id="1_ms0wi"]
 [ext_resource type="PackedScene" uid="uid://dhss0exco2bdi" path="res://Scenes/HUD.tscn" id="2_5awjf"]
+[ext_resource type="Texture2D" uid="uid://bhyljrrotv0pm" path="res://Assets/1781.jpg" id="2_n3cqh"]
 [ext_resource type="Script" uid="uid://bdfty8ghfeibe" path="res://Scripts/HUD.gd" id="3_n3cqh"]
+[ext_resource type="Texture2D" uid="uid://bww2ddr8flhuw" path="res://Assets/Nova_Space_Girl_Sprite/Shades/shade2_base.png" id="5_70df5"]
+[ext_resource type="Texture2D" uid="uid://cjd5xemhojjf4" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/front_eyes_ver1.png" id="6_ejprb"]
+[ext_resource type="Texture2D" uid="uid://bc80pj8042rrv" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/content_brow.png" id="7_au75x"]
+[ext_resource type="Texture2D" uid="uid://d2w1fwo8v4ni7" path="res://Assets/Nova_Space_Girl_Sprite/Hair/short_hair.png" id="8_62f1r"]
+[ext_resource type="Texture2D" uid="uid://b2icypux0vc46" path="res://Assets/Nova_Space_Girl_Sprite/mouth&extras/teeth_smile.png" id="9_1je60"]
+[ext_resource type="Texture2D" uid="uid://b48rdyg28s2bl" path="res://Assets/robotfree/png/Idle (1).png" id="10_ejprb"]
+[ext_resource type="Texture2D" uid="uid://cxj64xfi8xlna" path="res://Assets/Nova_male/Blond.png" id="11_62f1r"]
+[ext_resource type="Texture2D" uid="uid://cxkvt6s1bjt3h" path="res://Assets/Nova_male/Smile 1.png" id="12_1je60"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xylue"]
 
@@ -14,16 +23,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ms0wi")
-dialogue_start_key = "level_2_start"
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0, 1)
+texture = ExtResource("2_n3cqh")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="HUD" parent="." instance=ExtResource("2_5awjf")]
 script = ExtResource("3_n3cqh")
@@ -41,3 +51,35 @@ offset_right = 1150.0
 offset_bottom = 27.0
 step = 1.0
 value = 50.0
+
+[node name="Nova_Female" type="Sprite2D" parent="."]
+position = Vector2(1029, 539.00006)
+scale = Vector2(0.47255853, 0.3998842)
+texture = ExtResource("5_70df5")
+
+[node name="Eyes" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("6_ejprb")
+
+[node name="Brow" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("7_au75x")
+
+[node name="Hair" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("8_62f1r")
+
+[node name="Mouth" type="Sprite2D" parent="Nova_Female"]
+texture = ExtResource("9_1je60")
+
+[node name="Idle(1)" type="Sprite2D" parent="."]
+position = Vector2(198.37498, 366)
+scale = Vector2(1.0180775, 1.0071942)
+texture = ExtResource("10_ejprb")
+
+[node name="Nova_Male" type="Sprite2D" parent="."]
+position = Vector2(1024.9999, 507)
+scale = Vector2(0.27318072, 0.25223616)
+texture = ExtResource("11_62f1r")
+
+[node name="Expression" type="Sprite2D" parent="Nova_Male"]
+position = Vector2(1.4435273, -182.3687)
+scale = Vector2(1.0087221, 1.0272484)
+texture = ExtResource("12_1je60")

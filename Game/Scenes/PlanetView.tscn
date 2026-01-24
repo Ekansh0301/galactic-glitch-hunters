@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://og1cmlcvc8s5"]
+
+[ext_resource type="Script" uid="uid://ck1ldal8vusx8" path="res://Scripts/PlanetView.gd" id="1_hjv0e"]
+[ext_resource type="Texture2D" uid="uid://cfth2oc0tvshj" path="res://Assets/Planets/9762374.jpg" id="1_xtoqx"]
+[ext_resource type="Texture2D" uid="uid://odj4wansowcy" path="res://Assets/Planets/planet08.png" id="2_hjv0e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wiovx"]
+font_size = 28
+font_color = Color(0.93047655, 0.5690163, 0.91981006, 1)
+
+[node name="PlanetView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hjv0e")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xtoqx")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Planet" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = -1.0
+offset_right = 933.0
+offset_bottom = 638.0
+pivot_offset = Vector2(372, 320)
+texture = ExtResource("2_hjv0e")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="InfoLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 476.0
+offset_right = 724.0
+offset_bottom = 524.0
+label_settings = SubResource("LabelSettings_wiovx")
+horizontal_alignment = 1
