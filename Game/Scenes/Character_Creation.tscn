@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqwg0f86fagu6"]
+[gd_scene load_steps=3 format=3 uid="uid://cqwg0f86fagu6"]
 
 [ext_resource type="Script" uid="uid://cvyi20he6pl8b" path="res://Scripts/CharacterCreation.gd" id="1_iu6p7"]
+[ext_resource type="Texture2D" uid="uid://curlnn5mreqc3" path="res://Assets/digital-art-dark-cosmic-night-sky.jpg" id="2_tuea2"]
 
 [node name="CharacterCreation" type="Control"]
 layout_mode = 3
@@ -12,6 +13,15 @@ grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("1_iu6p7")
 
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -468.71198
+offset_top = -326.0
+offset_right = 685.288
+offset_bottom = 325.0
+texture = ExtResource("2_tuea2")
+expand_mode = 1
+
 [node name="GenderSelection" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
@@ -19,19 +29,26 @@ offset_bottom = 40.0
 
 [node name="Male" type="Button" parent="GenderSelection"]
 layout_mode = 2
-text = "Male"
+text = "He/Him"
 
 [node name="Female" type="Button" parent="GenderSelection"]
 layout_mode = 2
-text = "Female"
+text = "She/Her"
 
 [node name="Other" type="Button" parent="GenderSelection"]
 layout_mode = 2
-text = "Other"
+text = "They/Them"
 
 [node name="Confirm" type="Button" parent="."]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 39.288025
+offset_top = 91.0
+offset_right = 110.288025
+offset_bottom = 122.0
 text = "Confirm
 "
+
+[connection signal="pressed" from="GenderSelection/Male" to="." method="_on_male_pressed"]
+[connection signal="pressed" from="GenderSelection/Female" to="." method="_on_female_pressed"]
+[connection signal="pressed" from="GenderSelection/Other" to="." method="_on_other_pressed"]
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
