@@ -5,24 +5,24 @@ const BALLOON_SCENE = preload("res://Scenes/GameBalloon.tscn")
 
 @onready var nova = $Nova
 @onready var robot = $Robot
+# Ensure your Background node is named "Background" in the Scene Tree!
+@onready var background = $Background 
 
-# HUD Paths (Updated to match your screenshot)
+# HUD Paths
 @onready var bias_meter = $HUD/ProgressBar
 @onready var score_label = $HUD/ScoreLabel
 
 func _ready():
-	# 1. FORCE VISIBILITY & TRANSPARENCY
-	# This ensures they exist but are invisible (alpha = 0)
+	# 1. SETUP VISUALS (Start Invisible)
 	nova.visible = true
 	robot.visible = true
 	nova.modulate = Color(1, 1, 1, 0)
 	robot.modulate = Color(1, 1, 1, 0)
 	
-	# 2. SYNC UI
 	if has_node("/root/GameState"):
 		update_ui()
 	
-	# 3. GENDER LOGIC
+	# 2. GENDER LOGIC
 	var chosen_nova = "female"
 	if has_node("/root/GameManager"):
 		chosen_nova = get_node("/root/GameManager").selected_nova
@@ -30,18 +30,16 @@ func _ready():
 	if nova.has_node("Nova_Male"): nova.get_node("Nova_Male").visible = (chosen_nova == "male")
 	if nova.has_node("Nova_Female"): nova.get_node("Nova_Female").visible = (chosen_nova == "female")
 
-	# 4. START INTRO
+	# 3. START INTRO
 	start_intro_sequence()
 
 func start_intro_sequence():
 	var tween = create_tween()
 	tween.set_parallel(true)
 	
-	# Fade Alpha to 1.0 (Fully Visible)
 	tween.tween_property(nova, "modulate:a", 1.0, 1.5)
 	tween.tween_property(robot, "modulate:a", 1.0, 1.5)
 	
-	# Slide in logic
 	tween.tween_property(nova, "position:x", nova.position.x - 20, 1.5).from(nova.position.x + 20)
 	tween.tween_property(robot, "position:x", robot.position.x + 20, 1.5).from(robot.position.x - 20)
 	
@@ -53,35 +51,72 @@ func spawn_dialogue():
 	balloon.start(DIALOGUE_RESOURCE, "start", [self])
 
 func update_ui():
-	# Update Global UI
 	if has_node("/root/GameState"):
 		score_label.text = "Score: " + str(GameState.score)
 		bias_meter.value = GameState.bias_meter
 
-# --- ACTIONS CALLED BY DIALOGUE ---
+# --- ACTIONS ---
 
 func handle_correct():
 	GameState.add_score(100)
-	GameState.shift_bias(-20) # Lower bias = Logic Win
+	GameState.shift_bias(-20) # Lower bias
 	
-	# Green Flash
+	# Green Flash (Extended Version)
 	var tween = create_tween()
-	tween.tween_property(robot, "modulate", Color(0.5, 1, 0.5), 0.2)
-	tween.tween_property(robot, "modulate", Color(1, 1, 1), 0.2)
+	
+	# 1. Turn Bright Green (0.4 seconds)
+	tween.tween_property(robot, "modulate", Color(0.3, 1, 0.3), 0.4)
+	
+	# 2. Stay Green for a moment (Hold for 0.4 seconds)
+	tween.tween_interval(0.4)
+	
+	# 3. Fade back to Normal (0.4 seconds)
+	tween.tween_property(robot, "modulate", Color(1, 1, 1), 0.4)
 	
 	update_ui()
 
 func handle_wrong():
-	GameState.shift_bias(20) # Higher bias = Glitch Win
+	GameState.shift_bias(20) # Penalize
 	
-	# Red Flash & Shake
+	# Red Flash, Shake, & Glitch Blur
 	var tween = create_tween()
+	tween.set_parallel(true)
+	# Turn angry Red
 	tween.tween_property(robot, "modulate", Color(1, 0, 0), 0.2)
-	tween.tween_property(robot, "position:x", robot.position.x + 10, 0.05).set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(robot, "position:x", robot.position.x - 10, 0.05)
+	# Shake X position
+	tween.tween_property(robot, "position:x", robot.position.x + 15, 0.05).set_trans(Tween.TRANS_ELASTIC)
+	tween.chain().tween_property(robot, "position:x", robot.position.x - 15, 0.05)
 	
 	update_ui()
 
+# --- THE CINEMATIC MOMENT (Fixed: Move Left/Up to Center Her) ---
+func trigger_nova_explanation():
+	# 1. Pop Nova to the Front Layer
+	nova.z_index = 10 
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	
+	# 2. Dim the Robot and Background
+	tween.tween_property(robot, "modulate", Color(0.3, 0.3, 0.3, 1), 0.5)
+	tween.tween_property(background, "modulate", Color(0.3, 0.3, 0.3, 1), 0.5)
+	
+	# 3. Highlight Nova (Bright White)
+	tween.tween_property(nova, "modulate", Color(1, 1, 1, 1), 0.5)
+	
+	# 4. THE MOVE: Left, Up, and Zoom
+	# 'as_relative()' means "Move from current spot"
+	
+	# Move LEFT (-x) towards the center of the screen
+	tween.tween_property(nova, "position:x", -400.0, 0.8).as_relative().set_trans(Tween.TRANS_CUBIC)
+	
+	# Move UP (-y) so she dominates the view
+	tween.tween_property(nova, "position:y", -300.0, 0.8).as_relative().set_trans(Tween.TRANS_CUBIC)
+	
+	# Zoom In
+	tween.tween_property(nova, "scale", Vector2(1.3, 1.3), 0.8).set_trans(Tween.TRANS_CUBIC)
+
 func resolve_battle():
-	print("Level Complete! Switching scenes...")
-	# Scene transition logic goes here
+	print("Scenario End. Loading next...")
+	# Placeholder for loading the next scene
+	# get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")

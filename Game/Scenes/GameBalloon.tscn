@@ -1,8 +1,40 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3aqmiruaj1ty"]
+[gd_scene load_steps=16 format=3 uid="uid://d3aqmiruaj1ty"]
 
 [ext_resource type="Script" uid="uid://d1wt4ma6055l8" path="res://addons/dialogue_manager/example_balloon/example_balloon.gd" id="1_q6s1o"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_ds4yx"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_jjr7e"]
+
+[sub_resource type="FontFile" id="FontFile_q6s1o"]
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6s1o"]
+content_margin_left = 25.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05882353, 0.07058824, 0.09803922, 1)
+border_width_left = 6
+border_color = Color(0, 0.8980392, 1, 1)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+shadow_size = 4
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds4yx"]
+bg_color = Color(0, 0.37254903, 0.4509804, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjr7e"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -103,6 +135,36 @@ _data = {
 layer = 100
 script = ExtResource("1_q6s1o")
 
+[node name="ResponsesMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("response_template")]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -18.0
+offset_right = 253.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("3_jjr7e")
+response_template = NodePath("ResponseExample")
+
+[node name="ResponseExample" type="Button" parent="ResponsesMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = SubResource("FontFile_q6s1o")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6s1o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ds4yx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jjr7e")
+text = "Response example"
+
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
@@ -174,32 +236,8 @@ libraries = {
 }
 autoplay = "progress"
 
-[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -290.5
-offset_top = -35.0
-offset_right = 290.5
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 2
-alignment = 1
-script = ExtResource("3_jjr7e")
-response_template = NodePath("ResponseExample")
-
-[node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
-layout_mode = 2
-text = "Response example"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
+[connection signal="response_selected" from="ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="response_selected" from="Balloon/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
