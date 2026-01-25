@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://2bx0o4lyd1eh"]
+[gd_scene load_steps=3 format=3 uid="uid://2bx0o4lyd1eh"]
 
-[ext_resource type="Script" uid="uid://80oe7l4rftib" path="res://Scripts/login.gd" id="1_5cd0j"]
+[ext_resource type="Script" uid="uid://80oe7l4rftib" path="res://Scripts/Login.gd" id="1_5cd0j"]
+[ext_resource type="Texture2D" uid="uid://n342ud3dfsit" path="res://Assets/1866.jpg" id="2_hbxdl"]
 
 [node name="Login" type="Control"]
 layout_mode = 3
@@ -10,6 +11,15 @@ offset_top = 164.0
 offset_right = 962.0
 offset_bottom = 467.0
 script = ExtResource("1_5cd0j")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -200.0
+offset_top = -165.0
+offset_right = 948.0
+offset_bottom = 483.0
+texture = ExtResource("2_hbxdl")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -22,6 +32,9 @@ grow_vertical = 2
 [node name="NameInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 
+[node name="PasswordInput" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="GuestLoginButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Guest"
@@ -29,3 +42,17 @@ text = "Guest"
 [node name="LanguageButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Change Language"
+
+[node name="LoginButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Login"
+
+[node name="ErrorLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 316.0
+offset_top = -143.0
+offset_right = 356.0
+offset_bottom = -120.0
+
+[connection signal="pressed" from="VBoxContainer/GuestLoginButton" to="." method="_on_guest_login_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
