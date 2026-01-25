@@ -186,4 +186,4 @@ func zoom_into_pov():
 
 func _change_to_pov_scene():
 	print("SCENE CHANGE GOES HERE")
-	# get_tree().change_scene_to_file("res://Scenes/POV_Battle.tscn")
+	get_tree().change_scene_to_file("res://Scenes/BattleScene.tscn")
