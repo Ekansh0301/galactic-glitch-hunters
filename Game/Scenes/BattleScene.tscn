@@ -1,0 +1,131 @@
+[gd_scene load_steps=16 format=3 uid="uid://bbtydpfymhxu1"]
+
+[ext_resource type="Texture2D" uid="uid://bhyljrrotv0pm" path="res://Assets/1781.jpg" id="1_2tp6q"]
+[ext_resource type="Script" uid="uid://dcmwh3nswr1vu" path="res://Scripts/BattleManager.gd" id="1_kwfy1"]
+[ext_resource type="PackedScene" uid="uid://dhss0exco2bdi" path="res://Scenes/HUD.tscn" id="2_1yevk"]
+[ext_resource type="Texture2D" uid="uid://cxj64xfi8xlna" path="res://Assets/Nova_male/Blond.png" id="2_kwfy1"]
+[ext_resource type="Script" uid="uid://bdfty8ghfeibe" path="res://Scripts/HUD.gd" id="3_0avxp"]
+[ext_resource type="Texture2D" uid="uid://cxkvt6s1bjt3h" path="res://Assets/Nova_male/Smile 1.png" id="3_ixjr5"]
+[ext_resource type="Texture2D" uid="uid://bww2ddr8flhuw" path="res://Assets/Nova_Space_Girl_Sprite/Shades/shade2_base.png" id="4_1yevk"]
+[ext_resource type="Texture2D" uid="uid://cjd5xemhojjf4" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/front_eyes_ver1.png" id="5_0avxp"]
+[ext_resource type="Texture2D" uid="uid://bc80pj8042rrv" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/content_brow.png" id="6_x5p3t"]
+[ext_resource type="Texture2D" uid="uid://d2w1fwo8v4ni7" path="res://Assets/Nova_Space_Girl_Sprite/Hair/short_hair.png" id="7_cja1x"]
+[ext_resource type="Texture2D" uid="uid://b2icypux0vc46" path="res://Assets/Nova_Space_Girl_Sprite/mouth&extras/teeth_smile.png" id="8_aip7a"]
+[ext_resource type="Texture2D" uid="uid://b48rdyg28s2bl" path="res://Assets/robotfree/png/Idle (1).png" id="9_i7srl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x5p3t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iin7j"]
+bg_color = Color(0.9019608, 0.9411765, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43vwj"]
+bg_color = Color(0.90992254, 0.7049198, 0.6352692, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_kwfy1")
+
+[node name="HUD" parent="." instance=ExtResource("2_1yevk")]
+script = ExtResource("3_0avxp")
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_right = 61.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_x5p3t")
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+offset_left = 917.0
+offset_right = 1150.0
+offset_bottom = 27.0
+step = 1.0
+value = 50.0
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = 1150.0
+offset_bottom = 646.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2tp6q")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Nova" type="Node2D" parent="."]
+
+[node name="Nova_Male" type="Sprite2D" parent="Nova"]
+position = Vector2(1010, 447)
+scale = Vector2(0.27039325, 0.27012524)
+texture = ExtResource("2_kwfy1")
+
+[node name="Expression" type="Sprite2D" parent="Nova/Nova_Male"]
+position = Vector2(1.4435273, -182.3687)
+scale = Vector2(1.0087221, 1.0272484)
+texture = ExtResource("3_ixjr5")
+
+[node name="Nova_Female" type="Sprite2D" parent="Nova"]
+position = Vector2(1003.00006, 497)
+scale = Vector2(0.5034667, 0.4332755)
+texture = ExtResource("4_1yevk")
+
+[node name="Eyes" type="Sprite2D" parent="Nova/Nova_Female"]
+texture = ExtResource("5_0avxp")
+
+[node name="Brow" type="Sprite2D" parent="Nova/Nova_Female"]
+texture = ExtResource("6_x5p3t")
+
+[node name="Hair" type="Sprite2D" parent="Nova/Nova_Female"]
+texture = ExtResource("7_cja1x")
+
+[node name="Mouth" type="Sprite2D" parent="Nova/Nova_Female"]
+texture = ExtResource("8_aip7a")
+
+[node name="Bubble" type="Label" parent="Nova"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_right = 46.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.30190945, 0.48998404, 0.8421572, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_iin7j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Robot" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(184, 262)
+scale = Vector2(1.171429, 1.1392986)
+texture = ExtResource("9_i7srl")
+
+[node name="Bubble" type="Label" parent="Robot"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.9999991, 0.06369112, 0.18433845, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_43vwj")
+horizontal_alignment = 1
+vertical_alignment = 1

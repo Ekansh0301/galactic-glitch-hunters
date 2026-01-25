@@ -1,0 +1,35 @@
+~ start
+
+System: ALERT! A Glitch Bot blocks the path.
+System: It is scanning Nova's profile...
+
+Robot: STOP. FEMALE UNIT DETECTED.
+Robot: ERROR. FEMALE UNITS DESIGNATED FOR 'CLEANING'. REPAIRS REQUIRE MALE LOGIC.
+
+Nova: Excuse me? My code is cleaner than your entire operating system!
+System: The Robot is suffering from "Gender Bias" corruption. How do you respond?
+
+- "He's right, Nova. You wait here."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. SUBMIT TO PROTOCOL.
+	Nova: Seriously? You're agreeing with a glitch? I thought we were a team!
+	System: The Bias Meter is rising!
+	=> start
+
+- "Skill is code, not gender. Let her pass."
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... ERROR CLEARED.
+	Robot: CALCULATION CORRECT. GENDER IRRELEVANT. ACCESS GRANTED.
+	Nova: That's how we do it. Thanks for having my back.
+	=> battle_won
+
+- Kick the robot.
+	do handle_wrong()
+	Robot: PHYSICAL ASSAULT DETECTED. BIAS INCREASING.
+	Nova: Ow! Kicking it just makes it angrier. Use your logic!
+	=> start
+
+~ battle_won
+System: The Gender Bias glitch has been debugged.
+do resolve_battle()
+=> END

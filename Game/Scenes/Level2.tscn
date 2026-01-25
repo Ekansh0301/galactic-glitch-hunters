@@ -152,7 +152,6 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.30190945, 0.48998404, 0.8421572, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_sgc6j")
-text = "sdvsvsvsvsv"
 horizontal_alignment = 1
 vertical_alignment = 1
 
