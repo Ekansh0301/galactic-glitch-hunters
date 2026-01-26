@@ -1,0 +1,60 @@
+~ start
+
+System: ALERT! A Glitch Bot blocks the path.
+System: It is scanning Nova's profile...
+
+Robot: STOP. FEMALE UNIT DETECTED.
+Robot: ERROR. FEMALE UNITS DESIGNATED FOR 'CLEANING'. REPAIRS REQUIRE MALE LOGIC.
+
+Nova: Excuse me? My code is cleaner than your entire operating system!
+System: The Robot is suffering from "Gender Bias" corruption. How do you respond?
+
+# --- CHOICE 1: SUBMISSION (Wrong) ---
+- "He's right, Nova. You wait here."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE SUBMISSION CONFIRMED. PROTOCOL LOCKED.
+	Robot: ERROR... LOGIC CORE OVERHEATING... [UNINTELLIGIBLE NOISES]
+	=> explanation_bias
+
+# --- CHOICE 2: LOGIC (Correct) ---
+- "Skill is code, not gender. Let her pass."
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... ERROR CLEARED.
+	Robot: CALCULATION CORRECT. GENDER IRRELEVANT. ACCESS GRANTED.
+	Nova: Yes! That's how we do it. Thanks for having my back.
+	Nova: You stood your ground and used logic. Great work!
+	Nova: Come on, let's head to the next sector. We've got more bugs to squash.
+	=> battle_won
+
+# --- CHOICE 3: AGGRESSION (Wrong) ---
+- Kick the robot.
+	do handle_wrong()
+	Robot: PHYSICAL ASSAULT DETECTED. DEFENSE MODE ENGAGED.
+	Robot: BZZZT... ERROR... VIOLENCE IS INCOMPATIBLE...
+	=> explanation_aggression
+
+# --- LESSON A: VALIDATING BIAS ---
+~ explanation_bias
+do trigger_nova_explanation()
+Nova: Hold on. Stop right there.
+Nova: Agreeing with him wasn't the right move.
+Nova: When you say "He's right," you validate the glitch. You tell the system that bias is acceptable logic.
+Nova: We can't fix these errors by giving in to them. We have to overwrite them with the truth.
+Nova: Don't worry, we'll get the next one. Let's move on to the next sector. We've got more bugs to squash.
+do resolve_battle()
+=> END
+
+# --- LESSON B: USING VIOLENCE ---
+~ explanation_aggression
+do trigger_nova_explanation()
+Nova: Whoa! Easy! That didn't help at all.
+Nova: Violence isn't a debugging tool. Kicking the hardware just causes more system instability.
+Nova: We are "Glitch Hunters," not "Glitch Smashers." We defeat bias with better logic, not force.
+Nova: Keep your cool next time. Come on, let's head to the next sector. We've got more bugs to squash.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: The Gender Bias glitch has been debugged.
+do resolve_battle()
+=> END
