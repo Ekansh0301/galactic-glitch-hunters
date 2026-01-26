@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqwg0f86fagu6"]
 
 [ext_resource type="Script" uid="uid://cvyi20he6pl8b" path="res://Scripts/CharacterCreation.gd" id="1_iu6p7"]
-[ext_resource type="Texture2D" uid="uid://curlnn5mreqc3" path="res://Assets/digital-art-dark-cosmic-night-sky.jpg" id="2_tuea2"]
+[ext_resource type="Texture2D" uid="uid://durbgl5k0kkye" path="res://Assets/2206_w023_n003_2469b_p1_2469.jpg" id="2_tuea2"]
 
 [node name="CharacterCreation" type="Control"]
 layout_mode = 3
@@ -15,10 +15,10 @@ script = ExtResource("1_iu6p7")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -468.71198
-offset_top = -326.0
-offset_right = 685.288
-offset_bottom = 325.0
+offset_left = -827.712
+offset_top = -371.0
+offset_right = 1948.2881
+offset_bottom = 822.0
 texture = ExtResource("2_tuea2")
 expand_mode = 1
 
@@ -41,9 +41,9 @@ text = "They/Them"
 
 [node name="Confirm" type="Button" parent="."]
 layout_mode = 0
-offset_left = 39.288025
+offset_left = 71.288025
 offset_top = 91.0
-offset_right = 110.288025
+offset_right = 142.28802
 offset_bottom = 122.0
 text = "Confirm
 "
