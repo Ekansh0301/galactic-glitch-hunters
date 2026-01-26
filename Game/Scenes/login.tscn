@@ -34,6 +34,7 @@ layout_mode = 2
 
 [node name="PasswordInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+secret = true
 
 [node name="GuestLoginButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -47,6 +48,10 @@ text = "Change Language"
 layout_mode = 2
 text = "Login"
 
+[node name="SignupButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sign-Up"
+
 [node name="ErrorLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 316.0
@@ -56,3 +61,4 @@ offset_bottom = -120.0
 
 [connection signal="pressed" from="VBoxContainer/GuestLoginButton" to="." method="_on_guest_login_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SignupButton" to="." method="_on_signup_button_pressed"]
