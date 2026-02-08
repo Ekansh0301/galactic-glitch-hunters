@@ -81,28 +81,28 @@ Every encounter is a **debate, not a battle**. You don't fight enemies; you **fi
 
 #### Learning Outcomes
 By playing Galactic Glitch Hunters, children will:
-- 🧠 Develop critical thinking about social stereotypes
-- 💙 Build empathy for diverse identities and experiences
-- 🚫 Recognize toxic behaviors and logical fallacies
-- ✅ Practice active allyship and inclusive language
-- 🌍 Understand identity as fluid and personal
+-  Develop critical thinking about social stereotypes
+-  Build empathy for diverse identities and experiences
+-  Recognize toxic behaviors and logical fallacies
+-  Practice active allyship and inclusive language
+-  Understand identity as fluid and personal
 
 ---
 
 ## ✨ Key Features
 
-- 🎲 **Dynamic Scenario System** - 20+ unique scenarios, 3 randomly selected per session
-- 🌐 **Multi-Language Support** - Pre-built: English, Hindi, Marathi, Telugu, Tamil + AI-powered real-time translation
-- 🎭 **Gender-Agnostic Design** - Players choose pronouns (he/him, she/her, they/them) with complementary Nova variants
+-  **Dynamic Scenario System** - 20+ unique scenarios, 3 randomly selected per session
+-  **Multi-Language Support** - Pre-built: English, Hindi, Marathi, Telugu, Tamil + AI-powered real-time translation
+-  **Gender-Agnostic Design** - Players choose pronouns (he/him, she/her, they/them) with complementary Nova variants
   - Male & Non-Binary players → Female Nova companion
   - Female players → Male Nova companion
-- 🏆 **Badge & Achievement System** - Unlock rewards based on performance and progress
-- 💾 **Supabase Backend** - Cloud sync for user progress, scores, and achievements
-- 🔐 **Flexible Authentication** - Login, Signup, or Guest Mode
-- 📴 **Offline Mode** - Play without internet after initial login
-- 🎯 **Educational Impact** - Addresses gender stereotypes, toxic masculinity, identity, and inclusion
-- ⚡ **Quick Sessions** - ~10 minutes per playthrough, infinite replayability
-- 📱 **Cross-Platform** - Android & Web deployment
+-  **Badge & Achievement System** - Unlock rewards based on performance and progress
+-  **Supabase Backend** - Cloud sync for user progress, scores, and achievements
+-  **Flexible Authentication** - Login, Signup, or Guest Mode
+-  **Offline Mode** - Play without internet after initial login
+-  **Educational Impact** - Addresses gender stereotypes, toxic masculinity, identity, and inclusion
+-  **Quick Sessions** - ~10 minutes per playthrough, infinite replayability
+-  **Cross-Platform** - Android & Web deployment
 
 ---
 
@@ -144,8 +144,8 @@ graph TD
 * **The Glitch:** Upon landing, an NPC blocks your path with a "System Error" (a biased statement).
 * **The Choice:** You must select the correct logical counter-argument from 3 options.
 * **The Result:**
-    * **✅ Debug Success:** The NPC's eyes turn Blue. You earn a **Gold Data Shard** (+100 Pts).
-    * **❌ Logic Failure:** The NPC remains corrupted. Nova interrupts the simulation to explain the logical fallacy. (+0 Pts).
+    * **Debug Success:** The NPC's eyes turn Blue. You earn a **Gold Data Shard** (+100 Pts).
+    * **Logic Failure:** The NPC remains corrupted. Nova interrupts the simulation to explain the logical fallacy. (+0 Pts).
 
 ### 3. The Scoring System
 
@@ -158,9 +158,9 @@ At the end of each patrol (3 scenarios), you are ranked based on debugging effic
 | **300** (Perfect) | *Galactic Legend* | 🥇 Master Debugger |
 
 **Scoring Breakdown:**
-- ✅ Correct Choice = +100 Points
-- ❌ Wrong Choice = +0 Points (Nova explains the error)
-- 📈 Cumulative progress tracked across all sessions
+- Correct Choice = +100 Points
+-  Wrong Choice = +0 Points (Nova explains the error)
+-  Cumulative progress tracked across all sessions
 - 🏆 Special badges for completing all 10 unique scenarios
 
 ---
@@ -285,23 +285,23 @@ user_progress:
 galactic-glitch-hunters/Game/
 │
 ├── 📂 Assets/
-│   ├── 🎨 Sprites/
+│   ├──  Sprites/
 │   │   ├── Nova_Space_Girl_Sprite/   # Female Nova variant
 │   │   ├── Nova_male/                # Male Nova variant
 │   │   ├── Planets/                  # Planet backgrounds
 │   │   └── robotfree/                # Bot/NPC sprites
 │   │
-│   ├── 🖼️ Backgrounds/
+│   ├──  Backgrounds/
 │   │   ├── 1781.jpg                  # Space backgrounds
 │   │   ├── 1866.jpg
 │   │   ├── 5446991.jpg
 │   │   └── digital-art-dark-cosmic-night-sky.jpg
 │   │
-│   ├── 🌐 Translations/
+│   ├──  Translations/
 │   │   ├── galactic_strings.en.po    # English localization
 │   │   └── translations.csv.txt      # Translation database
 │   │
-│   └── 🚀 UI Assets/
+│   └──  UI Assets/
 │       ├── isolated-rocket-transparent.png
 │       └── smoke_07.png              # Particle effects
 │
@@ -319,22 +319,22 @@ galactic-glitch-hunters/Game/
 │   └── GameBalloon.tscn             # Dialogue bubble component
 │
 ├── 📂 Scripts/
-│   ├── 🎮 Core/
+│   ├──  Core/
 │   │   ├── GameState.gd             # Global state singleton
 │   │   ├── GameManager.gd           # Game loop controller
 │   │   └── Hub.gd                   # Hub scene logic
 │   │
-│   ├── 🔐 Auth/
+│   ├──  Auth/
 │   │   ├── AuthManager.gd           # Supabase authentication
 │   │   └── Login.gd                 # Login scene logic
 │   │
-│   ├── 🎭 Gameplay/
+│   ├──  Gameplay/
 │   │   ├── BattleManager.gd         # Scenario/dialogue handler
 │   │   ├── level.gd                 # Level 1 controller
 │   │   ├── Level2.gd                # Level 2 controller
 │   │   └── CharacterCreation.gd     # Avatar/pronoun selection
 │   │
-│   └── 🖥️ UI/
+│   └──  UI/
 │       ├── HUD.gd                   # HUD controller
 │       ├── LoadingScreen.gd         # Loading screen logic
 │       └── PlanetView.gd            # Planet view controller
@@ -369,7 +369,7 @@ galactic-glitch-hunters/Game/
 
 ## 🌍 Localization & Accessibility
 
-### 🌐 Supported Languages
+###  Supported Languages
 **Pre-built Translations:**
 - 🇬🇧 English
 - 🇮🇳 Hindi (हिंदी)
@@ -386,17 +386,17 @@ Additional languages available via AI-powered translation API for global accessi
 
 ### 🏅 Badge System
 Unlock achievements as you progress:
-- 🥉 **Glitch Novice** - Complete your first session
-- 🥈 **Logic Defender** - Score 200+ in a single run
-- 🥇 **Galactic Legend** - Perfect score (300) achieved
-- 🌟 **Master Debugger** - Complete all 20+ scenarios
-- 💎 **Nova's Ally** - Always choose respectful dialogue options
+-  **Glitch Novice** - Complete your first session
+-  **Logic Defender** - Score 200+ in a single run
+-  **Galactic Legend** - Perfect score (300) achieved
+-  **Master Debugger** - Complete all 20+ scenarios
+-  **Nova's Ally** - Always choose respectful dialogue options
 
 ### 🎮 Features
-- ♾️ **Infinite Replayability** - Play unlimited sessions (3 random scenarios each)
-- 📴 **Offline Mode** - Progress saved locally when offline
-- ☁️ **Cloud Sync** - Automatic progress backup via Supabase
-- 📊 **Progress Tracking** - Track scenarios completed, best scores, and unlocked badges
+-  **Infinite Replayability** - Play unlimited sessions (3 random scenarios each)
+-  **Offline Mode** - Progress saved locally when offline
+-  **Cloud Sync** - Automatic progress backup via Supabase
+-  **Progress Tracking** - Track scenarios completed, best scores, and unlocked badges
 
 ---
 
@@ -441,15 +441,15 @@ Between planets, players see educational quotes from Nova:
 
 ---
 
-## 🎯 Project Objectives
+##  Project Objectives
 
-### ✅ Core Requirements
+###  Core Requirements
 - ✓ **Quick Sessions** - 10-minute gameplay per run
 - ✓ **Android Deployment** - Fully deployable on Android devices
 - ✓ **Diverse Scenarios** - 20+ unique story scenarios covering toxic behaviors
 - ✓ **Multi-Language** - Language-agnostic architecture with easy language switching
 
-### 🎯 Educational Goals
+### Educational Goals
 - ✓ Address toxic masculinity in age-appropriate manner
 - ✓ Challenge gender stereotypes and roles
 - ✓ Promote inclusion and respect for diverse identities
@@ -485,7 +485,7 @@ Between planets, players see educational quotes from Nova:
 
 ---
 
-## 📊 Development Status
+##  Development Status
 
 Current Phase: **Core Development (Phase 2)**
 
