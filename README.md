@@ -154,14 +154,14 @@ At the end of each patrol (3 scenarios), you are ranked based on debugging effic
 | Score | Rank Title | Badge Earned |
 | :---: | :--- | :--- |
 | **0-100** | *Glitch Magnet* | Try again! |
-| **200** | *System Administrator* | 🥈 Silver Debugger |
-| **300** (Perfect) | *Galactic Legend* | 🥇 Master Debugger |
+| **200** | *System Administrator* |  Silver Debugger |
+| **300** (Perfect) | *Galactic Legend* |  Master Debugger |
 
 **Scoring Breakdown:**
 - Correct Choice = +100 Points
 -  Wrong Choice = +0 Points (Nova explains the error)
 -  Cumulative progress tracked across all sessions
-- 🏆 Special badges for completing all 10 unique scenarios
+-  Special badges for completing all 10 unique scenarios
 
 ---
 
@@ -384,7 +384,7 @@ Additional languages available via AI-powered translation API for global accessi
 
 ## 🏆 Gamification & Progression
 
-### 🏅 Badge System
+###  Badge System
 Unlock achievements as you progress:
 -  **Glitch Novice** - Complete your first session
 -  **Logic Defender** - Score 200+ in a single run
@@ -392,7 +392,7 @@ Unlock achievements as you progress:
 -  **Master Debugger** - Complete all 20+ scenarios
 -  **Nova's Ally** - Always choose respectful dialogue options
 
-### 🎮 Features
+###  Features
 -  **Infinite Replayability** - Play unlimited sessions (3 random scenarios each)
 -  **Offline Mode** - Progress saved locally when offline
 -  **Cloud Sync** - Automatic progress backup via Supabase
@@ -400,7 +400,7 @@ Unlock achievements as you progress:
 
 ---
 
-## 📅 Development Timeline
+##  Development Timeline
 
 **Project Duration:** January 2026 - April 2026  
 **Submission Deadline:** April 1st Week, 2026
@@ -542,9 +542,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## 📞 Contact
 
 For inquiries about this project:
-- 📧 **Email:** [ekansh.goyal@research.iiit.ac.in](mailto:ekansh.goyal@research.iiit.ac.in)
-- 🐙 **GitHub Issues:** [Open an Issue](https://github.com/Ekansh0301/galactic-glitch-hunters/issues)
-- 📚 **Institution:** IIIT Hyderabad
+-  **Email:** [ekansh.goyal@research.iiit.ac.in](mailto:ekansh.goyal@research.iiit.ac.in)
+-  **GitHub Issues:** [Open an Issue](https://github.com/Ekansh0301/galactic-glitch-hunters/issues)
+-  **Institution:** IIIT Hyderabad
 
 ---
 
