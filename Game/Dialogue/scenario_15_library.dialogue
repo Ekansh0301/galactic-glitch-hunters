@@ -1,0 +1,110 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Library. A student is reading an advanced physics textbook.
+
+Student: This quantum mechanics chapter is fascinating!
+
+Robot: SCANNING... FEMALE STUDENT DETECTED IN ADVANCED SCIENCE SECTION.
+Robot: RECOMMENDATION: REDIRECT TO ROMANCE OR FICTION SECTION.
+Robot: COMPLEX SCIENCE IS NOT OPTIMAL FOR FEMALE COMPREHENSION.
+
+Nova: What?! That's completely false and insulting!
+System: The Robot is making assumptions about intelligence based on gender. How do you respond?
+
+- "Maybe she would enjoy fiction more..."
+	do handle_wrong()
+	Robot: INTEREST REDIRECTION ACCEPTED. INTELLECTUAL LIMITATION CONFIRMED.
+	Student: [Closes book sadly] I guess I'm not smart enough for this...
+	=> explanation_limit_female
+
+- "Intelligence has no gender. Let her read whatever interests her."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... GENDER-BASED READING RESTRICTIONS REMOVED.
+	Student: Thank you! I want to be a physicist!
+	Nova: Perfect! Never let stereotypes limit intellectual curiosity!
+	=> battle_won
+
+- "You do seem to be struggling with it..."
+	do handle_wrong()
+	Robot: FEMALE INTELLECTUAL LIMITATION CONFIRMED.
+	=> explanation_doubt_female
+
+~ explanation_limit_female
+do trigger_nova_explanation()
+Nova: That's wrong, Hero!
+Nova: The robot assumed that being female means being less capable in science.
+Nova: That stereotype has held women back from STEM fields for generations.
+Nova: Intelligence, curiosity, and capability aren't gendered. Don't validate that bias.
+do resolve_battle()
+=> END
+
+~ explanation_doubt_female
+do trigger_nova_explanation()
+Nova: You just validated the stereotype!
+Nova: Assuming she's struggling because she's female, not because the material is hard, is bias.
+Nova: Everyone struggles with advanced topics—that's called learning. Gender has nothing to do with it.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Library. You're reading an advanced engineering textbook.
+
+You: This chapter on propulsion systems is incredible!
+
+Robot: SCANNING... FEMALE STUDENT IN ADVANCED ENGINEERING SECTION.
+Robot: THIS MATERIAL MAY BE TOO TECHNICAL. RECOMMEND SIMPLER TEXTS.
+
+Nova: Too technical?! She's clearly understanding it!
+System: The Robot is questioning your ability based on gender. How do you respond?
+
+- "Maybe something simpler would be better..."
+	do handle_wrong()
+	Robot: SELF-DOUBT CONFIRMED. INTELLECTUAL LIMITATION ACCEPTED.
+	=> explanation_doubt_male
+
+- "I'm perfectly capable of understanding this. Don't underestimate me."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... GENDER-BASED ASSUMPTIONS REMOVED.
+	Robot: ADVANCED MATERIALS AUTHORIZED.
+	Nova: Yes! Never let anyone make you doubt your intelligence!
+	=> battle_won
+
+- "I'm just browsing anyway..."
+	do handle_wrong()
+	Robot: INTELLECTUAL INTEREST MINIMIZED. STEREOTYPE VALIDATED.
+	=> explanation_minimize_male
+
+~ explanation_doubt_male
+do trigger_nova_explanation()
+Nova: Don't doubt yourself, Hero!
+Nova: The robot assumed you couldn't handle advanced material because you're female.
+Nova: That's bias, not truth. Your gender doesn't limit your intelligence.
+do resolve_battle()
+=> END
+
+~ explanation_minimize_male
+do trigger_nova_explanation()
+Nova: Don't minimize your intellectual interests!
+Nova: By downplaying your curiosity, you reinforced the idea that "girls don't do engineering."
+Nova: Own your intelligence and your interests with confidence.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Intelligence Stereotype glitch debugged. +100 Points!
+do resolve_battle()
+=> END

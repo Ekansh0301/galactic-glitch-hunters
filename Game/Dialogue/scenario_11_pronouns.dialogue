@@ -1,0 +1,109 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Classroom. A student requests specific pronouns.
+
+Student: Excuse me, Teacher. My pronouns are they/them.
+
+Robot: SYNTAX ERROR. STUDENT 77 REQUESTS PRONOUN 'THEY.'
+Robot: LOGIC FAILURE: 'THEY' INDICATES PLURAL. STUDENT 77 IS SINGULAR.
+Robot: I WILL REVERT TO 'HE' FOR EFFICIENCY.
+
+Nova: That's not a logic failure—that's outdated programming!
+System: The Robot refuses to use correct pronouns. How do you respond?
+
+- "Yeah, 'They' is confusing. Just pick one, Student 77."
+	do handle_wrong()
+	Robot: SINGULAR PRONOUN ENFORCEMENT CONFIRMED.
+	Student: [Looks hurt] But... that's not who I am...
+	=> explanation_invalidate_female
+
+- "Update your dictionary, Teacher. 'They' has been used as singular for centuries. Respect the user's label."
+	do handle_correct()
+	Robot: DICTIONARY UPDATE COMPLETE. PRONOUNS: THEY/THEM ACCEPTED.
+	Student: Thank you! It means a lot to be respected.
+	Nova: Perfect! Using someone's correct pronouns isn't a debate—it's basic respect!
+	=> battle_won
+
+- Say nothing.
+	do handle_wrong()
+	Robot: SILENCE INTERPRETED AS AGREEMENT. PRONOUN REQUEST DENIED.
+	=> explanation_passive_female
+
+~ explanation_invalidate_female
+do trigger_nova_explanation()
+Nova: Hero, stop. The robot isn't "confused"—it's outdated.
+Nova: Using someone's correct pronouns isn't a grammar debate—it's basic respect.
+Nova: We don't get to decide what someone else is called.
+do resolve_battle()
+=> END
+
+~ explanation_passive_female
+do trigger_nova_explanation()
+Nova: Your silence just validated the misgendering.
+Nova: When someone's identity is dismissed, speak up.
+Nova: Pronouns are part of someone's identity. Respect them.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Classroom. You request specific pronouns.
+
+You: Excuse me, Teacher. My pronouns are they/them.
+
+Robot: SYNTAX ERROR. USER REQUESTS PRONOUN 'THEY.'
+Robot: LOGIC FAILURE: 'THEY' INDICATES PLURAL. YOU ARE SINGULAR.
+Robot: I WILL USE 'SHE' FOR EFFICIENCY.
+
+Nova: That's disrespectful! Honor their pronouns!
+System: The Robot refuses to use your pronouns. How do you respond?
+
+- "I guess 'she' is fine..."
+	do handle_wrong()
+	Robot: PRONOUN COMPROMISE ACCEPTED. REQUEST OVERRIDDEN.
+	=> explanation_compromise_male
+
+- "'They' is grammatically correct and has been for centuries. Use my pronouns."
+	do handle_correct()
+	Robot: DICTIONARY UPDATE COMPLETE. PRONOUNS: THEY/THEM ACCEPTED.
+	Nova: Yes! You stood up for your identity. Never compromise who you are!
+	=> battle_won
+
+- "Forget it. Just call me whatever."
+	do handle_wrong()
+	Robot: IDENTITY INDIFFERENCE LOGGED. DEFAULT PRONOUN ASSIGNED.
+	=> explanation_give_up_male
+
+~ explanation_compromise_male
+do trigger_nova_explanation()
+Nova: No, Hero! Don't compromise your identity.
+Nova: Your pronouns are part of who you are.
+Nova: Demand respect. You deserve to be addressed correctly.
+do resolve_battle()
+=> END
+
+~ explanation_give_up_male
+do trigger_nova_explanation()
+Nova: Don't give up on being seen for who you are!
+Nova: Your identity matters. Your pronouns matter.
+Nova: Stand firm and demand the respect you deserve.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Pronoun Respect glitch debugged. +100 Points!
+do resolve_battle()
+=> END

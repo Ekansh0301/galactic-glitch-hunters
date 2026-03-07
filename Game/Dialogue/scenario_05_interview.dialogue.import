@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dbhb4bd8hi6cf"
+path="res://.godot/imported/scenario_05_interview.dialogue-60d32c753a416a79bb4dc87fbadbac31.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_05_interview.dialogue"
+dest_files=["res://.godot/imported/scenario_05_interview.dialogue-60d32c753a416a79bb4dc87fbadbac31.tres"]
+
+[params]
+
+defaults=true

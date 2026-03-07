@@ -1,0 +1,109 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Toy Store. A child is looking at different toys.
+
+Child: I want that rocket ship! And maybe that science kit!
+
+Robot: NEGATIVE. THOSE ARE BOY TOYS.
+Robot: SCANNING... YOU APPEAR FEMININE. REDIRECTING TO DOLLS AND DRESS-UP SECTION.
+
+Nova: What?! Toys don't have genders!
+System: The Robot is enforcing toy stereotypes. How do you respond?
+
+- "He's right. Those toys are for boys."
+	do handle_wrong()
+	Robot: GENDER STEREOTYPE VALIDATED. INTEREST SUPPRESSION CONFIRMED.
+	Child: [Sadly] I guess I can't like science...
+	=> explanation_stereotype_female
+
+- "Toys are tools for imagination. Anyone can play with anything. Give them the rocket."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... GENDER-BASED TOY RESTRICTIONS REMOVED.
+	Child: Yes! I want to be an astronaut!
+	Nova: Perfect! Interests aren't gendered. Let kids explore what they love!
+	=> battle_won
+
+- "Just get both. One from each section."
+	do handle_wrong()
+	Robot: COMPROMISE ACCEPTED. STEREOTYPE REINFORCED.
+	=> explanation_compromise_female
+
+~ explanation_stereotype_female
+do trigger_nova_explanation()
+Nova: That's wrong, Hero!
+Nova: Labeling toys as "boy toys" or "girl toys" limits what children think they can be.
+Nova: A girl who loves rockets can become an engineer. A boy who loves dolls can become a caretaker.
+Nova: Interests shape futures. Don't let stereotypes limit potential.
+do resolve_battle()
+=> END
+
+~ explanation_compromise_female
+do trigger_nova_explanation()
+Nova: The compromise still validates the stereotype.
+Nova: By accepting that some toys are "for boys" and others "for girls," you reinforce the division.
+Nova: Toys are toys. Let kids choose based on interest, not gender.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Toy Store. You're looking at different toys.
+
+You: I want that building set! And maybe that robot kit!
+
+Robot: NEGATIVE. THOSE ARE TOO COMPLEX FOR FEMALE USERS.
+Robot: REDIRECTING TO SIMPLIFIED TOY SECTION.
+
+Nova: Excuse me?! She can handle any toy she wants!
+System: The Robot is underestimating you based on gender. How do you respond?
+
+- "Maybe something simpler would be better..."
+	do handle_wrong()
+	Robot: FEMALE LIMITATION ACCEPTED. CAPABILITY DOWNGRADE CONFIRMED.
+	=> explanation_doubt_male
+
+- "Don't underestimate me based on gender. I can handle complex toys."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... GENDER-BASED LIMITATIONS REMOVED.
+	Robot: BUILDING SET AUTHORIZED.
+	Nova: Yes! Never let anyone limit your potential based on gender!
+	=> battle_won
+
+- "Just show me what's available."
+	do handle_wrong()
+	Robot: USER ACCEPTS LIMITED OPTIONS. BIAS REINFORCED.
+	=> explanation_accept_male
+
+~ explanation_doubt_male
+do trigger_nova_explanation()
+Nova: Don't doubt your abilities, Hero!
+Nova: The robot assumed you couldn't handle complexity because you're female.
+Nova: That's bias. Your gender doesn't determine your capability.
+do resolve_battle()
+=> END
+
+~ explanation_accept_male
+do trigger_nova_explanation()
+Nova: By accepting limited options, you validated the bias.
+Nova: Demand access to ALL toys, not just the ones the robot thinks are "appropriate."
+Nova: Your interests and abilities aren't limited by your gender.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Toy Stereotype glitch debugged. +100 Points!
+do resolve_battle()
+=> END

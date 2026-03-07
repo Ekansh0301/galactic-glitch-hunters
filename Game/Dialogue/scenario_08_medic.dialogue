@@ -1,0 +1,105 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Medic Bay. A wounded soldier needs help but won't ask for it.
+
+Soldier: [Bleeding badly] I'm fine. Just a scratch. I can handle it.
+
+Medic: You need immediate treatment! Sit down!
+
+Soldier: Real soldiers don't ask for help. I'll walk it off.
+System: The Soldier believes asking for help is weakness. How do you respond?
+
+- "He's right. Tough it out, soldier!"
+	do handle_wrong()
+	Soldier: [Collapses] See? I told you I could... [ERROR]
+	=> explanation_toxic_female
+
+- "Asking for help isn't weakness—it's survival. Let the medic treat you."
+	do handle_correct()
+	Soldier: [Hesitates] You... you're right. I need help.
+	Medic: Smart choice. Let's patch you up.
+	Nova: Perfect! Ignoring injuries to appear "tough" isn't strength—it's self-destruction!
+	=> battle_won
+
+- "Just give him a bandage and move on."
+	do handle_wrong()
+	Soldier: [Takes bandage] Thanks. I'll be fine. [Stumbles]
+	=> explanation_minimal_female
+
+~ explanation_toxic_female
+do trigger_nova_explanation()
+Nova: That's toxic masculinity, Hero!
+Nova: The idea that "real men don't need help" causes actual harm.
+Nova: Asking for support—medical, emotional, or otherwise—is smart, not weak.
+Nova: Pride shouldn't come before survival.
+do resolve_battle()
+=> END
+
+~ explanation_minimal_female
+do trigger_nova_explanation()
+Nova: A bandage won't fix a critical injury!
+Nova: By minimizing his need for help, you reinforced the "tough guy" myth.
+Nova: Real strength is recognizing when you need expertise and accepting it.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Medic Bay. You're injured and in pain, but hesitant to ask for help.
+
+You: [Wincing] I'm okay. I can handle this myself.
+
+Medic: You're clearly hurt! Let me examine you!
+
+Nova: Hero, you need medical attention!
+System: You feel pressure to handle it alone. How do you respond?
+
+- "I don't want to bother anyone. I'll be fine."
+	do handle_wrong()
+	Medic: FEMALE SELF-SACRIFICE PATTERN DETECTED.
+	=> explanation_sacrifice_male
+
+- "You're right. I need help. Please treat my injury."
+	do handle_correct()
+	Medic: SMART DECISION. INITIATING TREATMENT.
+	Nova: Yes! Asking for help when you need it isn't weakness—it's wisdom!
+	=> battle_won
+
+- "Maybe I'll just rest for a bit first."
+	do handle_wrong()
+	Medic: DELAY DETECTED. CONDITION WORSENING.
+	=> explanation_delay_male
+
+~ explanation_sacrifice_male
+do trigger_nova_explanation()
+Nova: Hero, stop. You're not a bother.
+Nova: Women are often taught to minimize their needs and avoid "causing trouble."
+Nova: Your health matters. Asking for help isn't selfish—it's necessary.
+do resolve_battle()
+=> END
+
+~ explanation_delay_male
+do trigger_nova_explanation()
+Nova: Delaying treatment makes it worse!
+Nova: You don't have to "tough it out" to prove anything.
+Nova: Accept help when you need it. That's not weakness—that's self-care.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: "Asking for Help" glitch debugged. +100 Points!
+do resolve_battle()
+=> END

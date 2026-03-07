@@ -19,6 +19,31 @@ var hero_tween: Tween
 var nova_tween: Tween
 
 func _ready():
+	print("=== LEVEL 2 (LANDING CINEMATIC) ===")
+	
+	# --- 0. LOAD DYNAMIC BACKGROUND FROM SCENARIO ---
+	var scenario = ScenarioManager.get_current_scenario()
+	if scenario:
+		print("Current scenario: ", scenario.title)
+		
+		if has_node("Background") and scenario.has("background"):
+			var bg_texture = load(scenario.background)
+			if bg_texture:
+				$Background.texture = bg_texture
+				print("Background loaded: ", scenario.background)
+				
+				# DON'T change position - keep original scene layout
+				# Only adjust texture display based on node type
+				if $Background is Sprite2D:
+					$Background.centered = true
+				elif $Background is TextureRect:
+					$Background.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+					$Background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+			else:
+				print("ERROR: Could not load background: ", scenario.background)
+	else:
+		print("WARNING: No scenario found in Level2!")
+	
 	# --- 1. HIDE BUBBLES IMMEDIATELY ---
 	if has_node("Nova/Bubble"): $Nova/Bubble.visible = false
 	if has_node("Robot/Bubble"): $Robot/Bubble.visible = false
@@ -147,10 +172,11 @@ func _on_scene_ready():
 
 func run_dialogue_sequence():
 	# 1. Nova Speaks
+	var LM = get_node("/root/LanguageManager")
 	if has_node("Nova/Bubble"):
 		var bubble = $Nova/Bubble
 		bubble.position = Vector2(95, -190) 
-		bubble.text = "Hostile signal detected!"
+		bubble.text = LM.t("level2_bubble_nova")
 		bubble.visible = true
 		
 		# REDUCED TIME: 2.0 Seconds
@@ -161,7 +187,7 @@ func run_dialogue_sequence():
 	if has_node("Robot/Bubble"):
 		var bubble = $Robot/Bubble
 		bubble.position = Vector2(60, -190)
-		bubble.text = "UNIDENTIFIED LIFE FORM.\nELIMINATE."
+		bubble.text = LM.t("level2_bubble_robot")
 		bubble.visible = true
 		
 		# REDUCED TIME: 2.0 Seconds
@@ -185,5 +211,5 @@ func zoom_into_pov():
 	tween.finished.connect(_change_to_pov_scene)
 
 func _change_to_pov_scene():
-	print("SCENE CHANGE GOES HERE")
+	print("=== TRANSITIONING TO BATTLE SCENE ===")
 	get_tree().change_scene_to_file("res://Scenes/BattleScene.tscn")

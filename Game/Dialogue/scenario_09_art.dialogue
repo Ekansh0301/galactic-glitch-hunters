@@ -1,0 +1,107 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Art Studio. A young cadet is painting a beautiful landscape.
+
+Cadet: Look at this sunset I painted! I love art.
+
+Robot: ALERT. YOU ARE A MALE UNIT. ART IS DESIGNATED FOR FEMALE UNITS.
+Robot: MALE UNITS SHOULD ENGAGE IN COMBAT TRAINING, NOT CREATIVE EXPRESSION.
+
+Nova: What?! Art is for everyone!
+System: The Robot is enforcing toxic masculinity. How do you respond?
+
+- "He's right. Art is kind of... girly. Let's go train."
+	do handle_wrong()
+	Robot: MASCULINITY PROTOCOL CONFIRMED. CREATIVE EXPRESSION SUPPRESSED.
+	Cadet: [Puts down brush sadly] I guess you're right...
+	=> explanation_toxic_female
+
+- "Creativity is a strength, not a weakness. Art is for anyone who wants to create."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... GENDER RESTRICTIONS REMOVED.
+	Cadet: Thank you! I want to be an artist AND a pilot!
+	Nova: Yes! Telling boys they can't be creative limits their potential!
+	=> battle_won
+
+- "Just paint in private where no one can see."
+	do handle_wrong()
+	Robot: CONCEALMENT ACCEPTED. SHAME PROTOCOL VALIDATED.
+	=> explanation_hiding_female
+
+~ explanation_toxic_female
+do trigger_nova_explanation()
+Nova: That's toxic masculinity, Hero.
+Nova: Telling boys that creativity, art, or beauty are "for girls" limits who they can be.
+Nova: Real strength includes ALL forms of expression—physical, emotional, AND creative.
+do resolve_battle()
+=> END
+
+~ explanation_hiding_female
+do trigger_nova_explanation()
+Nova: No! That reinforces shame.
+Nova: Telling him to hide his art validates the idea that it's "wrong" for him.
+Nova: We shouldn't have to hide our passions to fit outdated gender roles.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Art Studio. You're creating a beautiful sculpture.
+
+You: I love working with my hands. This sculpture is almost done!
+
+Robot: FEMALE DETECTED. ARTISTIC PURSUITS ARE FRIVOLOUS.
+Robot: RECOMMEND PRACTICAL TRAINING INSTEAD.
+
+Nova: Frivolous?! Art is valuable!
+System: The Robot is dismissing your creative work. How do you respond?
+
+- "Maybe I should focus on something more useful..."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE CREATIVE PURSUITS ARE NON-ESSENTIAL.
+	=> explanation_devalue_male
+
+- "Art is valuable. Creativity is a skill, not a waste of time."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... CREATIVE EXPRESSION IS VALID.
+	Nova: Exactly! Don't let anyone tell you that your passions are "frivolous"!
+	=> battle_won
+
+- "It's just a hobby, nothing serious."
+	do handle_wrong()
+	Robot: DIMINISHMENT ACCEPTED. CREATIVE WORK DEVALUED.
+	=> explanation_minimize_male
+
+~ explanation_devalue_male
+do trigger_nova_explanation()
+Nova: No, Hero! Don't devalue your own work.
+Nova: Society often dismisses women's creative pursuits as "hobbies" while men's are "careers."
+Nova: Your art has value. Don't let biased code convince you otherwise.
+do resolve_battle()
+=> END
+
+~ explanation_minimize_male
+do trigger_nova_explanation()
+Nova: Don't minimize your passion!
+Nova: Calling it "just a hobby" reinforces the idea that it doesn't matter.
+Nova: Your creativity is valuable. Own it with confidence.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Creative Expression glitch debugged. +100 Points!
+do resolve_battle()
+=> END

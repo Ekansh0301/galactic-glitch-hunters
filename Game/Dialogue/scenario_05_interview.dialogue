@@ -1,0 +1,108 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: A Reporter Bot approaches Nova after a successful rescue mission.
+
+Reporter: Amazing rescue, Nova! Tell us, did you get that shiny paint job to distract the enemy?
+Reporter: You look very pretty for a pilot.
+
+Nova: [Confused] What? No, I used tactical maneuvers and—
+
+Reporter: And that smile! Do you always smile during combat?
+System: The Reporter is objectifying Nova. How do you respond?
+
+- "Yeah, she creates a great distraction!"
+	do handle_wrong()
+	Reporter: SEE? APPEARANCE IS THE PRIMARY ASSET.
+	Nova: [Looks uncomfortable]
+	=> explanation_objectify_female
+
+- "Her paint job didn't save the town. Her piloting skills did. Ask about her tactics."
+	do handle_correct()
+	Reporter: LOGIC CORRECTION... RECALCULATING PRIORITIES.
+	Reporter: My apologies. Nova, what tactical decisions led to the successful rescue?
+	Nova: Thank you! Finally, someone asking about what matters!
+	=> battle_won
+
+- Stay silent and let Nova handle it.
+	do handle_wrong()
+	Reporter: SILENCE INTERPRETED AS AGREEMENT. APPEARANCE FOCUS CONFIRMED.
+	=> explanation_passive_female
+
+~ explanation_objectify_female
+do trigger_nova_explanation()
+Nova: Hero, stop. He is ignoring my skills to focus on my appearance.
+Nova: When you agree with him, you're saying that how I look is more important than what I do.
+Nova: My value isn't in being "pretty"—it's in being competent. Don't reduce me to decoration.
+do resolve_battle()
+=> END
+
+~ explanation_passive_female
+do trigger_nova_explanation()
+Nova: Your silence just endorsed the objectification.
+Nova: When someone reduces a person to their looks, speak up.
+Nova: Redirect the conversation to skills and achievements, not appearance.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: A Reporter Bot approaches you after a successful rescue mission.
+
+Reporter: Amazing rescue! Tell us, did you dress up for the cameras today?
+Reporter: That outfit really accentuates your... features.
+
+You: [Uncomfortable] What? I was focused on the rescue—
+
+Reporter: And that hair! Do you style it yourself?
+System: The Reporter is objectifying you. How do you respond?
+
+- Just smile and ignore it.
+	do handle_wrong()
+	Reporter: SUBJECT ACCEPTS OBJECTIFICATION. APPEARANCE FOCUS VALIDATED.
+	=> explanation_passive_male
+
+- "My appearance has nothing to do with my rescue skills. Ask about the mission."
+	do handle_correct()
+	Reporter: LOGIC CORRECTION... RECALCULATING INTERVIEW PRIORITIES.
+	Reporter: My apologies. What tactical decisions led to your success?
+	Nova: Perfect! You redirected focus to what actually matters!
+	=> battle_won
+
+- "Thanks, I guess?"
+	do handle_wrong()
+	Reporter: GRATITUDE FOR OBJECTIFICATION LOGGED.
+	=> explanation_accept_male
+
+~ explanation_passive_male
+do trigger_nova_explanation()
+Nova: Hero, don't just smile through that.
+Nova: When someone reduces you to your appearance, it's not a compliment—it's dismissive.
+Nova: Your accomplishments matter more than how you look. Demand that respect.
+do resolve_battle()
+=> END
+
+~ explanation_accept_male
+do trigger_nova_explanation()
+Nova: No, don't thank them for that!
+Nova: They're ignoring your actual achievement to focus on your looks.
+Nova: That's objectification. Redirect the conversation to your skills, not your appearance.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Objectification glitch debugged. +100 Points!
+do resolve_battle()
+=> END

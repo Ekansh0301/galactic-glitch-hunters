@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dkgbxe82u7n2v"
+path="res://.godot/imported/scenario_07_emotions.dialogue-5b01e060a14e952444ddcde395377e57.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_07_emotions.dialogue"
+dest_files=["res://.godot/imported/scenario_07_emotions.dialogue-5b01e060a14e952444ddcde395377e57.tres"]
+
+[params]
+
+defaults=true

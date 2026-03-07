@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bcwvqfo8yk37l"
+path="res://.godot/imported/scenario_10_security.hi.dialogue-f6350ee89acde8fc422b7b617868051f.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_10_security.hi.dialogue"
+dest_files=["res://.godot/imported/scenario_10_security.hi.dialogue-f6350ee89acde8fc422b7b617868051f.tres"]
+
+[params]
+
+defaults=true

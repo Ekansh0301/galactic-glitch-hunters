@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dkvdti6gbl1gb"]
+
+[ext_resource type="Texture2D" uid="uid://bhyljrrotv0pm" path="res://Assets/1781.jpg" id="1_bg"]
+[ext_resource type="Script" uid="uid://bfqh13xhhcrtp" path="res://Scripts/LanguageSelect.gd" id="1_qxsp1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.1, 0.1, 0.4, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.2, 0.2, 0.7, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.8, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="LanguageSelect" type="Control" unique_id=1659257372]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_qxsp1")
+
+[node name="Background" type="TextureRect" parent="." unique_id=56358303]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1156.0
+offset_bottom = 646.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=885203892]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=318445319]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=978187758]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+text = "Galactic Glitch Hunters"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1703507777]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Choose Your Language / भाषा चुनें / భాష ఎంచుకోండి"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1446380943]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="EnglishButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=284486824]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "🌐  English"
+
+[node name="HindiButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=222324213]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "🌐  हिन्दी (Hindi)"
+
+[node name="TeluguButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1204228363]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "🌐  తెలుగు (Telugu)"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/EnglishButton" to="." method="_on_english_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HindiButton" to="." method="_on_hindi_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TeluguButton" to="." method="_on_telugu_button_pressed"]

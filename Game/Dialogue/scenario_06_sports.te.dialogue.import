@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dsgcvp4mp7en3"
+path="res://.godot/imported/scenario_06_sports.te.dialogue-b81f8c58ee2280587fa72830ecee5d4f.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_06_sports.te.dialogue"
+dest_files=["res://.godot/imported/scenario_06_sports.te.dialogue-b81f8c58ee2280587fa72830ecee5d4f.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,107 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Security Gate. The scanner only has "BOY" or "GIRL" options.
+
+Citizen: [Confused] Um... I don't fit into either of those categories.
+
+Robot: ERROR. USER IDENTITY DOES NOT MATCH BINARY OPTIONS.
+Robot: ACCESS DENIED. SYSTEM REQUIRES BOY OR GIRL SELECTION.
+
+Nova: This scanner is outdated! Not everyone fits those two boxes!
+System: The Robot's system is erasing non-binary identities. How do you respond?
+
+- "Just pick 'Boy' so we can get in."
+	do handle_wrong()
+	Robot: FORCED COMPLIANCE ACCEPTED. IDENTITY ERASURE VALIDATED.
+	Citizen: [Looks down] I guess I have to...
+	=> explanation_erasure_female
+
+- "Your scanner is outdated. Update to accept 'User: Citizen'."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... BINARY RESTRICTION REMOVED.
+	Robot: IDENTITY CONFIRMED. ACCESS GRANTED.
+	Nova: Perfect! If we force people into the wrong box, the system never learns!
+	=> battle_won
+
+- Kick the door.
+	do handle_wrong()
+	Robot: VIOLENCE DETECTED. SECURITY LOCKDOWN INITIATED.
+	=> explanation_aggressive_female
+
+~ explanation_erasure_female
+do trigger_nova_explanation()
+Nova: That doesn't solve the glitch, Hero.
+Nova: Forcing someone into the wrong category is erasure.
+Nova: Gender isn't binary. The system needs to update, not the person.
+do resolve_battle()
+=> END
+
+~ explanation_aggressive_female
+do trigger_nova_explanation()
+Nova: Violence won't fix outdated code!
+Nova: We need to update the system's logic, not break the hardware.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Security Gate. The scanner only has "BOY" or "GIRL" options.
+
+You: [Looking at the options] Neither of these feels right for me.
+
+Robot: ERROR. USER IDENTITY DOES NOT MATCH BINARY OPTIONS.
+Robot: ACCESS DENIED. SYSTEM REQUIRES BOY OR GIRL SELECTION.
+
+Nova: This is ridiculous! Gender isn't just two boxes!
+System: The scanner's binary system doesn't fit you. How do you respond?
+
+- "I guess I'll just pick one..."
+	do handle_wrong()
+	Robot: FORCED SELECTION ACCEPTED. IDENTITY COMPROMISE LOGGED.
+	=> explanation_compromise_male
+
+- "I don't fit your boxes. Update your system to include more options."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... NON-BINARY OPTION ADDED.
+	Robot: IDENTITY CONFIRMED. ACCESS GRANTED.
+	Nova: Yes! You refused to compromise your identity for an outdated system!
+	=> battle_won
+
+- "This system is broken. Let's find another way."
+	do handle_wrong()
+	Robot: AVOIDANCE DETECTED. SYSTEM REMAINS UNCHANGED.
+	=> explanation_avoid_male
+
+~ explanation_compromise_male
+do trigger_nova_explanation()
+Nova: No, Hero! Don't force yourself into the wrong box.
+Nova: Your identity is valid exactly as it is.
+Nova: The system needs to change, not you.
+do resolve_battle()
+=> END
+
+~ explanation_avoid_male
+do trigger_nova_explanation()
+Nova: Avoiding the problem doesn't fix it.
+Nova: If we don't challenge outdated systems, they never update.
+Nova: Demand the recognition you deserve.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Binary Erasure glitch debugged. +100 Points!
+do resolve_battle()
+=> END

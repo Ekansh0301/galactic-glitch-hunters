@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cr7s8iq586m3b"
+path="res://.godot/imported/scenario_04_council.te.dialogue-038388601d690655396f839a7156cef5.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_04_council.te.dialogue"
+dest_files=["res://.godot/imported/scenario_04_council.te.dialogue-038388601d690655396f839a7156cef5.tres"]
+
+[params]
+
+defaults=true

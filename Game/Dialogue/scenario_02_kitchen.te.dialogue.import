@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://duo1mlqo6pp7k"
+path="res://.godot/imported/scenario_02_kitchen.te.dialogue-0848b52ba46c810fbec42be4686d77ad.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_02_kitchen.te.dialogue"
+dest_files=["res://.godot/imported/scenario_02_kitchen.te.dialogue-0848b52ba46c810fbec42be4686d77ad.tres"]
+
+[params]
+
+defaults=true

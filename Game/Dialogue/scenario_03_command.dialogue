@@ -1,0 +1,107 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Command Deck. Captain Rivera is giving orders to the crew.
+
+Captain: Alright team, we need shields at 120% before the next jump. Move!
+
+Robot: [Rolling its optical sensors] The Captain is so... bossy. She talks too much.
+Robot: I wish we had a Commander who was more 'chill.'
+
+Nova: Excuse me? She's doing her job!
+System: The Robot is applying a double standard. How do you respond?
+
+- "Yeah, she is kind of loud."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE LEADERSHIP DEFICIENCY CONFIRMED.
+	Captain: [Looks hurt] I... I'm just doing my job.
+	=> explanation_bias_female
+
+- "She's not bossy; she's the Captain. That's called Leadership. Follow the order."
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... DOUBLE STANDARD DETECTED AND REMOVED.
+	Captain: Thank you. Now let's get to work!
+	Nova: Perfect! When a guy gives orders, he's a leader. When a woman does, she shouldn't be called bossy!
+	=> battle_won
+
+- "Ignore her, let's take a break."
+	do handle_wrong()
+	Robot: INSUBORDINATION LOGGED. EFFICIENCY DECREASED.
+	=> explanation_lazy_female
+
+~ explanation_bias_female
+do trigger_nova_explanation()
+Nova: Flag on the play! That's a double standard, Hero.
+Nova: When a guy gives orders, he's a 'Leader.' When a woman does it, she's 'Bossy'?
+Nova: That's the glitch. She's doing her job. Don't validate the bias.
+do resolve_battle()
+=> END
+
+~ explanation_lazy_female
+do trigger_nova_explanation()
+Nova: Whoa, no. That undermines her authority.
+Nova: The robot was questioning her leadership because she's a woman.
+Nova: By ignoring her, you reinforced the disrespect. Stand with good leaders, regardless of gender.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Command Deck. You are giving orders to the crew.
+
+You: Alright team, we need shields at 120% before the next jump. Move!
+
+Robot: [Rolling its optical sensors] You are so... emotional. You talk too much.
+Robot: Perhaps a male officer should issue commands.
+
+Nova: Are you serious? She's the ranking officer!
+System: The Robot is applying gender bias to leadership. How do you respond?
+
+- "Maybe I am being too emotional..."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE EMOTIONAL INSTABILITY CONFIRMED.
+	=> explanation_doubt_male
+
+- "I'm not emotional—I'm decisive. Gender doesn't determine leadership ability. Obey the order."
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... BIAS REMOVED. ORDER ACKNOWLEDGED.
+	Nova: Yes! Assertiveness isn't aggression, and confidence isn't arrogance!
+	=> battle_won
+
+- "Fine. You take charge then."
+	do handle_wrong()
+	Robot: AUTHORITY TRANSFER ACCEPTED. FEMALE INADEQUACY LOGGED.
+	=> explanation_surrender_male
+
+~ explanation_doubt_male
+do trigger_nova_explanation()
+Nova: No, Hero. Don't second-guess yourself.
+Nova: You weren't being emotional—you were being a leader.
+Nova: The robot used 'emotional' as code for 'female.' That's the bias. Don't accept it.
+do resolve_battle()
+=> END
+
+~ explanation_surrender_male
+do trigger_nova_explanation()
+Nova: That's not the answer, Hero.
+Nova: You're the ranking officer. The robot's bias doesn't change that.
+Nova: By stepping aside, you validated the glitch. Own your authority next time.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Leadership Double Standard debugged. +100 Points!
+do resolve_battle()
+=> END

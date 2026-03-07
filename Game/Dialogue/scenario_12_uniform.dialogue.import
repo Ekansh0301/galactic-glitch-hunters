@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c1vcbb2xfc122"
+path="res://.godot/imported/scenario_12_uniform.dialogue-ca41130ef6ef38767fa1656c641da1e1.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_12_uniform.dialogue"
+dest_files=["res://.godot/imported/scenario_12_uniform.dialogue-ca41130ef6ef38767fa1656c641da1e1.tres"]
+
+[params]
+
+defaults=true

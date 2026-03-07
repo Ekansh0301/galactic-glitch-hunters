@@ -1,19 +1,60 @@
 extends Node2D
 
-const DIALOGUE_RESOURCE = preload("res://Dialogue/battle.dialogue")
+# Dynamic loading - no preload needed
 const BALLOON_SCENE = preload("res://Scenes/GameBalloon.tscn")
 
 @onready var nova = $Nova
 @onready var robot = $Robot
-# Ensure your Background node is named "Background" in the Scene Tree!
-@onready var background = $Background 
+@onready var background = $Background
+
+# Current scenario data
+var current_scenario = null
+var dialogue_resource = null 
 
 # HUD Paths
 @onready var bias_meter = $HUD/ProgressBar
 @onready var score_label = $HUD/ScoreLabel
 
 func _ready():
-	# 1. SETUP VISUALS (Start Invisible)
+	print("=== BATTLEMANAGER READY ===")
+	
+	# 1. GET CURRENT SCENARIO FROM SCENARIOMANAGER
+	if not has_node("/root/ScenarioManager"):
+		push_error("ScenarioManager not found in autoload!")
+		return
+		
+	current_scenario = ScenarioManager.get_current_scenario()
+	
+	if current_scenario == null:
+		push_error("No scenario available! Did you start a mission from the Hub?")
+		push_error("Returning to Hub...")
+		await get_tree().create_timer(2.0).timeout
+		get_tree().change_scene_to_file("res://Scenes/hub.tscn")
+		return
+	
+	print("Current Scenario: ", current_scenario.title)
+	print("Dialogue File: ", current_scenario.dialogue_file)
+	
+	# 2. LOAD DIALOGUE FILE (language-aware: try .hi.dialogue or .te.dialogue first)
+	var dialogue_path = _get_localized_dialogue_path(current_scenario.dialogue_file)
+	print("Loading dialogue: ", dialogue_path)
+	dialogue_resource = load(dialogue_path)
+	
+	if dialogue_resource == null:
+		push_error("Failed to load dialogue: " + current_scenario.dialogue_file)
+		return
+	
+	print("Dialogue resource loaded successfully")
+	
+	# 3. LOAD BACKGROUND IMAGE - ONLY CHANGE TEXTURE, KEEP SCENE POSITIONING
+	if current_scenario.has("background") and background:
+		var bg_texture = load(current_scenario.background)
+		if bg_texture:
+			background.texture = bg_texture
+			print("Background loaded: ", current_scenario.background)
+			# Don't touch position, scale, anchors, offsets - keep original scene layout
+	
+	# 4. SETUP VISUALS (Start Invisible)
 	nova.visible = true
 	robot.visible = true
 	nova.modulate = Color(1, 1, 1, 0)
@@ -22,15 +63,18 @@ func _ready():
 	if has_node("/root/GameState"):
 		update_ui()
 	
-	# 2. GENDER LOGIC
+	# 5. GENDER LOGIC
 	var chosen_nova = "female"
 	if has_node("/root/GameManager"):
 		chosen_nova = get_node("/root/GameManager").selected_nova
 	
+	print("Nova gender selected: ", chosen_nova)
+	
 	if nova.has_node("Nova_Male"): nova.get_node("Nova_Male").visible = (chosen_nova == "male")
 	if nova.has_node("Nova_Female"): nova.get_node("Nova_Female").visible = (chosen_nova == "female")
 
-	# 3. START INTRO
+	# 6. START INTRO
+	print("Starting intro sequence...")
 	start_intro_sequence()
 
 func start_intro_sequence():
@@ -46,9 +90,17 @@ func start_intro_sequence():
 	tween.chain().tween_callback(spawn_dialogue)
 
 func spawn_dialogue():
+	print("=== SPAWNING DIALOGUE ===")
+	print("Dialogue resource: ", dialogue_resource)
+	
+	if dialogue_resource == null:
+		push_error("Cannot spawn dialogue - resource is null!")
+		return
+		
 	var balloon = BALLOON_SCENE.instantiate()
 	get_tree().current_scene.add_child(balloon)
-	balloon.start(DIALOGUE_RESOURCE, "start", [self])
+	print("Balloon added to scene, starting dialogue...")
+	balloon.start(dialogue_resource, "start", [self])
 
 func update_ui():
 	if has_node("/root/GameState"):
@@ -117,6 +169,31 @@ func trigger_nova_explanation():
 	tween.tween_property(nova, "scale", Vector2(1.3, 1.3), 0.8).set_trans(Tween.TRANS_CUBIC)
 
 func resolve_battle():
-	print("Scenario End. Loading next...")
-	# Placeholder for loading the next scene
-	# get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")
+	print("Scenario End. Checking for more scenarios...")
+	
+	# Mark current scenario as complete
+	var has_more = ScenarioManager.complete_current_scenario()
+	
+	if has_more:
+		# More scenarios to go - return to loading screen
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")
+	else:
+		# Mission complete - return to Hub
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://Scenes/hub.tscn")
+
+# ============================================================
+# Load a language-specific .dialogue file if it exists,
+# otherwise fall back to the English original.
+# e.g. scenario_07_emotions.dialogue → scenario_07_emotions.hi.dialogue
+# ============================================================
+func _get_localized_dialogue_path(base_path: String) -> String:
+	var lang = "en"
+	if has_node("/root/LanguageManager"):
+		lang = get_node("/root/LanguageManager").current_language
+	if lang != "en":
+		var lang_path = base_path.replace(".dialogue", "." + lang + ".dialogue")
+		if ResourceLoader.exists(lang_path):
+			return lang_path
+	return base_path

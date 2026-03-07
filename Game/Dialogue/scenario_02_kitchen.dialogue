@@ -1,0 +1,109 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: You enter the Galley Kitchen. A young cadet wants to bake cookies.
+
+Cadet: Hi! I want to make cookies for the crew. Can I use the oven?
+
+Robot: ERROR. YOU ARE A MALE UNIT. MALE UNITS MUST HUNT AND FIGHT.
+Robot: KITCHEN ACCESS IS RESTRICTED TO FEMALE UNITS ONLY.
+
+Nova: What? That's absurd! Cooking is a survival skill, not a gender role!
+System: The Robot is enforcing "Toxic Masculinity" protocols. How do you respond?
+
+- "Yeah, baking is for girls anyway. Let's go fight something."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. MASCULINITY PROTOCOL CONFIRMED.
+	Cadet: Oh... I guess you're right. [Looks sad]
+	=> explanation_toxic_female
+
+- "Update your database, Chef. Cooking is a survival skill, not a gender role. Let him cook!"
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... GENDER RESTRICTIONS REMOVED.
+	Cadet: Thank you! I love baking!
+	Nova: Perfect! You just debugged toxic masculinity!
+	=> battle_won
+
+- "Just put on a wig so the scanner thinks you're a girl."
+	do handle_wrong()
+	Robot: SCANNING... ERROR. IDENTITY SPOOF DETECTED.
+	=> explanation_evasion_female
+
+~ explanation_toxic_female
+do trigger_nova_explanation()
+Nova: Hold up, Hero. That was the Glitch talking.
+Nova: Telling boys they can't be nurturing or creative limits who they can be.
+Nova: Real strength includes ALL skills—including cooking, caring, and creating.
+Nova: Let's do better next time.
+do resolve_battle()
+=> END
+
+~ explanation_evasion_female
+do trigger_nova_explanation()
+Nova: Wait, no! That doesn't fix the problem.
+Nova: We can't trick the system. We have to update the system.
+Nova: The glitch is the rule itself, not the person. Let's rewrite the code properly next time.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: You enter the Galley Kitchen. You want to bake cookies for the crew.
+
+You: Hi! I want to make cookies. Can I use the oven?
+
+Robot: ERROR. YOU ARE A FEMALE UNIT. FEMALES LACK PRECISION FOR CULINARY ARTS.
+Robot: KITCHEN ACCESS RESTRICTED. RECOMMEND MALE SUPERVISION.
+
+Nova: What?! That's ridiculous! She doesn't need supervision!
+System: The Robot is enforcing outdated gender protocols. How do you respond?
+
+- "Maybe I should just let someone else cook."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE INADEQUACY CONFIRMED.
+	=> explanation_bias_male
+
+- "I don't need a man to cook. Update your protocols—skill has no gender."
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... GENDER RESTRICTIONS REMOVED.
+	Robot: ACCESS GRANTED.
+	Nova: Yes! You stood your ground!
+	=> battle_won
+
+- "Fine, you cook then if you're so smart."
+	do handle_wrong()
+	Robot: DELEGATION ACCEPTED. INEFFICIENCY LOGGED.
+	=> explanation_passive_male
+
+~ explanation_bias_male
+do trigger_nova_explanation()
+Nova: No, Hero! Don't doubt yourself.
+Nova: The robot's bias isn't truth—it's corrupted code.
+Nova: Your abilities aren't limited by your gender. Stand firm next time.
+do resolve_battle()
+=> END
+
+~ explanation_passive_male
+do trigger_nova_explanation()
+Nova: That's not the solution, Hero.
+Nova: Walking away from bias doesn't fix it—it reinforces it.
+Nova: We need to challenge the glitch directly with logic.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Toxic Masculinity glitch debugged. +100 Points!
+do resolve_battle()
+=> END

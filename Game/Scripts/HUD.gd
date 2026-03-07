@@ -15,7 +15,8 @@ func _ready():
 	GameState.bias_updated.connect(update_bias_bar)
 
 func update_score_text(new_score):
-	score_label.text = "Score: " + str(new_score)
+	var LM = get_node("/root/LanguageManager")
+	score_label.text = LM.t("score_label") + str(new_score)
 
 func update_bias_bar(new_val):
 	print("UPDATING BIAS TO: ", new_val)

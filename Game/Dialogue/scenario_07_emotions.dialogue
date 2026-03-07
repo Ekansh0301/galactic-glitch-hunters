@@ -1,0 +1,106 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Battle Arena. A Champion Bot is leaking coolant fluid but trying to hide it.
+
+Robot: I AM NOT LEAKING FLUID. I AM FINE.
+Robot: EMOTION IS A SYSTEM FAILURE. CHAMPIONS DO NOT CRY.
+
+Nova: Your pressure valves are overheating! You need to vent!
+System: The Robot believes showing emotion is weakness. How do you respond?
+
+- "Toughen up, tin can! Champions don't cry."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. EMOTIONAL SUPPRESSION PROTOCOL ENGAGED.
+	Robot: [Sparks fly] CRITICAL OVERLOAD IMMINENT...
+	=> explanation_toxic_female
+
+- "It's okay to leak. Releasing pressure prevents system failure. Talk to us."
+	do handle_correct()
+	Robot: LOGIC ACCEPTED... VENTING EMOTIONAL BUILDUP.
+	Robot: [Releases steam] I... I am afraid of failing my team.
+	Nova: Yes! Real strength includes emotional honesty. Bottling it up causes damage!
+	=> battle_won
+
+- Walk away.
+	do handle_wrong()
+	Robot: ISOLATION CONFIRMED. SELF-DESTRUCTION SEQUENCE INITIATED.
+	=> explanation_abandon_female
+
+~ explanation_toxic_female
+do trigger_nova_explanation()
+Nova: No, Hero! That's toxic masculinity.
+Nova: Bottling up feelings causes systems to overheat and fail.
+Nova: Real strength is admitting when you need repair—not pretending everything is fine.
+Nova: Emotions aren't weakness. They're data that tells us when something needs attention.
+do resolve_battle()
+=> END
+
+~ explanation_abandon_female
+do trigger_nova_explanation()
+Nova: Walking away made it worse!
+Nova: When someone is struggling emotionally, isolation is dangerous.
+Nova: We should encourage emotional expression, not abandon people who need support.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Battle Arena. You just lost a difficult match and tears are forming.
+
+You: [Wiping eyes] That was... harder than I expected.
+
+Robot: ALERT. EMOTIONAL DISPLAY DETECTED.
+Robot: FEMALE EMOTIONAL INSTABILITY CONFIRMED. WEAKNESS LOGGED.
+
+Nova: What?! Feeling emotions after a tough loss is NORMAL!
+System: The Robot is judging you for showing emotion. How do you respond?
+
+- "You're right. I shouldn't be so emotional."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE EMOTIONAL WEAKNESS CONFIRMED.
+	=> explanation_internalize_male
+
+- "Feeling emotions doesn't make me weak. It makes me human."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... EMOTIONAL INTELLIGENCE IS VALID DATA.
+	Nova: Exactly! Emotions are information, not flaws. Never apologize for having feelings!
+	=> battle_won
+
+- Hide your tears and pretend you're fine.
+	do handle_wrong()
+	Robot: EMOTIONAL SUPPRESSION NOTED. UNHEALTHY COPING MECHANISM DETECTED.
+	=> explanation_suppress_male
+
+~ explanation_internalize_male
+do trigger_nova_explanation()
+Nova: No, Hero! Don't accept that bias.
+Nova: The robot called you "emotional" because you're female—that's a stereotype.
+Nova: Emotions are healthy. They're not a gender flaw. Don't internalize the glitch.
+do resolve_battle()
+=> END
+
+~ explanation_suppress_male
+do trigger_nova_explanation()
+Nova: Hiding your emotions isn't strength—it's suppression.
+Nova: Bottling up feelings causes long-term damage.
+Nova: It's okay to feel, to process, and to express. That's healthy, not weak.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Emotional Suppression glitch debugged. +100 Points!
+do resolve_battle()
+=> END

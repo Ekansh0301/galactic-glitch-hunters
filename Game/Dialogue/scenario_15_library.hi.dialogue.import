@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ch7bnh8djg0h6"
+path="res://.godot/imported/scenario_15_library.hi.dialogue-fdc7b39caf43411878a11012653957ec.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_15_library.hi.dialogue"
+dest_files=["res://.godot/imported/scenario_15_library.hi.dialogue-fdc7b39caf43411878a11012653957ec.tres"]
+
+[params]
+
+defaults=true

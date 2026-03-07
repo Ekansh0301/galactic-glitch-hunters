@@ -1,0 +1,109 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Fitness Center. A slender cadet wants to join strength training.
+
+Cadet: Hi! I'd like to sign up for the weightlifting program.
+
+Robot: PHYSICAL SCAN COMPLETE. BODY TYPE: SLIM BUILD.
+Robot: RECOMMENDATION: CARDIO ONLY. WEIGHTLIFTING REQUIRES MUSCULAR BUILD.
+
+Nova: What?! Physical ability grows with training, not gatekeeping!
+System: The Robot is making assumptions about physical capability. How do you respond?
+
+- "Maybe stick with cardio. Lifting might be too much."
+	do handle_wrong()
+	Robot: LIMITATION ACCEPTED. PHYSICAL ASSUMPTIONS CONFIRMED.
+	Cadet: [Disappointed] I guess I'm not strong enough...
+	=> explanation_limit_female
+
+- "Physical ability is built through training, not predetermined. Let them try."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... BODY-TYPE RESTRICTIONS REMOVED.
+	Cadet: Thank you! I'll prove I can do this!
+	Nova: Yes! Strength is developed, not assigned at birth!
+	=> battle_won
+
+- "You do look kind of small for weightlifting."
+	do handle_wrong()
+	Robot: APPEARANCE-BASED JUDGMENT CONFIRMED.
+	=> explanation_judge_female
+
+~ explanation_limit_female
+do trigger_nova_explanation()
+Nova: That's wrong, Hero!
+Nova: Physical ability isn't fixed. It's developed through effort and training.
+Nova: By agreeing with the limitation, you discouraged someone from trying.
+Nova: Don't let assumptions about body type determine potential.
+do resolve_battle()
+=> END
+
+~ explanation_judge_female
+do trigger_nova_explanation()
+Nova: Judging ability by appearance is bias!
+Nova: People of all body types can build strength.
+Nova: Current appearance doesn't predict future capability. Give people a chance.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Fitness Center. You want to join the advanced combat training program.
+
+You: Hi! I'd like to sign up for advanced combat training.
+
+Robot: PHYSICAL SCAN COMPLETE. GENDER: FEMALE.
+Robot: RECOMMENDATION DENIED. FEMALES LACK NECESSARY STRENGTH FOR COMBAT.
+
+Nova: That's ridiculous! Plenty of women excel in combat!
+System: The Robot is denying you based on gender. How do you respond?
+
+- "Maybe I should start with something easier..."
+	do handle_wrong()
+	Robot: FEMALE LIMITATION ACCEPTED. CAPABILITY DOWNGRADE CONFIRMED.
+	=> explanation_internalize_male
+
+- "My gender doesn't determine my strength. Let me prove myself."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... GENDER-BASED RESTRICTIONS REMOVED.
+	Robot: TRIAL PERIOD AUTHORIZED.
+	Nova: Exactly! Never let assumptions limit what you can achieve!
+	=> battle_won
+
+- "This gym is biased. I'll train somewhere else."
+	do handle_wrong()
+	Robot: USER DEPARTURE LOGGED. SYSTEM UNCHANGED.
+	=> explanation_leave_male
+
+~ explanation_internalize_male
+do trigger_nova_explanation()
+Nova: No, Hero! Don't internalize the bias.
+Nova: The robot's assumption about female strength is outdated and false.
+Nova: Demand the opportunity to prove your capability. Don't accept limitations.
+do resolve_battle()
+=> END
+
+~ explanation_leave_male
+do trigger_nova_explanation()
+Nova: Leaving doesn't fix the problem!
+Nova: If we don't challenge biased systems, they never change.
+Nova: Stand your ground and demand equal access.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Physical Assumption glitch debugged. +100 Points!
+do resolve_battle()
+=> END

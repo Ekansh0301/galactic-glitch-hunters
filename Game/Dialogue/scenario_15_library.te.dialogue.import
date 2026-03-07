@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://daxxtov22fvj5"
+path="res://.godot/imported/scenario_15_library.te.dialogue-8203a5e06f56ee39c44c09a684e661ac.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_15_library.te.dialogue"
+dest_files=["res://.godot/imported/scenario_15_library.te.dialogue-8203a5e06f56ee39c44c09a684e661ac.tres"]
+
+[params]
+
+defaults=true

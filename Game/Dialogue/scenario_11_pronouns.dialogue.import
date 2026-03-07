@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cq6c4xq4qc2gt"
+path="res://.godot/imported/scenario_11_pronouns.dialogue-c9be62acc12db8ab5e687a2d88a4541f.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_11_pronouns.dialogue"
+dest_files=["res://.godot/imported/scenario_11_pronouns.dialogue-c9be62acc12db8ab5e687a2d88a4541f.tres"]
+
+[params]
+
+defaults=true

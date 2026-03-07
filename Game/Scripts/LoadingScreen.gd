@@ -5,26 +5,33 @@ var shake_intensity = 3.0
 var original_ship_pos = Vector2.ZERO
 
 # 1. The List of Quotes
-var educational_quotes = [
-	"Did you know? Mars has the largest volcano in the solar system.",
-	"Bias is when we let feelings cloud our judgment.",
-	"The core of a star is millions of degrees hot!",
-	"Always check your sources before believing a rumor.",
-	"Robots follow logic, but humans follow emotions.",
-	"Light takes 8 minutes to travel from the Sun to Earth."
-]
-
 func _ready():
-	# 2. Pick a Random Quote
-	# 'pick_random()' is a built-in Godot function that does exactly what you want.
+	print("=== LOADING SCREEN ===")
+	var LM = get_node("/root/LanguageManager")
+
+	# Translated quotes
+	var educational_quotes = [
+		LM.t("loading_tip_1"),
+		LM.t("loading_tip_2"),
+		LM.t("loading_tip_3"),
+		LM.t("loading_tip_4"),
+		LM.t("loading_tip_5"),
+		LM.t("loading_tip_6"),
+	]
+
 	if has_node("SpaceShip"):
 		original_ship_pos = $SpaceShip.position
+
+	if has_node("Label"):
+		$Label.text = LM.t("loading_title")
 
 	if has_node("QuoteLabel"):
 		$QuoteLabel.text = educational_quotes.pick_random()
 	
 	# 3. The Wait Timer (The Loading part)
 	await get_tree().create_timer(3.0).timeout
+	
+	print("Loading complete, moving to PlanetView...")
 	
 	# 4. Move to next scene
 	get_tree().change_scene_to_file("res://Scenes/PlanetView.tscn")

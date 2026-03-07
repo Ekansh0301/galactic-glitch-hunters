@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://2bx0o4lyd1eh"]
+[gd_scene format=3 uid="uid://2bx0o4lyd1eh"]
 
 [ext_resource type="Script" uid="uid://80oe7l4rftib" path="res://Scripts/Login.gd" id="1_5cd0j"]
 [ext_resource type="Texture2D" uid="uid://n342ud3dfsit" path="res://Assets/1866.jpg" id="2_hbxdl"]
 
-[node name="Login" type="Control"]
+[node name="Login" type="Control" unique_id=447147400]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 204.0
@@ -12,7 +12,7 @@ offset_right = 962.0
 offset_bottom = 467.0
 script = ExtResource("1_5cd0j")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=256277480]
 layout_mode = 0
 offset_left = -200.0
 offset_top = -165.0
@@ -21,7 +21,7 @@ offset_bottom = 483.0
 texture = ExtResource("2_hbxdl")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1924935324]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,36 +29,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NameInput" type="LineEdit" parent="VBoxContainer"]
+[node name="NameInput" type="LineEdit" parent="VBoxContainer" unique_id=1233637647]
 layout_mode = 2
 
-[node name="PasswordInput" type="LineEdit" parent="VBoxContainer"]
+[node name="PasswordInput" type="LineEdit" parent="VBoxContainer" unique_id=1098255701]
 layout_mode = 2
 secret = true
 
-[node name="GuestLoginButton" type="Button" parent="VBoxContainer"]
+[node name="GuestLoginButton" type="Button" parent="VBoxContainer" unique_id=278545336]
 layout_mode = 2
 text = "Guest"
 
-[node name="LanguageButton" type="Button" parent="VBoxContainer"]
+[node name="LanguageButton" type="Button" parent="VBoxContainer" unique_id=763304788]
 layout_mode = 2
 text = "Change Language"
 
-[node name="LoginButton" type="Button" parent="VBoxContainer"]
+[node name="LoginButton" type="Button" parent="VBoxContainer" unique_id=116383277]
 layout_mode = 2
 text = "Login"
 
-[node name="SignupButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Sign-Up"
-
-[node name="ErrorLabel" type="Label" parent="."]
+[node name="ErrorLabel" type="Label" parent="." unique_id=275473950]
 layout_mode = 0
 offset_left = 316.0
 offset_top = -143.0
 offset_right = 356.0
 offset_bottom = -120.0
 
+[node name="Signup" type="Button" parent="." unique_id=1487518641]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 179.0
+offset_right = 693.0
+offset_bottom = 215.0
+text = "Don't have an account?
+Signup"
+
 [connection signal="pressed" from="VBoxContainer/GuestLoginButton" to="." method="_on_guest_login_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SignupButton" to="." method="_on_signup_button_pressed"]
+[connection signal="pressed" from="Signup" to="." method="_on_signup_pressed"]

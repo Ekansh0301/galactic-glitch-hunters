@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bj5cui2i6l13j"
+path="res://.godot/imported/scenario_04_council.hi.dialogue-4f772842d0f20cf546a3d48a582d779b.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_04_council.hi.dialogue"
+dest_files=["res://.godot/imported/scenario_04_council.hi.dialogue-4f772842d0f20cf546a3d48a582d779b.tres"]
+
+[params]
+
+defaults=true

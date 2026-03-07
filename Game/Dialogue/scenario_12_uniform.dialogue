@@ -1,0 +1,110 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Uniform Depot. A non-binary cadet requests a flight suit.
+
+Cadet: Hi! I'd like a standard flight suit, please.
+
+Robot: [Scanning] VISUAL SCAN COMPLETE. FEATURES DETECT 'SOFTNESS' AND 'LONG HAIR.'
+Robot: PROBABILITY OF FEMALE: 98%. ISSUING SKIRT UNIFORM.
+
+Cadet: Wait, I don't want a skirt. I want the flight suit.
+System: The Robot is making assumptions based on appearance. How do you respond?
+
+- "Just wear the skirt, it fits your look."
+	do handle_wrong()
+	Robot: APPEARANCE-BASED ASSIGNMENT CONFIRMED.
+	Cadet: [Looks uncomfortable] But this isn't who I am...
+	=> explanation_assumption_female
+
+- "Visual scans are irrelevant. Hair length doesn't equal gender. Issue the standard Flight Suit."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... APPEARANCE-BASED ASSUMPTIONS REMOVED.
+	Robot: FLIGHT SUIT ISSUED.
+	Cadet: Thank you! Clothes don't define gender.
+	Nova: Exactly! Appearance doesn't determine identity!
+	=> battle_won
+
+- Laugh at the robot.
+	do handle_wrong()
+	Robot: HUMOR DETECTED. ASSUMPTION PROTOCOL VALIDATED.
+	=> explanation_mock_female
+
+~ explanation_assumption_female
+do trigger_nova_explanation()
+Nova: That's incorrect, Hero.
+Nova: The robot is assuming that "how you look" determines "who you are."
+Nova: Clothes are just fabric. Hair is just hair. They don't define gender.
+Nova: We shouldn't force people into boxes based on a scan.
+do resolve_battle()
+=> END
+
+~ explanation_mock_female
+do trigger_nova_explanation()
+Nova: Laughing at the mistake makes it worse!
+Nova: The cadet is being misgendered based on appearance.
+Nova: That's not funny—it's hurtful. Correct the error with respect.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Uniform Depot. You request a standard flight suit.
+
+You: Hi! I'd like a standard flight suit, please.
+
+Robot: [Scanning] VISUAL SCAN COMPLETE. FEATURES DETECT 'SHORT HAIR' AND 'STRONG BUILD.'
+Robot: PROBABILITY OF MALE: 95%. ISSUING PANTS UNIFORM.
+
+You: Wait, I wanted to choose for myself.
+System: The Robot made an assumption based on your appearance. How do you respond?
+
+- "I guess the pants are fine..."
+	do handle_wrong()
+	Robot: ASSUMPTION ACCEPTED. APPEARANCE-BASED ASSIGNMENT CONFIRMED.
+	=> explanation_accept_male
+
+- "Don't assume my preferences based on how I look. I'll choose my own uniform."
+	do handle_correct()
+	Robot: LOGIC OVERRIDE... USER CHOICE PRIORITIZED OVER ASSUMPTIONS.
+	Robot: UNIFORM OPTIONS DISPLAYED.
+	Nova: Yes! You refused to let appearance dictate your choices!
+	=> battle_won
+
+- "Whatever, just give me something."
+	do handle_wrong()
+	Robot: USER INDIFFERENCE LOGGED. DEFAULT ASSIGNMENT CONFIRMED.
+	=> explanation_passive_male
+
+~ explanation_accept_male
+do trigger_nova_explanation()
+Nova: Don't just accept assumptions, Hero.
+Nova: You have the right to choose based on who you are, not how you look.
+Nova: Appearance doesn't dictate identity or preferences.
+do resolve_battle()
+=> END
+
+~ explanation_passive_male
+do trigger_nova_explanation()
+Nova: Don't be passive about your identity!
+Nova: The robot made assumptions based on your appearance.
+Nova: Stand up for your right to choose for yourself.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Appearance Assumption glitch debugged. +100 Points!
+do resolve_battle()
+=> END

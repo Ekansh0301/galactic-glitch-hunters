@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://odnf2qce7d24"
+path="res://.godot/imported/scenario_13_toys.hi.dialogue-38f88b6d61fe38cbcc10c744d6569020.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_13_toys.hi.dialogue"
+dest_files=["res://.godot/imported/scenario_13_toys.hi.dialogue-38f88b6d61fe38cbcc10c744d6569020.tres"]
+
+[params]
+
+defaults=true

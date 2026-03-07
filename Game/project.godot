@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="galactic-glitch-hunters"
-run/main_scene="uid://bjo8pdica4loo"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+run/main_scene="res://Scenes/LanguageSelect.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,6 +25,8 @@ GameState="*res://Scripts/GameState.gd"
 GameManager="*res://Scripts/GameManager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 AuthManager="*res://Scripts/AuthManager.gd"
+ScenarioManager="*res://Scripts/ScenarioManager.gd"
+LanguageManager="*res://Scripts/LanguageManager.gd"
 
 [editor_plugins]
 
@@ -28,8 +34,8 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Assets/galactic_strings.en.po", "res://Assets/translations.csv")
-locale/translations_pot_files=PackedStringArray("res://Dialogue/main.dialogue", "res://Dialogue/battle.dialogue")
+locale/translations=PackedStringArray("res://Assets/galactic_strings.en.po")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/main.dialogue", "res://Dialogue/battle.dialogue", "res://Dialogue/scenario_01_engineering.dialogue", "res://Dialogue/scenario_02_kitchen.dialogue", "res://Dialogue/scenario_03_command.dialogue", "res://Dialogue/scenario_04_council.dialogue", "res://Dialogue/scenario_05_interview.dialogue", "res://Dialogue/scenario_06_sports.dialogue", "res://Dialogue/scenario_07_emotions.dialogue", "res://Dialogue/scenario_08_medic.dialogue", "res://Dialogue/scenario_09_art.dialogue", "res://Dialogue/scenario_10_security.dialogue", "res://Dialogue/scenario_11_pronouns.dialogue", "res://Dialogue/scenario_12_uniform.dialogue", "res://Dialogue/scenario_13_toys.dialogue", "res://Dialogue/scenario_14_fitness.dialogue", "res://Dialogue/scenario_15_library.dialogue", "res://Dialogue/scenario_15_library.te.dialogue", "res://Dialogue/scenario_15_library.hi.dialogue", "res://Dialogue/scenario_14_fitness.te.dialogue", "res://Dialogue/scenario_14_fitness.hi.dialogue", "res://Dialogue/scenario_13_toys.te.dialogue", "res://Dialogue/scenario_13_toys.hi.dialogue", "res://Dialogue/scenario_12_uniform.te.dialogue", "res://Dialogue/scenario_12_uniform.hi.dialogue", "res://Dialogue/scenario_11_pronouns.te.dialogue", "res://Dialogue/scenario_11_pronouns.hi.dialogue", "res://Dialogue/scenario_10_security.te.dialogue", "res://Dialogue/scenario_10_security.hi.dialogue", "res://Dialogue/scenario_09_art.te.dialogue", "res://Dialogue/scenario_09_art.hi.dialogue", "res://Dialogue/scenario_08_medic.te.dialogue", "res://Dialogue/scenario_08_medic.hi.dialogue", "res://Dialogue/scenario_07_emotions.te.dialogue", "res://Dialogue/scenario_07_emotions.hi.dialogue", "res://Dialogue/scenario_06_sports.te.dialogue", "res://Dialogue/scenario_06_sports.hi.dialogue", "res://Dialogue/scenario_05_interview.te.dialogue", "res://Dialogue/scenario_05_interview.hi.dialogue", "res://Dialogue/scenario_04_council.te.dialogue", "res://Dialogue/scenario_04_council.hi.dialogue", "res://Dialogue/scenario_03_command.te.dialogue", "res://Dialogue/scenario_03_command.hi.dialogue", "res://Dialogue/scenario_02_kitchen.te.dialogue", "res://Dialogue/scenario_02_kitchen.hi.dialogue", "res://Dialogue/scenario_01_engineering.te.dialogue", "res://Dialogue/scenario_01_engineering.hi.dialogue")
 
 [rendering]
 

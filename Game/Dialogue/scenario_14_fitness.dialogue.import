@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ccrimemb0mwyo"
+path="res://.godot/imported/scenario_14_fitness.dialogue-e3d0f56d4851328ae50cdb57a2eeaa15.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_14_fitness.dialogue"
+dest_files=["res://.godot/imported/scenario_14_fitness.dialogue-e3d0f56d4851328ae50cdb57a2eeaa15.tres"]
+
+[params]
+
+defaults=true

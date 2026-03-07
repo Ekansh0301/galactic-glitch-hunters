@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b8bam7lkkgse7"
+path="res://.godot/imported/scenario_08_medic.dialogue-98fe2a1966fe0825d672329cc667049c.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_08_medic.dialogue"
+dest_files=["res://.godot/imported/scenario_08_medic.dialogue-98fe2a1966fe0825d672329cc667049c.tres"]
+
+[params]
+
+defaults=true

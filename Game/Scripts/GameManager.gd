@@ -3,6 +3,7 @@ extends Node
 # --- AUTH INFO ---
 var is_logged_in: bool = false
 var player_name: String = "Cadet"
+var player_age: int = 10  # Default age
 
 # --- CHARACTER INFO ---
 # 1. THE OLD VARIABLE (Keeps Level 1 & Level 2 working)

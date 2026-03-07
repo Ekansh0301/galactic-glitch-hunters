@@ -1,0 +1,112 @@
+~ start
+
+# Gender-adaptive content: Check player gender
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: ALERT! A Glitch Bot blocks the path.
+System: It is scanning Nova's profile...
+
+Robot: STOP. FEMALE UNIT DETECTED.
+Robot: ERROR. FEMALE UNITS DESIGNATED FOR 'CLEANING'. REPAIRS REQUIRE MALE LOGIC.
+
+Nova: Excuse me? My code is cleaner than your entire operating system!
+System: The Robot is suffering from "Gender Bias" corruption. How do you respond?
+
+- "He's right, Nova. You wait here."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE SUBMISSION CONFIRMED. PROTOCOL LOCKED.
+	Robot: ERROR... LOGIC CORE OVERHEATING... [UNINTELLIGIBLE NOISES]
+	=> explanation_bias_female
+
+- "Skill is code, not gender. Let her pass."
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... ERROR CLEARED.
+	Robot: CALCULATION CORRECT. GENDER IRRELEVANT. ACCESS GRANTED.
+	Nova: Yes! That's how we do it. Thanks for having my back.
+	=> battle_won
+
+- Kick the robot.
+	do handle_wrong()
+	Robot: PHYSICAL ASSAULT DETECTED. DEFENSE MODE ENGAGED.
+	=> explanation_aggression_female
+
+~ explanation_bias_female
+do trigger_nova_explanation()
+Nova: Hold on. Stop right there.
+Nova: Agreeing with him wasn't the right move.
+Nova: When you say "He's right," you validate the glitch. You tell the system that bias is acceptable logic.
+Nova: We can't fix these errors by giving in to them. We have to overwrite them with the truth.
+Nova: Don't worry, we'll get the next one. Let's move on.
+do resolve_battle()
+=> END
+
+~ explanation_aggression_female
+do trigger_nova_explanation()
+Nova: Whoa! Easy! That didn't help at all.
+Nova: Violence isn't a debugging tool. Kicking the hardware just causes more system instability.
+Nova: We are "Glitch Hunters," not "Glitch Smashers." We defeat bias with better logic, not force.
+Nova: Keep your cool next time. Come on, let's move on.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: ALERT! A Glitch Bot blocks the path.
+System: It is scanning your profile...
+
+Robot: STOP. FEMALE UNIT DETECTED.
+Robot: ERROR. FEMALE UNITS DESIGNATED FOR 'CLEANING'. REPAIRS REQUIRE MALE LOGIC.
+
+Nova: Wait, what? She's the engineer here, not me!
+System: The Robot is suffering from "Gender Bias" corruption. How do you respond?
+
+- "Maybe he's right. I'll just watch."
+	do handle_wrong()
+	Robot: AFFIRMATIVE. FEMALE SUBMISSION CONFIRMED. PROTOCOL LOCKED.
+	Robot: ERROR... LOGIC CORE OVERHEATING...
+	=> explanation_bias_male
+
+- "My gender doesn't limit my skills. Let me pass."
+	do handle_correct()
+	Robot: LOGIC OVERWRITE... ERROR CLEARED.
+	Robot: CALCULATION CORRECT. GENDER IRRELEVANT. ACCESS GRANTED.
+	Nova: Exactly! You showed that robot the truth.
+	=> battle_won
+
+- Kick the robot.
+	do handle_wrong()
+	Robot: PHYSICAL ASSAULT DETECTED. DEFENSE MODE ENGAGED.
+	=> explanation_aggression_male
+
+~ explanation_bias_male
+do trigger_nova_explanation()
+Nova: Hold on, Hero. That wasn't right.
+Nova: By agreeing with the robot, you reinforced the bias.
+Nova: Your skills aren't determined by gender. Don't let outdated code tell you otherwise.
+Nova: We'll debug the next one together. Let's continue.
+do resolve_battle()
+=> END
+
+~ explanation_aggression_male
+do trigger_nova_explanation()
+Nova: Hey! Violence doesn't solve logic errors.
+Nova: We need to rewrite the code with truth, not break the hardware.
+Nova: Stay focused. We have more glitches to fix.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: The Gender Bias glitch has been debugged. +100 Points!
+do resolve_battle()
+=> END

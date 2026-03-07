@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c87pbpdme1cka"
+path="res://.godot/imported/scenario_01_engineering.dialogue-6d1da33a749f215d6d971f1e28099654.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_01_engineering.dialogue"
+dest_files=["res://.godot/imported/scenario_01_engineering.dialogue-6d1da33a749f215d6d971f1e28099654.tres"]
+
+[params]
+
+defaults=true

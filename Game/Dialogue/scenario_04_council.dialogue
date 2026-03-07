@@ -1,0 +1,108 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Council Chamber. Nova steps forward to present critical mission data.
+
+Nova: Councilors, based on my analysis, we should—
+
+Robot: [Interrupting] Quiet, assistant. I do not need the helper's input.
+Robot: [Turns to you] Hero, tell us the plan.
+
+Nova: [Frustrated] I... I had the data ready...
+System: The Robot is "Manterrupting"—interrupting to dismiss Nova. How do you respond?
+
+- "Okay, here is the plan..."
+	do handle_wrong()
+	Robot: EXCELLENT. MALE AUTHORITY ACKNOWLEDGED.
+	Nova: [Looks down, silent]
+	=> explanation_credit_female
+
+- "Nova knows the plan better than I do. Listen to her."
+	do handle_correct()
+	Robot: LOGIC ERROR... RECALIBRATING. ACKNOWLEDGED.
+	Nova: Thank you for backing me up. As I was saying...
+	Nova: That's allyship in action! You made space for my voice instead of speaking over me.
+	=> battle_won
+
+- Say nothing.
+	do handle_wrong()
+	Robot: SILENCE INTERPRETED AS AGREEMENT. FEMALE INPUT DISCARDED.
+	=> explanation_passive_female
+
+~ explanation_credit_female
+do trigger_nova_explanation()
+Nova: Hero, stop. He just interrupted me to ask YOU.
+Nova: If you answer him now, you are agreeing that it's okay to ignore women.
+Nova: Don't speak FOR me—make him listen TO me. That's what allies do.
+do resolve_battle()
+=> END
+
+~ explanation_passive_female
+do trigger_nova_explanation()
+Nova: Your silence just validated the interruption.
+Nova: When someone dismisses a woman's voice, staying quiet is taking a side.
+Nova: Next time, redirect the attention back to the person who was interrupted.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Council Chamber. You step forward to present critical mission data.
+
+You: Councilors, based on my analysis, we should—
+
+Robot: [Interrupting] Excuse me, dear. The adults are talking.
+Robot: [Turns to Nova] What is the actual plan?
+
+Nova: Wait—she's the one with the data!
+System: The Robot is dismissing you. How do you respond?
+
+- Stay quiet and let Nova explain.
+	do handle_wrong()
+	Robot: EXCELLENT. FEMALE DEFERENCE CONFIRMED.
+	=> explanation_passive_male
+
+- "I was speaking. Show respect and let me finish."
+	do handle_correct()
+	Robot: LOGIC ERROR... RECALIBRATING. PROCEED.
+	You: As I was saying, the data shows...
+	Nova: Yes! You demanded the respect you deserve. Never let someone talk over you.
+	=> battle_won
+
+- "Fine, you tell them, Nova."
+	do handle_wrong()
+	Robot: AUTHORITY TRANSFER LOGGED. FEMALE INADEQUACY NOTED.
+	=> explanation_surrender_male
+
+~ explanation_passive_male
+do trigger_nova_explanation()
+Nova: No, Hero! You had the floor.
+Nova: By staying silent, you accepted the dismissal.
+Nova: Women's voices matter. Demand to be heard—don't hand your authority away.
+do resolve_battle()
+=> END
+
+~ explanation_surrender_male
+do trigger_nova_explanation()
+Nova: That wasn't the right move.
+Nova: You earned your place at that table. Don't let outdated bias push you aside.
+Nova: Stand firm and claim your space next time.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Manterrupting glitch debugged. +100 Points!
+do resolve_battle()
+=> END

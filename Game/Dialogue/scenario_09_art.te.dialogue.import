@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c3erf5cd52wqt"
+path="res://.godot/imported/scenario_09_art.te.dialogue-818644f35964f7c4c8d8e89db748b253.tres"
+
+[deps]
+
+source_file="res://Dialogue/scenario_09_art.te.dialogue"
+dest_files=["res://.godot/imported/scenario_09_art.te.dialogue-818644f35964f7c4c8d8e89db748b253.tres"]
+
+[params]
+
+defaults=true

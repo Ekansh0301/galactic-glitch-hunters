@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1oxrwo63f0uf"]
+[gd_scene format=3 uid="uid://d1oxrwo63f0uf"]
 
 [ext_resource type="Script" uid="uid://6h7gtnmwfjw7" path="res://Scripts/level.gd" id="1_0ba56"]
 [ext_resource type="PackedScene" uid="uid://dhss0exco2bdi" path="res://Scenes/HUD.tscn" id="2_8rbpu"]
@@ -14,7 +14,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_xylue"]
 
-[node name="Level" type="Control"]
+[node name="Level" type="Control" unique_id=1787767804]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ba56")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=325606669]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,56 +34,56 @@ texture = ExtResource("2_or7tv")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Nova_Female" type="Sprite2D" parent="."]
-position = Vector2(868, 429.99997)
+[node name="Nova_Female" type="Sprite2D" parent="." unique_id=1712153605]
+position = Vector2(775, 415.99997)
 scale = Vector2(0.45585936, 0.41435176)
 texture = ExtResource("3_133si")
 
-[node name="Eyes" type="Sprite2D" parent="Nova_Female"]
+[node name="Eyes" type="Sprite2D" parent="Nova_Female" unique_id=1802085247]
 texture = ExtResource("4_esopp")
 
-[node name="Brow" type="Sprite2D" parent="Nova_Female"]
+[node name="Brow" type="Sprite2D" parent="Nova_Female" unique_id=1389333665]
 texture = ExtResource("5_b10nm")
 
-[node name="Hair" type="Sprite2D" parent="Nova_Female"]
+[node name="Hair" type="Sprite2D" parent="Nova_Female" unique_id=132277271]
 texture = ExtResource("6_fhlu0")
 
-[node name="Mouth" type="Sprite2D" parent="Nova_Female"]
+[node name="Mouth" type="Sprite2D" parent="Nova_Female" unique_id=1485216040]
 texture = ExtResource("7_bktio")
 
-[node name="HUD" parent="." instance=ExtResource("2_8rbpu")]
+[node name="HUD" parent="." unique_id=485484705 instance=ExtResource("2_8rbpu")]
 script = ExtResource("3_fuudy")
 
-[node name="ScoreLabel" type="Label" parent="HUD"]
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=229818235]
 offset_right = 61.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 32
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_xylue")
 
-[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+[node name="ProgressBar" type="ProgressBar" parent="HUD" unique_id=1301646033]
 offset_left = 917.0
 offset_right = 1150.0
 offset_bottom = 27.0
 step = 1.0
 value = 50.0
 
-[node name="Nova_Male" type="Sprite2D" parent="."]
-position = Vector2(842.99994, 514)
+[node name="Nova_Male" type="Sprite2D" parent="." unique_id=1720671097]
+position = Vector2(797.99994, 462)
 scale = Vector2(0.27318072, 0.25223616)
 texture = ExtResource("10_esopp")
 
-[node name="Expression" type="Sprite2D" parent="Nova_Male"]
+[node name="Expression" type="Sprite2D" parent="Nova_Male" unique_id=1471603751]
 position = Vector2(1.4435273, -182.3687)
 scale = Vector2(1.0087221, 1.0272484)
 texture = ExtResource("11_b10nm")
 
-[node name="WarpButton" type="Button" parent="."]
+[node name="WarpButton" type="Button" parent="." unique_id=1770258096]
 layout_mode = 0
-offset_left = 494.0
-offset_top = 247.0
-offset_right = 656.0
-offset_bottom = 309.0
+offset_left = 493.0
+offset_top = 252.0
+offset_right = 655.0
+offset_bottom = 314.0
 text = "Start Mission"
 
 [connection signal="pressed" from="WarpButton" to="." method="_on_warp_button_pressed"]

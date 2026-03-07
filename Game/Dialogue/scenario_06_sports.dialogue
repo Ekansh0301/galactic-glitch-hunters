@@ -1,0 +1,110 @@
+~ start
+
+if GameManager.selected_gender_id == 2:
+	=> start_male_nova
+else:
+	=> start_female_nova
+
+# ============================================
+# FEMALE NOVA VERSION (For Male/Other Players)
+# ============================================
+~ start_female_nova
+
+System: The Sports Arena. A championship athlete just won a major competition.
+
+Athlete: [Breathing hard] That was the toughest match of my career!
+
+Commentator: Incredible performance! But first—can you tell us about your workout routine?
+Commentator: Our viewers want to know how you stay so fit and toned!
+
+Nova: What? Ask about her strategy, not her body!
+System: The Commentator is objectifying the athlete. How do you respond?
+
+- "Yeah, she does look great! What's your secret?"
+	do handle_wrong()
+	Commentator: SEE? APPEARANCE IS PRIMARY. PERFORMANCE IS SECONDARY.
+	Athlete: [Sighs] I trained for years for this moment...
+	=> explanation_objectify_female
+
+- "She just won a championship. Ask about her game strategy, not her appearance."
+	do handle_correct()
+	Commentator: LOGIC OVERRIDE... RECALCULATING PRIORITIES.
+	Commentator: You're right. Champion, what was your winning strategy today?
+	Athlete: Finally! Let me tell you about that final move...
+	Nova: Exactly! Her body is a tool for her sport, not an object for display!
+	=> battle_won
+
+- Stay silent.
+	do handle_wrong()
+	Commentator: SILENCE EQUALS AGREEMENT. OBJECTIFICATION PROTOCOL CONFIRMED.
+	=> explanation_passive_female
+
+~ explanation_objectify_female
+do trigger_nova_explanation()
+Nova: No, Hero. That's the glitch.
+Nova: She's a champion athlete. Her value is in her skill, not her appearance.
+Nova: When we focus on how female athletes LOOK instead of how they PERFORM, we reduce them to objects.
+Nova: Men's sports get analyzed. Women's sports get... admired. That's the bias.
+do resolve_battle()
+=> END
+
+~ explanation_passive_female
+do trigger_nova_explanation()
+Nova: Your silence endorsed the objectification.
+Nova: Female athletes work just as hard as male athletes.
+Nova: They deserve questions about strategy, training, and skill—not compliments about their bodies.
+do resolve_battle()
+=> END
+
+# ============================================
+# MALE NOVA VERSION (For Female Players)
+# ============================================
+~ start_male_nova
+
+System: The Sports Arena. You just won a major championship!
+
+You: [Breathing hard] That was the toughest match of my career!
+
+Commentator: Incredible! But viewers are wondering—are you single?
+Commentator: Also, that uniform really shows off your figure!
+
+Nova: What?! She just WON! Ask about the GAME!
+System: The Commentator is objectifying you. How do you respond?
+
+- "Um... thanks, I guess?"
+	do handle_wrong()
+	Commentator: SUBJECT ACCEPTS OBJECTIFICATION. APPEARANCE FOCUS VALIDATED.
+	=> explanation_accept_male
+
+- "My relationship status and appearance are irrelevant. Ask about my performance."
+	do handle_correct()
+	Commentator: LOGIC OVERRIDE... RECALCULATING.
+	Commentator: You're right. What was your winning strategy today?
+	Nova: Yes! You demanded to be treated like an athlete, not a decoration!
+	=> battle_won
+
+- Just smile and wave.
+	do handle_wrong()
+	Commentator: NON-RESPONSE INTERPRETED AS CONSENT.
+	=> explanation_passive_male
+
+~ explanation_accept_male
+do trigger_nova_explanation()
+Nova: No, Hero! Don't accept that.
+Nova: You're a champion. Your looks and dating life have nothing to do with your athletic skill.
+Nova: When they ask male athletes about strategy but ask you about appearance, that's bias.
+do resolve_battle()
+=> END
+
+~ explanation_passive_male
+do trigger_nova_explanation()
+Nova: Don't just smile through objectification.
+Nova: You earned that championship through skill and hard work.
+Nova: Demand questions that respect your abilities, not your appearance.
+do resolve_battle()
+=> END
+
+~ battle_won
+System: Sports Objectification glitch debugged. +100 Points!
+do resolve_battle()
+=> END
