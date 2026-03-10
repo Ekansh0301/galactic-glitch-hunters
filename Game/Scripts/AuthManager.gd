@@ -1,4 +1,4 @@
-﻿extends Node
+extends Node
 
 # ========== LOCAL JSON STORAGE ==========
 const SAVE_PATH = "user://accounts.json"
@@ -151,4 +151,3 @@ func _load_accounts():
 			print("AuthManager: Loaded ", accounts.size(), " account(s).")
 		else:
 			push_error("AuthManager: Corrupt save file!")
-

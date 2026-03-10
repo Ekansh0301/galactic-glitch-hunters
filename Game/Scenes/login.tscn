@@ -1,69 +1,172 @@
-[gd_scene format=3 uid="uid://2bx0o4lyd1eh"]
+[gd_scene load_steps=8 format=3 uid="uid://2bx0o4lyd1eh"]
 
 [ext_resource type="Script" uid="uid://80oe7l4rftib" path="res://Scripts/Login.gd" id="1_5cd0j"]
 [ext_resource type="Texture2D" uid="uid://n342ud3dfsit" path="res://Assets/1866.jpg" id="2_hbxdl"]
+[ext_resource type="Theme" uid="uid://hvyrr8ejxncm" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="Theme" uid="uid://ce26x84aqmlyn" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
 
-[node name="Login" type="Control" unique_id=447147400]
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 46
+font_color = Color(0.9, 0.95, 1, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input"]
+bg_color = Color(0.1, 0.1, 0.15, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.5, 0.8, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_error"]
+font_size = 18
+font_color = Color(1, 0.3, 0.3, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
+
+[node name="Login" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 204.0
-offset_top = 164.0
-offset_right = 962.0
-offset_bottom = 467.0
-script = ExtResource("1_5cd0j")
-
-[node name="Background" type="TextureRect" parent="." unique_id=256277480]
-layout_mode = 0
-offset_left = -200.0
-offset_top = -165.0
-offset_right = 948.0
-offset_bottom = 483.0
-texture = ExtResource("2_hbxdl")
-expand_mode = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1924935324]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5cd0j")
 
-[node name="NameInput" type="LineEdit" parent="VBoxContainer" unique_id=1233637647]
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hbxdl")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CenterContainer"]
+position = Vector2(551, -5)
+emission_shape = 3
+emission_rect_extents = Vector2(1152, 1)
+direction = Vector2(-1, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="CenterContainer"]
+position = Vector2(607, 188)
+emission_shape = 3
+emission_rect_extents = Vector2(1152, 1)
+direction = Vector2(-1, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+text = "Galactic Glitch Hunters"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="PasswordInput" type="LineEdit" parent="VBoxContainer" unique_id=1098255701]
+[node name="NameInput" type="LineEdit" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+placeholder_text = "Username"
+alignment = 1
+
+[node name="PasswordInput" type="LineEdit" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+placeholder_text = "Password"
+alignment = 1
 secret = true
 
-[node name="GuestLoginButton" type="Button" parent="VBoxContainer" unique_id=278545336]
+[node name="Spacer2" type="Control" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-text = "Guest"
 
-[node name="LanguageButton" type="Button" parent="VBoxContainer" unique_id=763304788]
+[node name="LoginButton" type="Button" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
-text = "Change Language"
-
-[node name="LoginButton" type="Button" parent="VBoxContainer" unique_id=116383277]
-layout_mode = 2
+theme = ExtResource("3_theme")
 text = "Login"
 
-[node name="ErrorLabel" type="Label" parent="." unique_id=275473950]
-layout_mode = 0
-offset_left = 316.0
-offset_top = -143.0
-offset_right = 356.0
-offset_bottom = -120.0
+[node name="GuestLoginButton" type="Button" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("4_theme")
+text = "Continue as Guest"
 
-[node name="Signup" type="Button" parent="." unique_id=1487518641]
-layout_mode = 0
-offset_left = 109.0
-offset_top = 179.0
-offset_right = 693.0
-offset_bottom = 215.0
-text = "Don't have an account?
-Signup"
+[node name="Spacer3" type="Control" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/GuestLoginButton" to="." method="_on_guest_login_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
-[connection signal="pressed" from="Signup" to="." method="_on_signup_pressed"]
+[node name="ButtonRow" type="HBoxContainer" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Signup" type="Button" parent="CenterContainer/MainPanel/ButtonRow"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+theme = ExtResource("4_theme")
+text = "Sign Up"
+
+[node name="LanguageButton" type="Button" parent="CenterContainer/MainPanel/ButtonRow"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+theme = ExtResource("4_theme")
+text = "Change Language"
+
+[node name="ErrorLabel" type="Label" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_error")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/MainPanel/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/GuestLoginButton" to="." method="_on_guest_login_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/ButtonRow/Signup" to="." method="_on_signup_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/ButtonRow/LanguageButton" to="." method="_on_language_button_pressed"]

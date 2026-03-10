@@ -2,58 +2,132 @@
 
 [ext_resource type="Texture2D" uid="uid://n342ud3dfsit" path="res://Assets/1866.jpg" id="1_6ik2i"]
 [ext_resource type="Script" uid="uid://dt81k5r1jpt0y" path="res://Scripts/Signup.gd" id="2_j0yt3"]
+[ext_resource type="Theme" uid="uid://button_theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="Theme" uid="uid://button_secondary" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
 
-[node name="Background" type="TextureRect" unique_id=1600856262]
-offset_right = 1148.0
-offset_bottom = 648.0
-texture = ExtResource("1_6ik2i")
-expand_mode = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input"]
+bg_color = Color(0.1, 0.1, 0.15, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.5, 0.8, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 46
+font_color = Color(0.9, 0.95, 1, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_error"]
+font_size = 18
+font_color = Color(1, 0.3, 0.3, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
+
+[node name="Background" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_j0yt3")
 
-[node name="NameInput" type="LineEdit" parent="." unique_id=423645047]
-layout_mode = 0
-offset_left = 262.0
-offset_top = 159.0
-offset_right = 811.0
-offset_bottom = 190.0
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6ik2i")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="PasswordInput" type="LineEdit" parent="." unique_id=1885573574]
-layout_mode = 0
-offset_left = 265.0
-offset_top = 200.0
-offset_right = 806.0
-offset_bottom = 231.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+text = "Create Account"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="NameInput" type="LineEdit" parent="CenterContainer/MainPanel" unique_id=423645047]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+placeholder_text = "Username"
+alignment = 1
+
+[node name="PasswordInput" type="LineEdit" parent="CenterContainer/MainPanel" unique_id=1885573574]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+placeholder_text = "Password"
 secret = true
+alignment = 1
 
-[node name="Age" type="LineEdit" parent="." unique_id=1195657746]
-layout_mode = 0
-offset_left = 264.0
-offset_top = 240.0
-offset_right = 811.0
-offset_bottom = 271.0
+[node name="Age" type="LineEdit" parent="CenterContainer/MainPanel" unique_id=1195657746]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+placeholder_text = "Age"
+alignment = 1
 
-[node name="SignupButton" type="Button" parent="." unique_id=1338536261]
-layout_mode = 0
-offset_left = 410.0
-offset_top = 301.0
-offset_right = 639.0
-offset_bottom = 332.0
-text = "Sign-Up"
+[node name="Spacer2" type="Control" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
-[node name="ErrorLabel" type="Label" parent="." unique_id=342184323]
-layout_mode = 0
-offset_left = 357.0
-offset_top = 78.0
-offset_right = 685.0
-offset_bottom = 101.0
+[node name="SignupButton" type="Button" parent="CenterContainer/MainPanel" unique_id=1338536261]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme = ExtResource("3_theme")
+text = "Sign Up"
 
-[node name="BackButton" type="Button" parent="." unique_id=2055488039]
-layout_mode = 0
-offset_left = 394.0
-offset_top = 440.0
-offset_right = 641.0
-offset_bottom = 472.0
+[node name="BackButton" type="Button" parent="CenterContainer/MainPanel" unique_id=2055488039]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme = ExtResource("4_theme")
 text = "Back to Login"
+
+[node name="ErrorLabel" type="Label" parent="CenterContainer/MainPanel" unique_id=342184323]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_error")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/MainPanel/SignupButton" to="." method="_on_signup_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/BackButton" to="." method="_on_back_button_pressed"]
+
 
 [connection signal="pressed" from="SignupButton" to="." method="_on_signup_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -15,7 +15,7 @@ var selected_gender_id: int = 1
 # 3. NOVA'S GENDER (Needed for Level 2 Cutscene)
 var selected_nova: String = "female"
 
-var current_rank: String = "Glitch Magnet"
+var current_rank: String = "Amateur"
 
 # --- GAME PROGRESS ---
 var total_score: int = 0

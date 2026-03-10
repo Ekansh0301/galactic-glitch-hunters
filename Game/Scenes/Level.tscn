@@ -11,8 +11,37 @@
 [ext_resource type="Texture2D" uid="uid://b2icypux0vc46" path="res://Assets/Nova_Space_Girl_Sprite/mouth&extras/teeth_smile.png" id="7_bktio"]
 [ext_resource type="Texture2D" uid="uid://cxj64xfi8xlna" path="res://Assets/Nova_male/Blond.png" id="10_esopp"]
 [ext_resource type="Texture2D" uid="uid://cxkvt6s1bjt3h" path="res://Assets/Nova_male/Smile 1.png" id="11_b10nm"]
+[ext_resource type="Theme" uid="uid://button_theme" path="res://Assets/themes/primary_button_theme.tres" id="12_theme"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xylue"]
+font_size = 32
+font_color = Color(1, 1, 1, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.2, 0.2, 0.3, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.5, 0.7, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.3, 0.7, 1, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.85, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Level" type="Control" unique_id=1787767804]
 layout_mode = 3
@@ -55,18 +84,23 @@ texture = ExtResource("7_bktio")
 script = ExtResource("3_fuudy")
 
 [node name="ScoreLabel" type="Label" parent="HUD" unique_id=229818235]
-offset_right = 61.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 32
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_xylue")
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD" unique_id=1301646033]
-offset_left = 917.0
-offset_right = 1150.0
-offset_bottom = 27.0
+offset_left = 920.0
+offset_top = 20.0
+offset_right = 1140.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
 step = 1.0
 value = 50.0
+show_percentage = false
 
 [node name="Nova_Male" type="Sprite2D" parent="." unique_id=1720671097]
 position = Vector2(797.99994, 462)
@@ -79,11 +113,19 @@ scale = Vector2(1.0087221, 1.0272484)
 texture = ExtResource("11_b10nm")
 
 [node name="WarpButton" type="Button" parent="." unique_id=1770258096]
-layout_mode = 0
-offset_left = 493.0
-offset_top = 252.0
-offset_right = 655.0
-offset_bottom = 314.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -35.0
+offset_right = 100.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_theme")
 text = "Start Mission"
 
 [connection signal="pressed" from="WarpButton" to="." method="_on_warp_button_pressed"]

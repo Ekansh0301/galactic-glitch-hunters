@@ -2,61 +2,97 @@
 
 [ext_resource type="Script" uid="uid://cvyi20he6pl8b" path="res://Scripts/CharacterCreation.gd" id="1_iu6p7"]
 [ext_resource type="Texture2D" uid="uid://durbgl5k0kkye" path="res://Assets/2206_w023_n003_2469b_p1_2469.jpg" id="2_tuea2"]
+[ext_resource type="Theme" uid="uid://button_theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="Theme" uid="uid://button_secondary" path="res://Assets/themes/button_theme.tres" id="4_theme"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 44
+font_color = Color(0.9, 0.95, 1, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_offset = Vector2(3, 3)
 
 [node name="CharacterCreation" type="Control" unique_id=611176556]
 layout_mode = 3
-anchor_left = 0.406
-anchor_top = 0.5
-anchor_right = 50.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iu6p7")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1134456734]
-layout_mode = 0
-offset_left = -802.712
-offset_top = -430.0
-offset_right = 1973.2881
-offset_bottom = 763.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_tuea2")
 expand_mode = 1
+stretch_mode = 6
 
-[node name="Choose your Pronouns" type="Button" parent="Background" unique_id=771199203]
-layout_mode = 0
-offset_left = 680.0
-offset_top = 190.0
-offset_right = 1161.0
-offset_bottom = 230.0
-text = "Choose your pronouns"
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="GenderSelection" type="HBoxContainer" parent="." unique_id=2043431097]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Male" type="Button" parent="GenderSelection" unique_id=2109633260]
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+text = "Choose Your Pronouns"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="GenderSelection" type="HBoxContainer" parent="CenterContainer/MainPanel" unique_id=2043431097]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Male" type="Button" parent="CenterContainer/MainPanel/GenderSelection" unique_id=2109633260]
+custom_minimum_size = Vector2(140, 55)
+layout_mode = 2
+theme = ExtResource("4_theme")
 text = "He/Him"
 
-[node name="Female" type="Button" parent="GenderSelection" unique_id=1355787821]
+[node name="Female" type="Button" parent="CenterContainer/MainPanel/GenderSelection" unique_id=1355787821]
+custom_minimum_size = Vector2(140, 55)
 layout_mode = 2
+theme = ExtResource("4_theme")
 text = "She/Her"
 
-[node name="Other" type="Button" parent="GenderSelection" unique_id=1490122411]
+[node name="Other" type="Button" parent="CenterContainer/MainPanel/GenderSelection" unique_id=1490122411]
+custom_minimum_size = Vector2(140, 55)
 layout_mode = 2
+theme = ExtResource("4_theme")
 text = "They/Them"
 
-[node name="Confirm" type="Button" parent="." unique_id=142258644]
-layout_mode = 0
-offset_left = 71.288025
-offset_top = 91.0
-offset_right = 142.28802
-offset_bottom = 122.0
-text = "Confirm
-"
+[node name="Spacer2" type="Control" parent="CenterContainer/MainPanel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 
-[connection signal="pressed" from="GenderSelection/Male" to="." method="_on_male_pressed"]
-[connection signal="pressed" from="GenderSelection/Female" to="." method="_on_female_pressed"]
-[connection signal="pressed" from="GenderSelection/Other" to="." method="_on_other_pressed"]
-[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
+[node name="Confirm" type="Button" parent="CenterContainer/MainPanel" unique_id=142258644]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_theme")
+text = "Confirm"
+
+[connection signal="pressed" from="CenterContainer/MainPanel/GenderSelection/Male" to="." method="_on_male_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/GenderSelection/Female" to="." method="_on_female_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/GenderSelection/Other" to="." method="_on_other_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/Confirm" to="." method="_on_confirm_pressed"]

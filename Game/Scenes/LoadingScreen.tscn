@@ -5,8 +5,31 @@
 [ext_resource type="Texture2D" uid="uid://dqt14lxsiub0a" path="res://Assets/isolated-rocket-transparent.png" id="3_dq85b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ffghy"]
-font_size = 22
+font_size = 24
 font_color = Color(0.5766794, 0.75483716, 0.9503754, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.8)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 36
+font_color = Color(0.7004564, 0.40147617, 0.98373467, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bias"]
+font_size = 26
+font_color = Color(0.7, 1, 0.7, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -54,22 +77,10 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 369.0
-offset_top = 70.0
-offset_right = 696.0
-offset_bottom = 157.0
-theme_override_colors/font_color = Color(0.7004564, 0.40147617, 0.98373467, 1)
-theme_override_font_sizes/font_size = 30
-text = "ENTERING HYPERSPACE...
-"
-
-[node name="QuoteLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 177.0
-offset_top = 540.0
-offset_right = 901.0
-offset_bottom = 609.0
-theme_override_font_sizes/font_size = 33
-label_settings = SubResource("LabelSettings_ffghy")
+offset_left = 330.0
+offset_top = 50.0
+offset_right = 830.0
+offset_bottom = 110.0
+label_settings = SubResource("LabelSettings_title")
+text = "ENTERING HYPERSPACE..."
 horizontal_alignment = 1
-vertical_alignment = 1

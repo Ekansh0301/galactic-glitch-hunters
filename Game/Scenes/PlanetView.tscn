@@ -5,8 +5,22 @@
 [ext_resource type="Texture2D" uid="uid://odj4wansowcy" path="res://Assets/Planets/planet08.png" id="2_hjv0e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wiovx"]
-font_size = 28
+font_size = 32
 font_color = Color(0.93047655, 0.5690163, 0.91981006, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bias"]
+font_size = 24
+font_color = Color(0.7, 1, 0.7, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
 
 [node name="PlanetView" type="Control" unique_id=1136818770]
 layout_mode = 3
@@ -44,6 +58,16 @@ layout_mode = 0
 offset_left = 388.0
 offset_top = 476.0
 offset_right = 724.0
-offset_bottom = 524.0
+offset_bottom = 535.0
 label_settings = SubResource("LabelSettings_wiovx")
+horizontal_alignment = 1
+
+[node name="BiasLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 540.0
+offset_right = 710.0
+offset_bottom = 580.0
+label_settings = SubResource("LabelSettings_bias")
+text = "Bias: 50%"
 horizontal_alignment = 1

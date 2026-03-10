@@ -14,6 +14,34 @@
 [ext_resource type="Texture2D" uid="uid://b48rdyg28s2bl" path="res://Assets/robotfree/png/Idle (1).png" id="9_i7srl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x5p3t"]
+font_size = 32
+font_color = Color(1, 1, 1, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.2, 0.2, 0.3, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.5, 0.7, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.3, 0.7, 1, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.85, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iin7j"]
 bg_color = Color(0.9019608, 0.9411765, 1, 1)
@@ -44,18 +72,23 @@ script = ExtResource("1_kwfy1")
 script = ExtResource("3_0avxp")
 
 [node name="ScoreLabel" type="Label" parent="HUD" unique_id=1134517838]
-offset_right = 61.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 32
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_x5p3t")
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD" unique_id=1498283796]
-offset_left = 917.0
-offset_right = 1150.0
-offset_bottom = 27.0
+offset_left = 920.0
+offset_top = 20.0
+offset_right = 1140.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
 step = 1.0
 value = 50.0
+show_percentage = false
 
 [node name="Background" type="TextureRect" parent="." unique_id=1005020532]
 anchors_preset = 15

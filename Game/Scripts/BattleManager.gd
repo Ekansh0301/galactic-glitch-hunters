@@ -104,8 +104,28 @@ func spawn_dialogue():
 
 func update_ui():
 	if has_node("/root/GameState"):
-		score_label.text = "Score: " + str(GameState.score)
-		bias_meter.value = GameState.bias_meter
+		# Animate score update
+		var LM = get_node("/root/LanguageManager")
+		var current_text = score_label.text
+		var current_val = int(current_text.split(": ")[1]) if ": " in current_text else 0
+		var tween_score = create_tween()
+		tween_score.tween_method(func(val): 
+			score_label.text = "Score: " + str(int(val)),
+			current_val, GameState.score, 0.5)
+		
+		# Smooth animate bias meter
+		var tween_bias = create_tween()
+		tween_bias.set_ease(Tween.EASE_OUT)
+		tween_bias.set_trans(Tween.TRANS_CUBIC)
+		tween_bias.tween_property(bias_meter, "value", GameState.bias_meter, 0.4)
+		
+		# Pulse warning if extreme bias
+		if GameState.bias_meter < 20 or GameState.bias_meter > 80:
+			var original_scale = bias_meter.scale
+			var tween_pulse = create_tween()
+			tween_pulse.set_loops(2)
+			tween_pulse.tween_property(bias_meter, "scale", original_scale * 1.1, 0.2)
+			tween_pulse.tween_property(bias_meter, "scale", original_scale, 0.2)
 
 # --- ACTIONS ---
 

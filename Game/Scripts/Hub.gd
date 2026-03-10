@@ -1,16 +1,23 @@
 extends Control
 
 # UI References - Made optional in case nodes don't exist in scene
-@onready var name_label = $TopBar/PlayerNameLabel if has_node("TopBar/PlayerNameLabel") else null
-@onready var rank_label = $TopBar/RankLabel if has_node("TopBar/RankLabel") else null
+@onready var name_label = $MainDisplay/VBoxContainer/PlayerNameLabel if has_node("MainDisplay/VBoxContainer/PlayerNameLabel") else null
+@onready var rank_label = $MainDisplay/VBoxContainer/RankLabel if has_node("MainDisplay/VBoxContainer/RankLabel") else null
 @onready var score_label = $MainDisplay/VBoxContainer/TotalScoreLabel if has_node("MainDisplay/VBoxContainer/TotalScoreLabel") else null
-@onready var bias_meter = $MainDisplay/VBoxContainer/BiasMeter if has_node("MainDisplay/VBoxContainer/BiasMeter") else null
+@onready var bias_meter = $BiasContainer/BiasVBox/BiasMeter if has_node("BiasContainer/BiasVBox/BiasMeter") else null
+@onready var bias_percent_label = $BiasContainer/BiasVBox/BiasMeter/BiasPercentLabel if has_node("BiasContainer/BiasVBox/BiasMeter/BiasPercentLabel") else null
 
 func _ready():
 	print("=== HUB LOADED ===")
 	print("Player Name: ", GameManager.player_name)
 	print("Current Rank: ", GameManager.current_rank)
 	print("Total Score: ", GameManager.total_score)
+	
+	# Ensure the hub itself is visible (in case previous scene faded out)
+	self.modulate.a = 1.0
+	
+	# Setup animations first
+	_setup_animations()
 	
 	# AUTO-CONNECT START MISSION BUTTON
 	_connect_start_button()
@@ -42,6 +49,9 @@ func _ready():
 	if bias_meter:
 		bias_meter.value = GameManager.bias_meter
 		_update_meter_visuals()
+		# Update percentage label
+		if bias_percent_label:
+			bias_percent_label.text = str(int(GameManager.bias_meter)) + "%"
 	else:
 		print("WARNING: bias_meter not found")
 	
@@ -54,6 +64,43 @@ func _ready():
 				$MainDisplay/VBoxContainer/ProgressLabel.text = LM.t("hub_mission_progress") + progress
 	else:
 		print("ERROR: ScenarioManager not found in autoload!")
+
+func _setup_animations():
+	"""Sets up entry animations and button hover effects"""
+	# Fade in the main display
+	if has_node("MainDisplay"):
+		var main_display = $MainDisplay
+		main_display.modulate.a = 0.0
+		var tween = create_tween()
+		tween.tween_property(main_display, "modulate:a", 1.0, 0.8)
+	
+	# Fade in the bias container
+	if has_node("BiasContainer"):
+		var bias_container = $BiasContainer
+		bias_container.modulate.a = 0.0
+		var tween2 = create_tween()
+		tween2.tween_property(bias_container, "modulate:a", 1.0, 0.8)
+	
+	# Setup button hover effect for start mission button
+	if has_node("MainDisplay/VBoxContainer/StartMissionButton"):
+		var button = $MainDisplay/VBoxContainer/StartMissionButton
+		button.mouse_entered.connect(_on_button_hover.bind(button, true))
+		button.mouse_exited.connect(_on_button_hover.bind(button, false))
+		button.pressed.connect(_on_button_pressed.bind(button))
+
+func _on_button_hover(button: Button, is_hovering: bool):
+	"""Handles button hover animation"""
+	var target_scale = Vector2(1.05, 1.05) if is_hovering else Vector2.ONE
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(button, "scale", target_scale, 0.15)
+
+func _on_button_pressed(button: Button):
+	"""Handles button press animation"""
+	var tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(0.95, 0.95), 0.05)
+	tween.tween_property(button, "scale", Vector2.ONE, 0.1)
 
 # Auto-connect any button that should start the mission
 func _connect_start_button():
@@ -129,13 +176,23 @@ func _find_button_recursive(node: Node) -> Button:
 func _update_meter_visuals():
 	if not bias_meter:
 		return
+	
+	# Update the percentage label
+	if bias_percent_label:
+		bias_percent_label.text = str(int(GameManager.bias_meter)) + "%"
 		
 	if GameManager.bias_meter > 75:
 		bias_meter.modulate = Color.RED
+		if bias_percent_label:
+			bias_percent_label.modulate = Color(1, 0.8, 0.8, 1)
 	elif GameManager.bias_meter < 25:
 		bias_meter.modulate = Color.CYAN
+		if bias_percent_label:
+			bias_percent_label.modulate = Color(0.8, 0.9, 1, 1)
 	else:
 		bias_meter.modulate = Color.WHITE
+		if bias_percent_label:
+			bias_percent_label.modulate = Color.WHITE
 
 func _on_start_mission_button_pressed():
 	print("=== START MISSION BUTTON PRESSED ===")
@@ -151,6 +208,10 @@ func _on_start_mission_button_pressed():
 	scenario_mgr.generate_mission()
 	print("Mission generated successfully")
 	
+	# Fade out before transitioning
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 0.3)
+	await tween.finished
+	
 	# Transition to Phase 3: The "Travel" Loading Screen
 	get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")
-
