@@ -5,6 +5,7 @@ var current_gender = 1
 func _ready():
 	# Ensure scene is visible
 	self.modulate.a = 1.0
+	MusicManager.play_track(MusicManager.TRACK_SIGNAL_TO_NOISE)
 	_apply_translations()
 	_setup_animations()
 

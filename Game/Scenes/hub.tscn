@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://sdyu33ebtywp"]
 
-[ext_resource type="Script" uid="uid://f837spq8sjnj" path="res://Scripts/Hub.gd" id="1_x21iy"]
+[ext_resource type="Script" path="res://Scripts/hub.gd" id="1_x21iy"]
 [ext_resource type="Texture2D" uid="uid://eg3fcyox7ja" path="res://Assets/f5e20728-df27-4b68-9a27-1640a0e34607.jpg" id="2_l5ww0"]
-[ext_resource type="Theme" uid="uid://button_theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
-[ext_resource type="Theme" uid="uid://button_secondary" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
+[ext_resource type="Theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="Theme" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_header"]
 font_size = 40

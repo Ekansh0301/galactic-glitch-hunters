@@ -27,6 +27,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 AuthManager="*res://Scripts/AuthManager.gd"
 ScenarioManager="*res://Scripts/ScenarioManager.gd"
 LanguageManager="*res://Scripts/LanguageManager.gd"
+MusicManager="*res://Scripts/MusicManager.gd"
 
 [editor_plugins]
 

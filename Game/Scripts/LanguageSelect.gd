@@ -7,6 +7,7 @@ extends Control
 
 func _ready():
 	print("=== LANGUAGE SELECT SCREEN ===")
+	MusicManager.play_track(MusicManager.TRACK_SIGNAL_TO_NOISE)
 	# Labels and buttons are set in the scene; no dynamic text needed here
 	# (the buttons themselves are the language names)
 

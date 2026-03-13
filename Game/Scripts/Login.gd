@@ -3,13 +3,11 @@ extends Control
 @onready var name_input = $CenterContainer/MainPanel/NameInput
 @onready var pass_input = $CenterContainer/MainPanel/PasswordInput
 @onready var error_label = $CenterContainer/MainPanel/ErrorLabel
-#
-#var _start_pos: Vector2
-#var _start_rot: float
 
 func _ready():
 	# Ensure scene is visible
 	self.modulate.a = 1.0
+	MusicManager.play_track(MusicManager.TRACK_SIGNAL_TO_NOISE)
 	_start_glitch_effect()
 	_apply_translations()
 	_setup_animations()
@@ -66,21 +64,21 @@ func _setup_animations():
 			button.mouse_entered.connect(_on_button_hover.bind(button, true))
 			button.mouse_exited.connect(_on_button_hover.bind(button, false))
 			button.pressed.connect(_on_button_pressed.bind(button))
-	## ZERO-GRAVITY FLOAT
-	## We use a separate tween for the continuous loop
-	#var float_tween = create_tween().set_loops() # Infinite loop
-	#
-	## Move up 10 pixels over 2 seconds, slightly easing in/out
-	#float_tween.tween_property(panel, "position:y", panel.position.y - 10, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	## Move back down
-	#float_tween.tween_property(panel, "position:y", panel.position.y, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	## 1. Capture the starting state so we don't drift off-screen forever
+	# ZERO-GRAVITY FLOAT
+	# We use a separate tween for the continuous loop
+	var float_tween = create_tween().set_loops() # Infinite loop
+	
+	# Move up 10 pixels over 2 seconds, slightly easing in/out
+	float_tween.tween_property(panel, "position:y", panel.position.y - 10, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	# Move back down
+	float_tween.tween_property(panel, "position:y", panel.position.y, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	# 1. Capture the starting state so we don't drift off-screen forever
 	#_start_pos = panel.position
 	#_start_rot = panel.rotation_degrees
 	#
 	## 2. Start the organic wandering
 	#_drift_element(panel)
-	#
+	
 #func _drift_element(target: Control):
 	## SETTINGS: Tweak these to change the "floatiness"
 	#var dist_limit = 12.0     # Max pixels to drift from center

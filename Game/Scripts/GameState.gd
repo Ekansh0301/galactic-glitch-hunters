@@ -23,3 +23,10 @@ func shift_bias(amount: int):
 	bias_meter = clamp(bias_meter, 0, 100) 
 	print("MEMORY: Bias shifted. Current: ", bias_meter)
 	bias_updated.emit(bias_meter)
+
+func reset_run(start_bias: int = 50):
+	score = 0
+	bias_meter = clamp(start_bias, 0, 100)
+	print("MEMORY: Run reset. Score: ", score, " Bias: ", bias_meter)
+	score_updated.emit(score)
+	bias_updated.emit(bias_meter)

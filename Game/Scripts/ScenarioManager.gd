@@ -159,6 +159,8 @@ func generate_mission():
 	current_mission_scenarios.clear()
 	completed_scenarios.clear()
 	current_scenario_index = 0
+	if has_node("/root/GameState"):
+		GameState.reset_run(int(round(GameManager.bias_meter)))
 	
 	# Step 1: Get all available groups
 	var groups = ["A", "B", "C", "D", "E"]
@@ -203,7 +205,14 @@ func get_current_scenario():
 # ============================================
 func complete_current_scenario():
 	if current_scenario_index < current_mission_scenarios.size():
-		completed_scenarios.append(current_mission_scenarios[current_scenario_index])
+		var completed_scenario_id = current_mission_scenarios[current_scenario_index]
+		completed_scenarios.append(completed_scenario_id)
+		if has_node("/root/AuthManager") and not AuthManager.is_guest_session():
+			var completed_scenario = scenarios.get(completed_scenario_id, {})
+			AuthManager.complete_scenario(
+				completed_scenario_id,
+				str(completed_scenario.get("title", completed_scenario_id))
+			)
 		current_scenario_index += 1
 		
 		print("Completed: ", completed_scenarios)
@@ -211,6 +220,14 @@ func complete_current_scenario():
 		
 		# Check if mission is done
 		if current_scenario_index >= current_mission_scenarios.size():
+			GameManager.total_score += GameState.score
+			GameManager.bias_meter = float(GameState.bias_meter)
+			if has_node("/root/AuthManager") and not AuthManager.is_guest_session():
+				AuthManager.update_player_stats(
+					GameManager.total_score,
+					int(GameManager.bias_meter),
+					GameManager.current_rank
+				)
 			print("MISSION COMPLETE!")
 			mission_complete.emit()
 			return false  # No more scenarios

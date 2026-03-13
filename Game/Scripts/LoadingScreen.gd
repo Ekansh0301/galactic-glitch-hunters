@@ -11,6 +11,7 @@ func _ready():
 	print("=== LOADING SCREEN ===")
 	# Ensure scene is visible
 	self.modulate.a = 1.0
+	MusicManager.play_track(MusicManager.TRACK_DIGITAL_SUNSET)
 	var LM = get_node("/root/LanguageManager")
 
 	# Translated quotes

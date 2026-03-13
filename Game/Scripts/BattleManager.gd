@@ -17,6 +17,7 @@ var dialogue_resource = null
 
 func _ready():
 	print("=== BATTLEMANAGER READY ===")
+	MusicManager.play_track(MusicManager.TRACK_VOLATILE_REACTION)
 	
 	# 1. GET CURRENT SCENARIO FROM SCENARIOMANAGER
 	if not has_node("/root/ScenarioManager"):

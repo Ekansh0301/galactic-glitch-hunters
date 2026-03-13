@@ -63,6 +63,27 @@ const TRANSLATIONS = {
 	"hub_missions":        { "en": "Missions Completed: ",    "hi": "पूर्ण मिशन: ",             "te": "పూర్తి చేసిన మిషన్లు: " },
 	"btn_start_mission":   { "en": "Start Mission",           "hi": "मिशन शुरू करें",           "te": "మిషన్ ప్రారంభించండి" },
 	"hub_mission_progress":{ "en": "Mission Progress: ",      "hi": "मिशन प्रगति: ",            "te": "మిషన్ పురోగతి: " },
+	"btn_settings":        { "en": "Settings",                "hi": "सेटिंग्स",                 "te": "సెట్టింగ్స్" },
+	"btn_leaderboard":     { "en": "Leaderboard",             "hi": "लीडरबोर्ड",               "te": "లీడర్బోర్డ్" },
+
+	# ---------- SETTINGS / LEADERBOARD ----------
+	"settings_title":            { "en": "Settings",                           "hi": "सेटिंग्स",                         "te": "సెట్టింగ్స్" },
+	"settings_language":         { "en": "Language",                           "hi": "भाषा",                             "te": "భాష" },
+	"settings_master_volume":    { "en": "Master Volume",                      "hi": "मास्टर वॉल्यूम",                    "te": "మాస్టర్ వాల్యూం" },
+	"settings_music_credits":    { "en": "Music Credits",                      "hi": "संगीत श्रेय",                        "te": "సంగీత క్రెడిట్స్" },
+	"settings_fullscreen":       { "en": "Fullscreen",                         "hi": "फुलस्क्रीन",                        "te": "ఫుల్ స్క్రీన్" },
+	"settings_reset_progress":   { "en": "Reset Progress",                     "hi": "प्रगति रीसेट करें",                 "te": "ప్రగతిని రీసెట్ చేయండి" },
+	"settings_logout":           { "en": "Log Out",                            "hi": "लॉग आउट",                          "te": "లాగ్ అవుట్" },
+	"settings_saved":            { "en": "Settings saved.",                    "hi": "सेटिंग्स सेव हो गईं।",             "te": "సెట్టింగ్స్ సేవ్ అయ్యాయి." },
+	"settings_reset_done":       { "en": "Progress reset for this account.",   "hi": "इस खाते की प्रगति रीसेट हो गई।",   "te": "ఈ ఖాతా ప్రగతి రీసెట్ అయ్యింది." },
+	"settings_reset_guest":      { "en": "Guest progress cannot be reset.",    "hi": "गेस्ट प्रगति रीसेट नहीं हो सकती।", "te": "గెస్ట్ ప్రగతిని రీసెట్ చేయలేరు." },
+	"leaderboard_title":         { "en": "Leaderboard",                        "hi": "लीडरबोर्ड",                         "te": "లీడర్బోర్డ్" },
+	"leaderboard_header":        { "en": "Top Pilots",                         "hi": "शीर्ष पायलट",                       "te": "టాప్ పైలట్లు" },
+	"leaderboard_empty":         { "en": "No scores yet. Complete missions to rank!", "hi": "अभी कोई स्कोर नहीं। रैंक के लिए मिशन पूरा करें!", "te": "ఇంకా స్కోర్లు లేవు. ర్యాంక్ కోసం మిషన్లు పూర్తి చేయండి!" },
+	"leaderboard_signin_prompt": { "en": "Guest scores are not tracked. Please sign in to join the leaderboard.", "hi": "गेस्ट स्कोर ट्रैक नहीं होते। लीडरबोर्ड में आने के लिए साइन इन करें।", "te": "గెస్ట్ స్కోర్లు ట్రాక్ కావు. లీడర్బోర్డ్‌లో చేరేందుకు సైన్ ఇన్ చేయండి." },
+	"btn_save":                  { "en": "Save",                               "hi": "सेव",                               "te": "సేవ్" },
+	"btn_close":                 { "en": "Close",                              "hi": "बंद करें",                           "te": "మూసివేయి" },
+	"info":                      { "en": "Info",                               "hi": "जानकारी",                           "te": "సమాచారం" },
 
 	# ---------- LOADING SCREEN ----------
 	"loading":             { "en": "Loading...",              "hi": "लोड हो रहा है...",         "te": "లోడ్ అవుతోంది..." },
