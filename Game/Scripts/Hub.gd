@@ -34,6 +34,12 @@ var _settings_cancel_button: Button
 var _settings_reset_button: Button
 var _settings_logout_button: Button
 
+var _score_display_value: int = 0
+var _bias_display_value: float = 50.0
+var _score_tween: Tween
+var _score_pulse_tween: Tween
+var _bias_tween: Tween
+
 func _ready():
 	print("=== HUB LOADED ===")
 	print("Player Name: ", GameManager.player_name)
@@ -86,7 +92,7 @@ func _refresh_hub_ui():
 		print("WARNING: rank_label not found")
 		
 	if score_label:
-		score_label.text = LM.t("hub_score") + str(GameManager.total_score)
+		_animate_total_score(GameManager.total_score, LM.t("hub_score"))
 	else:
 		print("WARNING: score_label not found")
 	
@@ -97,11 +103,11 @@ func _refresh_hub_ui():
 
 	# Set the Bias Meter visual 
 	if bias_meter:
-		bias_meter.value = GameManager.bias_meter
+		_animate_bias_meter(GameManager.bias_meter)
 		_update_meter_visuals()
 		# Update percentage label
 		if bias_percent_label:
-			bias_percent_label.text = str(int(GameManager.bias_meter)) + "%"
+			bias_percent_label.text = str(int(round(_bias_display_value))) + "%"
 	else:
 		print("WARNING: bias_meter not found")
 	
@@ -122,6 +128,61 @@ func _refresh_hub_ui():
 		settings_button.text = LM.t("btn_settings")
 	if leaderboard_button:
 		leaderboard_button.text = LM.t("btn_leaderboard")
+
+func _animate_total_score(target_score: int, prefix: String):
+	if not score_label:
+		return
+
+	if is_instance_valid(_score_tween):
+		_score_tween.kill()
+	if is_instance_valid(_score_pulse_tween):
+		_score_pulse_tween.kill()
+
+	score_label.pivot_offset = score_label.size * 0.5
+	_score_pulse_tween = create_tween().set_loops()
+	_score_pulse_tween.set_trans(Tween.TRANS_SINE)
+	_score_pulse_tween.set_ease(Tween.EASE_IN_OUT)
+	_score_pulse_tween.tween_property(score_label, "scale", Vector2(1.08, 1.08), 0.12)
+	_score_pulse_tween.tween_property(score_label, "modulate", Color(1.15, 1.2, 1.0, 1.0), 0.12)
+	_score_pulse_tween.tween_property(score_label, "scale", Vector2.ONE, 0.14)
+	_score_pulse_tween.tween_property(score_label, "modulate", Color.WHITE, 0.14)
+
+	var duration: float = clampf(absf(float(target_score - _score_display_value)) * 0.01, 0.2, 0.9)
+	_score_tween = create_tween()
+	_score_tween.tween_method(func(val):
+		score_label.text = prefix + str(int(val)),
+		_score_display_value,
+		target_score,
+		duration
+	)
+	_score_tween.finished.connect(func():
+		_score_display_value = target_score
+		if is_instance_valid(_score_pulse_tween):
+			_score_pulse_tween.kill()
+		score_label.scale = Vector2.ONE
+		score_label.modulate = Color.WHITE
+	)
+
+func _animate_bias_meter(target_bias: float):
+	if not bias_meter:
+		return
+
+	if is_instance_valid(_bias_tween):
+		_bias_tween.kill()
+
+	var start_bias := _bias_display_value
+	_bias_tween = create_tween()
+	_bias_tween.set_trans(Tween.TRANS_SINE)
+	_bias_tween.set_ease(Tween.EASE_OUT)
+	_bias_tween.tween_method(func(val):
+		_bias_display_value = float(val)
+		bias_meter.value = _bias_display_value
+		if bias_percent_label:
+			bias_percent_label.text = str(int(round(_bias_display_value))) + "%",
+		start_bias,
+		target_bias,
+		0.45
+	)
 
 func _setup_animations():
 	"""Sets up entry animations and button hover effects"""
@@ -149,26 +210,7 @@ func _setup_animations():
 		hover_buttons.append(leaderboard_button)
 
 	for button in hover_buttons:
-		if not button.mouse_entered.is_connected(_on_button_hover.bind(button, true)):
-			button.mouse_entered.connect(_on_button_hover.bind(button, true))
-		if not button.mouse_exited.is_connected(_on_button_hover.bind(button, false)):
-			button.mouse_exited.connect(_on_button_hover.bind(button, false))
-		if not button.pressed.is_connected(_on_button_pressed.bind(button)):
-			button.pressed.connect(_on_button_pressed.bind(button))
-
-func _on_button_hover(button: Button, is_hovering: bool):
-	"""Handles button hover animation"""
-	var target_scale = Vector2(1.05, 1.05) if is_hovering else Vector2.ONE
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(button, "scale", target_scale, 0.15)
-
-func _on_button_pressed(button: Button):
-	"""Handles button press animation"""
-	var tween = create_tween()
-	tween.tween_property(button, "scale", Vector2(0.95, 0.95), 0.05)
-	tween.tween_property(button, "scale", Vector2.ONE, 0.1)
+		UIAnimations.setup_tactile_button(button)
 
 func _connect_top_buttons():
 	if settings_button and not settings_button.pressed.is_connected(_on_settings_button_pressed):
@@ -472,6 +514,7 @@ func _connect_start_button():
 	
 	if found_button:
 		print("Found button: ", found_button.name)
+		UIAnimations.setup_tactile_button(found_button)
 		
 		# MAKE BUTTON VISIBLE AND CLICKABLE
 		found_button.visible = true

@@ -67,10 +67,20 @@ var mutation_cooldown: Timer = Timer.new()
 ## Indicator to show that player can progress dialogue.
 @onready var progress: Polygon2D = %Progress
 
+## Dialogue cadence tuning
+@export var cadence_seconds_per_step: float = 0.02
+@export var cadence_pause_characters: String = ",.?!"
+@export var cadence_pause_duration: float = 0.16
+
 
 func _ready() -> void:
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
+
+	# Typewriter cadence with punctuation-aware pauses.
+	dialogue_label.seconds_per_step = cadence_seconds_per_step
+	dialogue_label.pause_at_characters = cadence_pause_characters
+	dialogue_label.seconds_per_pause_step = cadence_pause_duration
 
 	# If the responses menu doesn't have a next action set, use this one
 	if responses_menu.next_action.is_empty():

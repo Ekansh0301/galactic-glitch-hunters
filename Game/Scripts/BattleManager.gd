@@ -15,6 +15,8 @@ var dialogue_resource = null
 @onready var bias_meter = $HUD/ProgressBar
 @onready var score_label = $HUD/ScoreLabel
 
+var _malfunction_tween: Tween
+
 func _ready():
 	print("=== BATTLEMANAGER READY ===")
 	MusicManager.play_track(MusicManager.TRACK_VOLATILE_REACTION)
@@ -106,12 +108,11 @@ func spawn_dialogue():
 func update_ui():
 	if has_node("/root/GameState"):
 		# Animate score update
-		var LM = get_node("/root/LanguageManager")
 		var current_text = score_label.text
 		var current_val = int(current_text.split(": ")[1]) if ": " in current_text else 0
 		var tween_score = create_tween()
 		tween_score.tween_method(func(val): 
-			score_label.text = "Score: " + str(int(val)),
+			score_label.text = LanguageManager.t("score_label") + str(int(val)),
 			current_val, GameState.score, 0.5)
 		
 		# Smooth animate bias meter
@@ -127,6 +128,37 @@ func update_ui():
 			tween_pulse.set_loops(2)
 			tween_pulse.tween_property(bias_meter, "scale", original_scale * 1.1, 0.2)
 			tween_pulse.tween_property(bias_meter, "scale", original_scale, 0.2)
+
+func _trigger_malfunction(duration: float = 0.26, radius: float = 6.0, frame_time: float = 0.04):
+	if robot == null:
+		return
+
+	if is_instance_valid(_malfunction_tween):
+		_malfunction_tween.kill()
+
+	var original_pos: Vector2 = robot.position
+	var original_modulate: Color = robot.modulate
+	var step_count: int = maxi(2, int(round(duration / frame_time)))
+
+	_malfunction_tween = create_tween()
+	for i in range(step_count):
+		var step: int = i
+		_malfunction_tween.tween_callback(func():
+			robot.position = original_pos + Vector2(
+				randf_range(-radius, radius),
+				randf_range(-radius, radius)
+			)
+			if step % 2 == 0:
+				robot.modulate = Color(1.0, 1.0, 1.0, 1.0)
+			else:
+				robot.modulate = Color(1.0, 0.25, 0.25, 1.0)
+		)
+		_malfunction_tween.tween_interval(frame_time)
+
+	_malfunction_tween.tween_callback(func():
+		robot.position = original_pos
+		robot.modulate = original_modulate
+	)
 
 # --- ACTIONS ---
 
@@ -150,15 +182,9 @@ func handle_correct():
 
 func handle_wrong():
 	GameState.shift_bias(20) # Penalize
-	
-	# Red Flash, Shake, & Glitch Blur
-	var tween = create_tween()
-	tween.set_parallel(true)
-	# Turn angry Red
-	tween.tween_property(robot, "modulate", Color(1, 0, 0), 0.2)
-	# Shake X position
-	tween.tween_property(robot, "position:x", robot.position.x + 15, 0.05).set_trans(Tween.TRANS_ELASTIC)
-	tween.chain().tween_property(robot, "position:x", robot.position.x - 15, 0.05)
+
+	# Malfunction feedback: jitter + alternating white/red flashes.
+	_trigger_malfunction()
 	
 	update_ui()
 

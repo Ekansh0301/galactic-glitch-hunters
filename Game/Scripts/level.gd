@@ -3,6 +3,8 @@ extends Node
 # We keep this just in case, but we won't use it yet
 @onready var dialogue_resource = preload("res://Dialogue/main.dialogue")
 
+var _idle_time: float = 0.0
+
 func _ready():
 	# Ensure scene is visible
 	self.modulate.a = 1.0
@@ -35,23 +37,16 @@ func _setup_animations():
 	"""Sets up button hover effects"""
 	if has_node("WarpButton"):
 		var button = $WarpButton
-		button.mouse_entered.connect(_on_button_hover.bind(button, true))
-		button.mouse_exited.connect(_on_button_hover.bind(button, false))
-		button.pressed.connect(_on_button_pressed.bind(button))
+		UIAnimations.setup_tactile_button(button)
 
-func _on_button_hover(button: Button, is_hovering: bool):
-	"""Handles button hover animation"""
-	var target_scale = Vector2(1.05, 1.05) if is_hovering else Vector2.ONE
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(button, "scale", target_scale, 0.15)
+func _process(delta: float):
+	_idle_time += delta
 
-func _on_button_pressed(button: Button):
-	"""Handles button press animation"""
-	var tween = create_tween()
-	tween.tween_property(button, "scale", Vector2(0.95, 0.95), 0.05)
-	tween.tween_property(button, "scale", Vector2.ONE, 0.1)
+	# Ethereal idle motion on whichever guide is currently visible.
+	if has_node("Nova_Female") and $Nova_Female.visible:
+		UIAnimations.apply_ethereal_float($Nova_Female, _idle_time, 4.0, 1.2, 1.15, 0.0)
+	elif has_node("Nova_Male") and $Nova_Male.visible:
+		UIAnimations.apply_ethereal_float($Nova_Male, _idle_time, 3.0, 0.8, 1.0, 1.2)
 
 # --- 3. THE WARP BUTTON ---
 func _on_warp_button_pressed():
