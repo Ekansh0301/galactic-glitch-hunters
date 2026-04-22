@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://dkvdti6gbl1gb"]
+[gd_scene load_steps=5 format=3 uid="uid://dkvdti6gbl1gb"]
 
-[ext_resource type="Texture2D" uid="uid://bhyljrrotv0pm" path="res://Assets/1781.jpg" id="1_bg"]
 [ext_resource type="Script" uid="uid://bfqh13xhhcrtp" path="res://Scripts/LanguageSelect.gd" id="1_qxsp1"]
+[ext_resource type="VideoStream" uid="uid://cfewr0f748lo3" path="res://Assets/videos/Space_Animation_Video_Generation.ogv" id="2_qxsp1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
 bg_color = Color(0.1, 0.1, 0.4, 0.85)
@@ -27,46 +27,49 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="LanguageSelect" type="Control" unique_id=1659257372]
+[node name="LanguageSelect" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_qxsp1")
 
-[node name="Background" type="TextureRect" parent="." unique_id=56358303]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1156.0
-offset_bottom = 646.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_bg")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=885203892]
-layout_mode = 0
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stream = ExtResource("2_qxsp1")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=318445319]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=978187758]
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 36
 text = "Galactic Glitch Hunters"
 horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1703507777]
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 16
@@ -74,11 +77,11 @@ text = "Choose Your Language / भाषा चुनें / భాష ఎం�
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1446380943]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="EnglishButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=284486824]
+[node name="EnglishButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
@@ -86,7 +89,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "🌐  English"
 
-[node name="HindiButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=222324213]
+[node name="HindiButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
@@ -94,7 +97,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "🌐  हिन्दी (Hindi)"
 
-[node name="TeluguButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1204228363]
+[node name="TeluguButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
