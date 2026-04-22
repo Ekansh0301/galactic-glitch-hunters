@@ -70,6 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CenterContainer"]
+visible = false
 position = Vector2(551, -5)
 emission_shape = 3
 emission_rect_extents = Vector2(1152, 1)
@@ -81,6 +82,7 @@ scale_amount_min = 5.0
 scale_amount_max = 5.0
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="CenterContainer"]
+visible = false
 position = Vector2(607, 188)
 emission_shape = 3
 emission_rect_extents = Vector2(1152, 1)

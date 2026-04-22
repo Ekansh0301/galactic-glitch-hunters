@@ -1,9 +1,19 @@
-[gd_scene format=3 uid="uid://boh4c2o25ykou"]
+[gd_scene load_steps=9 format=3 uid="uid://boh4c2o25ykou"]
 
 [ext_resource type="Texture2D" uid="uid://n342ud3dfsit" path="res://Assets/1866.jpg" id="1_6ik2i"]
+[ext_resource type="VideoStream" uid="uid://2iad40y0p5sy" path="res://Assets/videos/video2godot.ogv" id="1_n5eul"]
 [ext_resource type="Script" uid="uid://dt81k5r1jpt0y" path="res://Scripts/Signup.gd" id="2_j0yt3"]
-[ext_resource type="Theme" uid="uid://button_theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
-[ext_resource type="Theme" uid="uid://button_secondary" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
+[ext_resource type="Theme" uid="uid://hvyrr8ejxncm" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="Theme" uid="uid://ce26x84aqmlyn" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 46
+font_color = Color(0.9, 0.95, 1, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input"]
 bg_color = Color(0.1, 0.1, 0.15, 0.85)
@@ -16,15 +26,6 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-
-[sub_resource type="LabelSettings" id="LabelSettings_title"]
-font_size = 46
-font_color = Color(0.9, 0.95, 1, 1)
-outline_size = 5
-outline_color = Color(0, 0, 0, 0.9)
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 0.7)
-shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_error"]
 font_size = 18
@@ -44,7 +45,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_j0yt3")
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_n5eul")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
+
 [node name="BackgroundTexture" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,7 +94,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="NameInput" type="LineEdit" parent="CenterContainer/MainPanel" unique_id=423645047]
+[node name="NameInput" type="LineEdit" parent="CenterContainer/MainPanel"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
@@ -87,16 +102,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "Username"
 alignment = 1
 
-[node name="PasswordInput" type="LineEdit" parent="CenterContainer/MainPanel" unique_id=1885573574]
+[node name="PasswordInput" type="LineEdit" parent="CenterContainer/MainPanel"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "Password"
-secret = true
 alignment = 1
+secret = true
 
-[node name="Age" type="LineEdit" parent="CenterContainer/MainPanel" unique_id=1195657746]
+[node name="Age" type="LineEdit" parent="CenterContainer/MainPanel"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
@@ -108,26 +123,22 @@ alignment = 1
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="SignupButton" type="Button" parent="CenterContainer/MainPanel" unique_id=1338536261]
+[node name="SignupButton" type="Button" parent="CenterContainer/MainPanel"]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme = ExtResource("3_theme")
 text = "Sign Up"
 
-[node name="BackButton" type="Button" parent="CenterContainer/MainPanel" unique_id=2055488039]
+[node name="BackButton" type="Button" parent="CenterContainer/MainPanel"]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 theme = ExtResource("4_theme")
 text = "Back to Login"
 
-[node name="ErrorLabel" type="Label" parent="CenterContainer/MainPanel" unique_id=342184323]
+[node name="ErrorLabel" type="Label" parent="CenterContainer/MainPanel"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_error")
 horizontal_alignment = 1
 
 [connection signal="pressed" from="CenterContainer/MainPanel/SignupButton" to="." method="_on_signup_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MainPanel/BackButton" to="." method="_on_back_button_pressed"]
-
-
-[connection signal="pressed" from="SignupButton" to="." method="_on_signup_button_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
