@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://sdyu33ebtywp"]
+[gd_scene load_steps=9 format=3 uid="uid://sdyu33ebtywp"]
 
-[ext_resource type="Script" path="res://Scripts/hub.gd" id="1_x21iy"]
-[ext_resource type="Texture2D" uid="uid://eg3fcyox7ja" path="res://Assets/f5e20728-df27-4b68-9a27-1640a0e34607.jpg" id="2_l5ww0"]
-[ext_resource type="Theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
-[ext_resource type="Theme" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
+[ext_resource type="Script" uid="uid://p6kwc1ltjf5e" path="res://Scripts/hub.gd" id="1_x21iy"]
+[ext_resource type="VideoStream" uid="uid://dufm54r02qvot" path="res://Assets/videos/Game_Hub_Background_Video_Creation.ogv" id="2_oc3mp"]
+[ext_resource type="Theme" uid="uid://hvyrr8ejxncm" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="Theme" uid="uid://ce26x84aqmlyn" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bias"]
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_header"]
 font_size = 40
@@ -12,15 +19,6 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 0.8)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.5)
-shadow_offset = Vector2(2, 2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_score"]
-font_size = 42
-font_color = Color(0.3, 0.9, 1, 1)
-outline_size = 4
-outline_color = Color(0, 0, 0, 0.9)
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 0.6)
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rank"]
@@ -32,16 +30,16 @@ shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.7)
 shadow_offset = Vector2(2, 2)
 
-[sub_resource type="LabelSettings" id="LabelSettings_bias"]
-font_size = 20
-font_color = Color(1, 1, 1, 1)
-outline_size = 3
+[sub_resource type="LabelSettings" id="LabelSettings_score"]
+font_size = 42
+font_color = Color(0.3, 0.9, 1, 1)
+outline_size = 4
 outline_color = Color(0, 0, 0, 0.9)
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_offset = Vector2(1, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
 
-[node name="Hub" type="Control" unique_id=384255111]
+[node name="Hub" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,18 +48,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x21iy")
 
-[node name="CockpitBackground" type="TextureRect" parent="." unique_id=521005194]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_l5ww0")
-expand_mode = 1
-stretch_mode = 6
+stream = ExtResource("2_oc3mp")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
 
-[node name="BiasContainer" type="CenterContainer" parent="." unique_id=1611368609]
+[node name="BiasContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -76,19 +76,19 @@ grow_horizontal = 2
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BiasLabel" type="Label" parent="BiasContainer/BiasVBox" unique_id=245149954]
+[node name="BiasLabel" type="Label" parent="BiasContainer/BiasVBox"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_bias")
 text = "Bias Meter"
+label_settings = SubResource("LabelSettings_bias")
 horizontal_alignment = 1
 
-[node name="BiasMeter" type="ProgressBar" parent="BiasContainer/BiasVBox" unique_id=527826593]
+[node name="BiasMeter" type="ProgressBar" parent="BiasContainer/BiasVBox"]
 custom_minimum_size = Vector2(380, 35)
 layout_mode = 2
 value = 50.0
 show_percentage = false
 
-[node name="BiasPercentLabel" type="Label" parent="BiasContainer/BiasVBox/BiasMeter" unique_id=527826594]
+[node name="BiasPercentLabel" type="Label" parent="BiasContainer/BiasVBox/BiasMeter"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,12 +101,12 @@ offset_right = 30.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_bias")
 text = "50%"
+label_settings = SubResource("LabelSettings_bias")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TopRightButtons" type="HBoxContainer" parent="." unique_id=1800945795]
+[node name="TopRightButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -118,19 +118,19 @@ offset_bottom = 75.0
 grow_horizontal = 0
 theme_override_constants/separation = 10
 
-[node name="SettingsButton" type="Button" parent="TopRightButtons" unique_id=1800945794]
+[node name="SettingsButton" type="Button" parent="TopRightButtons"]
 custom_minimum_size = Vector2(120, 55)
 layout_mode = 2
 theme = ExtResource("4_theme")
 text = "Settings"
 
-[node name="LeaderboardButton" type="Button" parent="TopRightButtons" unique_id=2114972903]
+[node name="LeaderboardButton" type="Button" parent="TopRightButtons"]
 custom_minimum_size = Vector2(120, 55)
 layout_mode = 2
 theme = ExtResource("4_theme")
 text = "Leaderboard"
 
-[node name="MainDisplay" type="CenterContainer" parent="." unique_id=1076255837]
+[node name="MainDisplay" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -144,28 +144,28 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainDisplay" unique_id=2107844859]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainDisplay"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="PlayerNameLabel" type="Label" parent="MainDisplay/VBoxContainer" unique_id=245149955]
+[node name="PlayerNameLabel" type="Label" parent="MainDisplay/VBoxContainer"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_header")
 text = "Cadet: Uniyal"
+label_settings = SubResource("LabelSettings_header")
 horizontal_alignment = 1
 
-[node name="RankLabel" type="Label" parent="MainDisplay/VBoxContainer" unique_id=1253455154]
+[node name="RankLabel" type="Label" parent="MainDisplay/VBoxContainer"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_rank")
 text = "Rank: Amateur"
+label_settings = SubResource("LabelSettings_rank")
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="MainDisplay/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="TotalScoreLabel" type="Label" parent="MainDisplay/VBoxContainer" unique_id=996979271]
+[node name="TotalScoreLabel" type="Label" parent="MainDisplay/VBoxContainer"]
 layout_mode = 2
 text = "Total Data Shards: 0"
 label_settings = SubResource("LabelSettings_score")
@@ -175,7 +175,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="StartMissionButton" type="Button" parent="MainDisplay/VBoxContainer" unique_id=229770451]
+[node name="StartMissionButton" type="Button" parent="MainDisplay/VBoxContainer"]
 custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme = ExtResource("3_theme")

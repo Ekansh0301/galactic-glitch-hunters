@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://cqwg0f86fagu6"]
+[gd_scene load_steps=6 format=3 uid="uid://cqwg0f86fagu6"]
 
 [ext_resource type="Script" uid="uid://cvyi20he6pl8b" path="res://Scripts/CharacterCreation.gd" id="1_iu6p7"]
-[ext_resource type="Texture2D" uid="uid://durbgl5k0kkye" path="res://Assets/2206_w023_n003_2469b_p1_2469.jpg" id="2_tuea2"]
-[ext_resource type="Theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="VideoStream" uid="uid://28m5p85yi3ru" path="res://Assets/videos/charactercreationvideo.ogv" id="2_sm6fw"]
+[ext_resource type="Theme" uid="uid://hvyrr8ejxncm" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
 [ext_resource type="Theme" path="res://Assets/themes/button_theme.tres" id="4_theme"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_title"]
@@ -14,7 +14,7 @@ shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.7)
 shadow_offset = Vector2(3, 3)
 
-[node name="CharacterCreation" type="Control" unique_id=611176556]
+[node name="CharacterCreation" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,16 +23,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iu6p7")
 
-[node name="Background" type="TextureRect" parent="." unique_id=1134456734]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_tuea2")
-expand_mode = 1
-stretch_mode = 6
+stream = ExtResource("2_sm6fw")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -58,24 +60,24 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="GenderSelection" type="HBoxContainer" parent="CenterContainer/MainPanel" unique_id=2043431097]
+[node name="GenderSelection" type="HBoxContainer" parent="CenterContainer/MainPanel"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Male" type="Button" parent="CenterContainer/MainPanel/GenderSelection" unique_id=2109633260]
+[node name="Male" type="Button" parent="CenterContainer/MainPanel/GenderSelection"]
 custom_minimum_size = Vector2(140, 55)
 layout_mode = 2
 theme = ExtResource("4_theme")
 text = "He/Him"
 
-[node name="Female" type="Button" parent="CenterContainer/MainPanel/GenderSelection" unique_id=1355787821]
+[node name="Female" type="Button" parent="CenterContainer/MainPanel/GenderSelection"]
 custom_minimum_size = Vector2(140, 55)
 layout_mode = 2
 theme = ExtResource("4_theme")
 text = "She/Her"
 
-[node name="Other" type="Button" parent="CenterContainer/MainPanel/GenderSelection" unique_id=1490122411]
+[node name="Other" type="Button" parent="CenterContainer/MainPanel/GenderSelection"]
 custom_minimum_size = Vector2(140, 55)
 layout_mode = 2
 theme = ExtResource("4_theme")
@@ -85,7 +87,7 @@ text = "They/Them"
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="Confirm" type="Button" parent="CenterContainer/MainPanel" unique_id=142258644]
+[node name="Confirm" type="Button" parent="CenterContainer/MainPanel"]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 size_flags_horizontal = 4
