@@ -4,6 +4,7 @@
 [ext_resource type="VideoStream" uid="uid://2iad40y0p5sy" path="res://Assets/videos/video2godot.ogv" id="2_vrdhx"]
 [ext_resource type="Theme" uid="uid://hvyrr8ejxncm" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
 [ext_resource type="Theme" uid="uid://ce26x84aqmlyn" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
+[ext_resource type="Script" path="res://Scripts/SettingsButtonAction.gd" id="setpt1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_title"]
 font_size = 46
@@ -172,3 +173,20 @@ horizontal_alignment = 1
 [connection signal="pressed" from="CenterContainer/MainPanel/GuestLoginButton" to="." method="_on_guest_login_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MainPanel/ButtonRow/Signup" to="." method="_on_signup_pressed"]
 [connection signal="pressed" from="CenterContainer/MainPanel/ButtonRow/LanguageButton" to="." method="_on_language_button_pressed"]
+
+[node name="SettingsButton" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 55)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -75.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Settings"
+script = ExtResource("setpt1")

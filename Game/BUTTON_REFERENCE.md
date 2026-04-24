@@ -312,36 +312,36 @@ outline_color = Color(0, 0, 0, 0.8)
 ```gdscript
 # In your scene script
 func _ready():
-    # Get button references
-    var login_btn = $CenterContainer/MainPanel/LoginButton
-    var back_btn = $CenterContainer/MainPanel/BackButton
-    
-    # Connect signals
-    login_btn.pressed.connect(_on_login_pressed)
-    back_btn.pressed.connect(_on_back_pressed)
+	# Get button references
+	var login_btn = $CenterContainer/MainPanel/LoginButton
+	var back_btn = $CenterContainer/MainPanel/BackButton
+	
+	# Connect signals
+	login_btn.pressed.connect(_on_login_pressed)
+	back_btn.pressed.connect(_on_back_pressed)
 
 func _on_login_pressed():
-    # Handle login
-    pass
+	# Handle login
+	pass
 
 func _on_back_pressed():
-    # Handle back navigation
-    get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	# Handle back navigation
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 ```
 
 ### Dynamic Button Creation
 ```gdscript
 func create_styled_button(text: String, is_primary: bool = false) -> Button:
-    var button = Button.new()
-    button.text = text
-    button.custom_minimum_size = Vector2(200, 55)
-    
-    if is_primary:
-        button.theme = load("res://Assets/themes/primary_button_theme.tres")
-    else:
-        button.theme = load("res://Assets/themes/secondary_button_theme.tres")
-    
-    return button
+	var button = Button.new()
+	button.text = text
+	button.custom_minimum_size = Vector2(200, 55)
+	
+	if is_primary:
+		button.theme = load("res://Assets/themes/primary_button_theme.tres")
+	else:
+		button.theme = load("res://Assets/themes/secondary_button_theme.tres")
+	
+	return button
 ```
 
 ---

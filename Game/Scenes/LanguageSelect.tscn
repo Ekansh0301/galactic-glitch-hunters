@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bfqh13xhhcrtp" path="res://Scripts/LanguageSelect.gd" id="1_qxsp1"]
 [ext_resource type="VideoStream" uid="uid://cfewr0f748lo3" path="res://Assets/videos/Space_Animation_Video_Generation.ogv" id="2_qxsp1"]
+[ext_resource type="Theme" uid="uid://ce26x84aqmlyn" path="res://Assets/themes/secondary_button_theme.tres" id="theme_settings_btn"]
+[ext_resource type="Script" path="res://Scripts/SettingsButtonAction.gd" id="setpt1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
 bg_color = Color(0.1, 0.1, 0.4, 0.85)
@@ -108,3 +110,20 @@ text = "🌐  తెలుగు (Telugu)"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/EnglishButton" to="." method="_on_english_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HindiButton" to="." method="_on_hindi_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TeluguButton" to="." method="_on_telugu_button_pressed"]
+
+[node name="SettingsButton" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 55)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -75.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Settings"
+script = ExtResource("setpt1")
