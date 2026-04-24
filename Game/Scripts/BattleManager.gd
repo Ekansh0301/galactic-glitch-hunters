@@ -136,7 +136,7 @@ func _trigger_malfunction(duration: float = 0.26, radius: float = 6.0, frame_tim
 	if is_instance_valid(_malfunction_tween):
 		_malfunction_tween.kill()
 
-	var original_pos: Vector2 = robot.position
+	var original_offset: Vector2 = robot.offset
 	var original_modulate: Color = robot.modulate
 	var step_count: int = maxi(2, int(round(duration / frame_time)))
 
@@ -144,7 +144,7 @@ func _trigger_malfunction(duration: float = 0.26, radius: float = 6.0, frame_tim
 	for i in range(step_count):
 		var step: int = i
 		_malfunction_tween.tween_callback(func():
-			robot.position = original_pos + Vector2(
+			robot.offset = original_offset + Vector2(
 				randf_range(-radius, radius),
 				randf_range(-radius, radius)
 			)
@@ -156,7 +156,7 @@ func _trigger_malfunction(duration: float = 0.26, radius: float = 6.0, frame_tim
 		_malfunction_tween.tween_interval(frame_time)
 
 	_malfunction_tween.tween_callback(func():
-		robot.position = original_pos
+		robot.offset = original_offset
 		robot.modulate = original_modulate
 	)
 
@@ -202,18 +202,10 @@ func trigger_nova_explanation():
 	
 	# 3. Highlight Nova (Bright White)
 	tween.tween_property(nova, "modulate", Color(1, 1, 1, 1), 0.5)
-	
-	# 4. THE MOVE: Left, Up, and Zoom
-	# 'as_relative()' means "Move from current spot"
-	
-	# Move LEFT (-x) towards the center of the screen
-	tween.tween_property(nova, "position:x", -400.0, 0.8).as_relative().set_trans(Tween.TRANS_CUBIC)
-	
-	# Move UP (-y) so she dominates the view
-	tween.tween_property(nova, "position:y", -300.0, 0.8).as_relative().set_trans(Tween.TRANS_CUBIC)
-	
-	# Zoom In
-	tween.tween_property(nova, "scale", Vector2(1.3, 1.3), 0.8).set_trans(Tween.TRANS_CUBIC)
+
+	# Keep Nova anchored in-place to avoid unintended drift after wrong answers.
+	tween.tween_property(nova, "scale", Vector2(1.05, 1.05), 0.3).set_trans(Tween.TRANS_CUBIC)
+	tween.chain().tween_property(nova, "scale", Vector2(1.0, 1.0), 0.25).set_trans(Tween.TRANS_CUBIC)
 
 func resolve_battle():
 	print("Scenario End. Checking for more scenarios...")

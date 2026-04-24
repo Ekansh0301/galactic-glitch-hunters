@@ -41,7 +41,7 @@ var scenarios = {
 		"group": "B",
 		"title": "The Council Chamber",
 		"dialogue_file": "res://Dialogue/scenario_04_council.dialogue",
-		"background": "res://Assets/5446991.jpg",
+		"background": "res://Assets/al_bg1.jpg",
 		"planet": "res://Assets/Planets/planet03.png"
 	},
 	"interview": {
@@ -57,7 +57,7 @@ var scenarios = {
 		"group": "B",
 		"title": "The Sports Arena",
 		"dialogue_file": "res://Dialogue/scenario_06_sports.dialogue",
-		"background": "res://Assets/f5e20728-df27-4b68-9a27-1640a0e34607.jpg",
+		"background": "res://Assets/al_bg2.jpg",
 		"planet": "res://Assets/Planets/planet05.png"
 	},
 	
@@ -67,7 +67,7 @@ var scenarios = {
 		"group": "C",
 		"title": "The Battle Arena",
 		"dialogue_file": "res://Dialogue/scenario_07_emotions.dialogue",
-		"background": "res://Assets/digital-art-dark-cosmic-night-sky.jpg",
+		"background": "res://Assets/al_bg3.jpg",
 		"planet": "res://Assets/Planets/planet06.png"
 	},
 	"medic_bay": {
@@ -93,7 +93,7 @@ var scenarios = {
 		"group": "D",
 		"title": "The Security Gate",
 		"dialogue_file": "res://Dialogue/scenario_10_security.dialogue",
-		"background": "res://Assets/5446991.jpg",
+		"background": "res://Assets/al_bg2.jpg",
 		"planet": "res://Assets/Planets/planet09.png"
 	},
 	"classroom": {
@@ -109,7 +109,7 @@ var scenarios = {
 		"group": "D",
 		"title": "The Uniform Depot",
 		"dialogue_file": "res://Dialogue/scenario_12_uniform.dialogue",
-		"background": "res://Assets/f5e20728-df27-4b68-9a27-1640a0e34607.jpg",
+		"background": "res://Assets/al_bg3.jpg",
 		"planet": "res://Assets/Planets/planet01.png"
 	},
 	
