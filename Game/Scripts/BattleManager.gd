@@ -10,6 +10,7 @@ const BALLOON_SCENE = preload("res://Scenes/GameBalloon.tscn")
 # Current scenario data
 var current_scenario = null
 var dialogue_resource = null 
+var was_correct: bool = false
 
 # HUD Paths
 @onready var bias_meter = $HUD/ProgressBar
@@ -163,24 +164,13 @@ func _trigger_malfunction(duration: float = 0.26, radius: float = 6.0, frame_tim
 # --- ACTIONS ---
 
 func handle_correct():
+	was_correct = true
 	GameState.add_score(100)
 	GameState.shift_bias(-20) # Lower bias
-	
-	# Green Flash (Extended Version)
-	var tween = create_tween()
-	
-	# 1. Turn Bright Green (0.4 seconds)
-	tween.tween_property(robot, "modulate", Color(0.3, 1, 0.3), 0.4)
-	
-	# 2. Stay Green for a moment (Hold for 0.4 seconds)
-	tween.tween_interval(0.4)
-	
-	# 3. Fade back to Normal (0.4 seconds)
-	tween.tween_property(robot, "modulate", Color(1, 1, 1), 0.4)
-	
 	update_ui()
 
 func handle_wrong():
+	was_correct = false
 	GameState.shift_bias(20) # Penalize
 
 	# Malfunction feedback: jitter + alternating white/red flashes.
@@ -213,16 +203,20 @@ func resolve_battle():
 	# Mark current scenario as complete
 	var has_more = ScenarioManager.complete_current_scenario()
 	
-	if has_more:
-		# More scenarios to go - return to loading screen
+	if was_correct:
 		await get_tree().create_timer(1.0).timeout
-		get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")
+		get_tree().change_scene_to_file("res://Scenes/CorrectAnswerCutscene.tscn")
 	else:
-		# Mission complete
-		await get_tree().create_timer(1.0).timeout
-		
-		# Immediately go to the credits scene after the 3 scenarios of the current run are completed
-		get_tree().change_scene_to_file("res://Scenes/CreditsVideo.tscn")
+		if has_more:
+			# More scenarios to go - return to loading screen
+			await get_tree().create_timer(1.0).timeout
+			get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")
+		else:
+			# Mission complete
+			await get_tree().create_timer(1.0).timeout
+			
+			# Immediately go to the credits scene after the 3 scenarios of the current run are completed
+			get_tree().change_scene_to_file("res://Scenes/CreditsVideo.tscn")
 
 # ============================================================
 # Load a language-specific .dialogue file if it exists,
