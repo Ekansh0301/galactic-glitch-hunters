@@ -218,9 +218,11 @@ func resolve_battle():
 		await get_tree().create_timer(1.0).timeout
 		get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")
 	else:
-		# Mission complete - return to Hub
+		# Mission complete
 		await get_tree().create_timer(1.0).timeout
-		get_tree().change_scene_to_file("res://Scenes/hub.tscn")
+		
+		# Immediately go to the credits scene after the 3 scenarios of the current run are completed
+		get_tree().change_scene_to_file("res://Scenes/CreditsVideo.tscn")
 
 # ============================================================
 # Load a language-specific .dialogue file if it exists,
