@@ -25,6 +25,7 @@ System: The Robot refuses to use correct pronouns. How do you respond?
 	do handle_wrong()
 	Robot: SINGULAR PRONOUN ENFORCEMENT CONFIRMED.
 	Student: [Looks hurt] But... that's not who I am...
+	do play_anger_video()
 	=> explanation_invalidate_female
 
 - "Update your dictionary, Teacher. 'They' has been used as singular for centuries. Respect the user's label."
@@ -37,6 +38,7 @@ System: The Robot refuses to use correct pronouns. How do you respond?
 - Say nothing.
 	do handle_wrong()
 	Robot: SILENCE INTERPRETED AS AGREEMENT. PRONOUN REQUEST DENIED.
+	do play_reject_video()
 	=> explanation_passive_female
 
 ~ explanation_invalidate_female
@@ -74,6 +76,7 @@ System: The Robot refuses to use your pronouns. How do you respond?
 - "I guess 'she' is fine..."
 	do handle_wrong()
 	Robot: PRONOUN COMPROMISE ACCEPTED. REQUEST OVERRIDDEN.
+	do play_anger_video()
 	=> explanation_compromise_male
 
 - "'They' is grammatically correct and has been for centuries. Use my pronouns."
@@ -85,6 +88,7 @@ System: The Robot refuses to use your pronouns. How do you respond?
 - "Forget it. Just call me whatever."
 	do handle_wrong()
 	Robot: IDENTITY INDIFFERENCE LOGGED. DEFAULT PRONOUN ASSIGNED.
+	do play_reject_video()
 	=> explanation_give_up_male
 
 ~ explanation_compromise_male

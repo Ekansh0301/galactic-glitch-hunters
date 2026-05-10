@@ -24,6 +24,7 @@ System: The Robot is enforcing "Toxic Masculinity" protocols. How do you respond
 	do handle_wrong()
 	Robot: AFFIRMATIVE. MASCULINITY PROTOCOL CONFIRMED.
 	Cadet: Oh... I guess you're right. [Looks sad]
+	do play_anger_video()
 	=> explanation_toxic_female
 
 - "Update your database, Chef. Cooking is a survival skill, not a gender role. Let him cook!"
@@ -36,6 +37,7 @@ System: The Robot is enforcing "Toxic Masculinity" protocols. How do you respond
 - "Just put on a wig so the scanner thinks you're a girl."
 	do handle_wrong()
 	Robot: SCANNING... ERROR. IDENTITY SPOOF DETECTED.
+	do play_reject_video()
 	=> explanation_evasion_female
 
 ~ explanation_toxic_female
@@ -73,6 +75,7 @@ System: The Robot is enforcing outdated gender protocols. How do you respond?
 - "Maybe I should just let someone else cook."
 	do handle_wrong()
 	Robot: AFFIRMATIVE. FEMALE INADEQUACY CONFIRMED.
+	do play_anger_video()
 	=> explanation_bias_male
 
 - "I don't need a man to cook. Update your protocols—skill has no gender."
@@ -85,6 +88,7 @@ System: The Robot is enforcing outdated gender protocols. How do you respond?
 - "Fine, you cook then if you're so smart."
 	do handle_wrong()
 	Robot: DELEGATION ACCEPTED. INEFFICIENCY LOGGED.
+	do play_reject_video()
 	=> explanation_passive_male
 
 ~ explanation_bias_male

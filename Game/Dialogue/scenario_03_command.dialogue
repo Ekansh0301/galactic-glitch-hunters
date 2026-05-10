@@ -24,6 +24,7 @@ System: The Robot is applying a double standard. How do you respond?
 	do handle_wrong()
 	Robot: AFFIRMATIVE. FEMALE LEADERSHIP DEFICIENCY CONFIRMED.
 	Captain: [Looks hurt] I... I'm just doing my job.
+	do play_anger_video()
 	=> explanation_bias_female
 
 - "She's not bossy; she's the Captain. That's called Leadership. Follow the order."
@@ -36,6 +37,7 @@ System: The Robot is applying a double standard. How do you respond?
 - "Ignore her, let's take a break."
 	do handle_wrong()
 	Robot: INSUBORDINATION LOGGED. EFFICIENCY DECREASED.
+	do play_reject_video()
 	=> explanation_lazy_female
 
 ~ explanation_bias_female
@@ -72,6 +74,7 @@ System: The Robot is applying gender bias to leadership. How do you respond?
 - "Maybe I am being too emotional..."
 	do handle_wrong()
 	Robot: AFFIRMATIVE. FEMALE EMOTIONAL INSTABILITY CONFIRMED.
+	do play_anger_video()
 	=> explanation_doubt_male
 
 - "I'm not emotional—I'm decisive. Gender doesn't determine leadership ability. Obey the order."
@@ -83,6 +86,7 @@ System: The Robot is applying gender bias to leadership. How do you respond?
 - "Fine. You take charge then."
 	do handle_wrong()
 	Robot: AUTHORITY TRANSFER ACCEPTED. FEMALE INADEQUACY LOGGED.
+	do play_reject_video()
 	=> explanation_surrender_male
 
 ~ explanation_doubt_male

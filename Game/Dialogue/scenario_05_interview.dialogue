@@ -24,6 +24,7 @@ System: The Reporter is objectifying Nova. How do you respond?
 	do handle_wrong()
 	Reporter: SEE? APPEARANCE IS THE PRIMARY ASSET.
 	Nova: [Looks uncomfortable]
+	do play_anger_video()
 	=> explanation_objectify_female
 
 - "Her paint job didn't save the town. Her piloting skills did. Ask about her tactics."
@@ -36,6 +37,7 @@ System: The Reporter is objectifying Nova. How do you respond?
 - Stay silent and let Nova handle it.
 	do handle_wrong()
 	Reporter: SILENCE INTERPRETED AS AGREEMENT. APPEARANCE FOCUS CONFIRMED.
+	do play_reject_video()
 	=> explanation_passive_female
 
 ~ explanation_objectify_female
@@ -72,6 +74,7 @@ System: The Reporter is objectifying you. How do you respond?
 - Just smile and ignore it.
 	do handle_wrong()
 	Reporter: SUBJECT ACCEPTS OBJECTIFICATION. APPEARANCE FOCUS VALIDATED.
+	do play_anger_video()
 	=> explanation_passive_male
 
 - "My appearance has nothing to do with my rescue skills. Ask about the mission."
@@ -84,6 +87,7 @@ System: The Reporter is objectifying you. How do you respond?
 - "Thanks, I guess?"
 	do handle_wrong()
 	Reporter: GRATITUDE FOR OBJECTIFICATION LOGGED.
+	do play_reject_video()
 	=> explanation_accept_male
 
 ~ explanation_passive_male

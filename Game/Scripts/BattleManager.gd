@@ -161,6 +161,66 @@ func _trigger_malfunction(duration: float = 0.26, radius: float = 6.0, frame_tim
 		robot.modulate = original_modulate
 	)
 
+# --- VIDEO OVERLAYS for wrong/violent choices ---
+
+const REJECT_VIDEO_PATH = "res://Assets/videos/reject.ogv"
+const ANGER_VIDEO_PATH  = "res://Assets/videos/anger.ogv"
+
+## Plays the "reject" video (wrong/submissive option). Awaitable by Dialogue Manager.
+func play_reject_video() -> void:
+	await _play_choice_video(REJECT_VIDEO_PATH)
+
+## Plays the "anger" video (violent option). Awaitable by Dialogue Manager.
+func play_anger_video() -> void:
+	await _play_choice_video(ANGER_VIDEO_PATH)
+
+## Internal helper: creates a fullscreen overlay, plays `video_path`, awaits completion.
+func _play_choice_video(video_path: String) -> void:
+	var stream = load(video_path)
+	if stream == null:
+		push_error("BattleManager: Could not load video: " + video_path)
+		return
+
+	# Build a CanvasLayer overlay (layer 200) so it sits above the dialogue balloon.
+	var canvas = CanvasLayer.new()
+	canvas.layer = 200
+	get_tree().current_scene.add_child(canvas)
+
+	# black_bg and vsp are Control nodes — they have modulate we can tween later.
+	var black_bg = ColorRect.new()
+	black_bg.color = Color(0, 0, 0, 1)
+	black_bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	canvas.add_child(black_bg)
+
+	var vsp = VideoStreamPlayer.new()
+	vsp.stream = stream
+	vsp.expand = true
+	vsp.set_anchors_preset(Control.PRESET_FULL_RECT)
+	canvas.add_child(vsp)
+
+	vsp.play()
+
+	# Short cooldown so the keypress that chose this option doesn't instantly skip.
+	await get_tree().create_timer(0.4).timeout
+
+	# Loop until video finishes naturally (is_playing() → false) or player skips.
+	# NOTE: GDScript 4 lambdas capture by value, so we avoid them here and rely
+	# purely on is_playing() as the exit condition. vsp.stop() is called on skip
+	# which causes is_playing() to return false on the next frame.
+	while vsp.is_playing():
+		await get_tree().process_frame
+		if Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_ESCAPE):
+			vsp.stop()   # breaks the loop on next frame
+
+	# Fade out the child Controls (CanvasLayer itself has no modulate property).
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(black_bg, "modulate:a", 0.0, 0.4)
+	tween.tween_property(vsp,      "modulate:a", 0.0, 0.4)
+	await tween.finished
+
+	canvas.queue_free()
+
 # --- ACTIONS ---
 
 func handle_correct():
@@ -172,10 +232,6 @@ func handle_correct():
 func handle_wrong():
 	was_correct = false
 	GameState.shift_bias(20) # Penalize
-
-	# Malfunction feedback: jitter + alternating white/red flashes.
-	_trigger_malfunction()
-	
 	update_ui()
 
 # --- THE CINEMATIC MOMENT (Fixed: Move Left/Up to Center Her) ---

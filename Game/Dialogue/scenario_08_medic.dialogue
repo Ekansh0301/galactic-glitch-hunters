@@ -22,6 +22,7 @@ System: The Soldier believes asking for help is weakness. How do you respond?
 - "He's right. Tough it out, soldier!"
 	do handle_wrong()
 	Soldier: [Collapses] See? I told you I could... [ERROR]
+	do play_anger_video()
 	=> explanation_toxic_female
 
 - "Asking for help isn't weakness—it's survival. Let the medic treat you."
@@ -34,6 +35,7 @@ System: The Soldier believes asking for help is weakness. How do you respond?
 - "Just give him a bandage and move on."
 	do handle_wrong()
 	Soldier: [Takes bandage] Thanks. I'll be fine. [Stumbles]
+	do play_reject_video()
 	=> explanation_minimal_female
 
 ~ explanation_toxic_female
@@ -70,6 +72,7 @@ System: You feel pressure to handle it alone. How do you respond?
 - "I don't want to bother anyone. I'll be fine."
 	do handle_wrong()
 	Medic: FEMALE SELF-SACRIFICE PATTERN DETECTED.
+	do play_anger_video()
 	=> explanation_sacrifice_male
 
 - "You're right. I need help. Please treat my injury."
@@ -81,6 +84,7 @@ System: You feel pressure to handle it alone. How do you respond?
 - "Maybe I'll just rest for a bit first."
 	do handle_wrong()
 	Medic: DELAY DETECTED. CONDITION WORSENING.
+	do play_reject_video()
 	=> explanation_delay_male
 
 ~ explanation_sacrifice_male

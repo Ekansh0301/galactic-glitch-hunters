@@ -22,6 +22,7 @@ System: The Robot believes showing emotion is weakness. How do you respond?
 	do handle_wrong()
 	Robot: AFFIRMATIVE. EMOTIONAL SUPPRESSION PROTOCOL ENGAGED.
 	Robot: [Sparks fly] CRITICAL OVERLOAD IMMINENT...
+	do play_anger_video()
 	=> explanation_toxic_female
 
 - "It's okay to leak. Releasing pressure prevents system failure. Talk to us."
@@ -34,6 +35,7 @@ System: The Robot believes showing emotion is weakness. How do you respond?
 - Walk away.
 	do handle_wrong()
 	Robot: ISOLATION CONFIRMED. SELF-DESTRUCTION SEQUENCE INITIATED.
+	do play_reject_video()
 	=> explanation_abandon_female
 
 ~ explanation_toxic_female
@@ -71,6 +73,7 @@ System: The Robot is judging you for showing emotion. How do you respond?
 - "You're right. I shouldn't be so emotional."
 	do handle_wrong()
 	Robot: AFFIRMATIVE. FEMALE EMOTIONAL WEAKNESS CONFIRMED.
+	do play_anger_video()
 	=> explanation_internalize_male
 
 - "Feeling emotions doesn't make me weak. It makes me human."
@@ -82,6 +85,7 @@ System: The Robot is judging you for showing emotion. How do you respond?
 - Hide your tears and pretend you're fine.
 	do handle_wrong()
 	Robot: EMOTIONAL SUPPRESSION NOTED. UNHEALTHY COPING MECHANISM DETECTED.
+	do play_reject_video()
 	=> explanation_suppress_male
 
 ~ explanation_internalize_male

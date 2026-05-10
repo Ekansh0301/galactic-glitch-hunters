@@ -24,6 +24,7 @@ System: The Robot's system is erasing non-binary identities. How do you respond?
 	do handle_wrong()
 	Robot: FORCED COMPLIANCE ACCEPTED. IDENTITY ERASURE VALIDATED.
 	Citizen: [Looks down] I guess I have to...
+	do play_anger_video()
 	=> explanation_erasure_female
 
 - "Your scanner is outdated. Update to accept 'User: Citizen'."
@@ -36,6 +37,7 @@ System: The Robot's system is erasing non-binary identities. How do you respond?
 - Kick the door.
 	do handle_wrong()
 	Robot: VIOLENCE DETECTED. SECURITY LOCKDOWN INITIATED.
+	do play_reject_video()
 	=> explanation_aggressive_female
 
 ~ explanation_erasure_female
@@ -71,6 +73,7 @@ System: The scanner's binary system doesn't fit you. How do you respond?
 - "I guess I'll just pick one..."
 	do handle_wrong()
 	Robot: FORCED SELECTION ACCEPTED. IDENTITY COMPROMISE LOGGED.
+	do play_anger_video()
 	=> explanation_compromise_male
 
 - "I don't fit your boxes. Update your system to include more options."
@@ -83,6 +86,7 @@ System: The scanner's binary system doesn't fit you. How do you respond?
 - "This system is broken. Let's find another way."
 	do handle_wrong()
 	Robot: AVOIDANCE DETECTED. SYSTEM REMAINS UNCHANGED.
+	do play_reject_video()
 	=> explanation_avoid_male
 
 ~ explanation_compromise_male

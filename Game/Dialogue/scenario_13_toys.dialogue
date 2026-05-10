@@ -24,6 +24,7 @@ System: The Robot is enforcing toy stereotypes. How do you respond?
 	do handle_wrong()
 	Robot: GENDER STEREOTYPE VALIDATED. INTEREST SUPPRESSION CONFIRMED.
 	Child: [Sadly] I guess I can't like science...
+	do play_anger_video()
 	=> explanation_stereotype_female
 
 - "Toys are tools for imagination. Anyone can play with anything. Give them the rocket."
@@ -36,6 +37,7 @@ System: The Robot is enforcing toy stereotypes. How do you respond?
 - "Just get both. One from each section."
 	do handle_wrong()
 	Robot: COMPROMISE ACCEPTED. STEREOTYPE REINFORCED.
+	do play_reject_video()
 	=> explanation_compromise_female
 
 ~ explanation_stereotype_female
@@ -73,6 +75,7 @@ System: The Robot is underestimating you based on gender. How do you respond?
 - "Maybe something simpler would be better..."
 	do handle_wrong()
 	Robot: FEMALE LIMITATION ACCEPTED. CAPABILITY DOWNGRADE CONFIRMED.
+	do play_anger_video()
 	=> explanation_doubt_male
 
 - "Don't underestimate me based on gender. I can handle complex toys."
@@ -85,6 +88,7 @@ System: The Robot is underestimating you based on gender. How do you respond?
 - "Just show me what's available."
 	do handle_wrong()
 	Robot: USER ACCEPTS LIMITED OPTIONS. BIAS REINFORCED.
+	do play_reject_video()
 	=> explanation_accept_male
 
 ~ explanation_doubt_male

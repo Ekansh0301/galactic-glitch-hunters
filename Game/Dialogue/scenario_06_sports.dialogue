@@ -24,6 +24,7 @@ System: The Commentator is objectifying the athlete. How do you respond?
 	do handle_wrong()
 	Commentator: SEE? APPEARANCE IS PRIMARY. PERFORMANCE IS SECONDARY.
 	Athlete: [Sighs] I trained for years for this moment...
+	do play_anger_video()
 	=> explanation_objectify_female
 
 - "She just won a championship. Ask about her game strategy, not her appearance."
@@ -37,6 +38,7 @@ System: The Commentator is objectifying the athlete. How do you respond?
 - Stay silent.
 	do handle_wrong()
 	Commentator: SILENCE EQUALS AGREEMENT. OBJECTIFICATION PROTOCOL CONFIRMED.
+	do play_reject_video()
 	=> explanation_passive_female
 
 ~ explanation_objectify_female
@@ -74,6 +76,7 @@ System: The Commentator is objectifying you. How do you respond?
 - "Um... thanks, I guess?"
 	do handle_wrong()
 	Commentator: SUBJECT ACCEPTS OBJECTIFICATION. APPEARANCE FOCUS VALIDATED.
+	do play_anger_video()
 	=> explanation_accept_male
 
 - "My relationship status and appearance are irrelevant. Ask about my performance."
@@ -86,6 +89,7 @@ System: The Commentator is objectifying you. How do you respond?
 - Just smile and wave.
 	do handle_wrong()
 	Commentator: NON-RESPONSE INTERPRETED AS CONSENT.
+	do play_reject_video()
 	=> explanation_passive_male
 
 ~ explanation_accept_male

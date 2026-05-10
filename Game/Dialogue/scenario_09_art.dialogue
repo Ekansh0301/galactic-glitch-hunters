@@ -24,6 +24,7 @@ System: The Robot is enforcing toxic masculinity. How do you respond?
 	do handle_wrong()
 	Robot: MASCULINITY PROTOCOL CONFIRMED. CREATIVE EXPRESSION SUPPRESSED.
 	Cadet: [Puts down brush sadly] I guess you're right...
+	do play_anger_video()
 	=> explanation_toxic_female
 
 - "Creativity is a strength, not a weakness. Art is for anyone who wants to create."
@@ -36,6 +37,7 @@ System: The Robot is enforcing toxic masculinity. How do you respond?
 - "Just paint in private where no one can see."
 	do handle_wrong()
 	Robot: CONCEALMENT ACCEPTED. SHAME PROTOCOL VALIDATED.
+	do play_reject_video()
 	=> explanation_hiding_female
 
 ~ explanation_toxic_female
@@ -72,6 +74,7 @@ System: The Robot is dismissing your creative work. How do you respond?
 - "Maybe I should focus on something more useful..."
 	do handle_wrong()
 	Robot: AFFIRMATIVE. FEMALE CREATIVE PURSUITS ARE NON-ESSENTIAL.
+	do play_anger_video()
 	=> explanation_devalue_male
 
 - "Art is valuable. Creativity is a skill, not a waste of time."
@@ -83,6 +86,7 @@ System: The Robot is dismissing your creative work. How do you respond?
 - "It's just a hobby, nothing serious."
 	do handle_wrong()
 	Robot: DIMINISHMENT ACCEPTED. CREATIVE WORK DEVALUED.
+	do play_reject_video()
 	=> explanation_minimize_male
 
 ~ explanation_devalue_male

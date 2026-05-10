@@ -24,6 +24,7 @@ System: The Robot is "Manterrupting"—interrupting to dismiss Nova. How do you 
 	do handle_wrong()
 	Robot: EXCELLENT. MALE AUTHORITY ACKNOWLEDGED.
 	Nova: [Looks down, silent]
+	do play_anger_video()
 	=> explanation_credit_female
 
 - "Nova knows the plan better than I do. Listen to her."
@@ -36,6 +37,7 @@ System: The Robot is "Manterrupting"—interrupting to dismiss Nova. How do you 
 - Say nothing.
 	do handle_wrong()
 	Robot: SILENCE INTERPRETED AS AGREEMENT. FEMALE INPUT DISCARDED.
+	do play_reject_video()
 	=> explanation_passive_female
 
 ~ explanation_credit_female
@@ -72,6 +74,7 @@ System: The Robot is dismissing you. How do you respond?
 - Stay quiet and let Nova explain.
 	do handle_wrong()
 	Robot: EXCELLENT. FEMALE DEFERENCE CONFIRMED.
+	do play_anger_video()
 	=> explanation_passive_male
 
 - "I was speaking. Show respect and let me finish."
@@ -84,6 +87,7 @@ System: The Robot is dismissing you. How do you respond?
 - "Fine, you tell them, Nova."
 	do handle_wrong()
 	Robot: AUTHORITY TRANSFER LOGGED. FEMALE INADEQUACY NOTED.
+	do play_reject_video()
 	=> explanation_surrender_male
 
 ~ explanation_passive_male

@@ -24,6 +24,7 @@ System: The Robot is suffering from "Gender Bias" corruption. How do you respond
 	do handle_wrong()
 	Robot: AFFIRMATIVE. FEMALE SUBMISSION CONFIRMED. PROTOCOL LOCKED.
 	Robot: ERROR... LOGIC CORE OVERHEATING... [UNINTELLIGIBLE NOISES]
+	do play_anger_video()
 	=> explanation_bias_female
 
 - "Skill is code, not gender. Let her pass."
@@ -36,6 +37,7 @@ System: The Robot is suffering from "Gender Bias" corruption. How do you respond
 - Kick the robot.
 	do handle_wrong()
 	Robot: PHYSICAL ASSAULT DETECTED. DEFENSE MODE ENGAGED.
+	do play_reject_video()
 	=> explanation_aggression_female
 
 ~ explanation_bias_female
@@ -75,6 +77,7 @@ System: The Robot is suffering from "Gender Bias" corruption. How do you respond
 	do handle_wrong()
 	Robot: AFFIRMATIVE. FEMALE SUBMISSION CONFIRMED. PROTOCOL LOCKED.
 	Robot: ERROR... LOGIC CORE OVERHEATING...
+	do play_anger_video()
 	=> explanation_bias_male
 
 - "My gender doesn't limit my skills. Let me pass."
@@ -87,6 +90,7 @@ System: The Robot is suffering from "Gender Bias" corruption. How do you respond
 - Kick the robot.
 	do handle_wrong()
 	Robot: PHYSICAL ASSAULT DETECTED. DEFENSE MODE ENGAGED.
+	do play_reject_video()
 	=> explanation_aggression_male
 
 ~ explanation_bias_male

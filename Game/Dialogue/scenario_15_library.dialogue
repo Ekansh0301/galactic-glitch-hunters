@@ -25,6 +25,7 @@ System: The Robot is making assumptions about intelligence based on gender. How 
 	do handle_wrong()
 	Robot: INTEREST REDIRECTION ACCEPTED. INTELLECTUAL LIMITATION CONFIRMED.
 	Student: [Closes book sadly] I guess I'm not smart enough for this...
+	do play_anger_video()
 	=> explanation_limit_female
 
 - "Intelligence has no gender. Let her read whatever interests her."
@@ -37,6 +38,7 @@ System: The Robot is making assumptions about intelligence based on gender. How 
 - "You do seem to be struggling with it..."
 	do handle_wrong()
 	Robot: FEMALE INTELLECTUAL LIMITATION CONFIRMED.
+	do play_reject_video()
 	=> explanation_doubt_female
 
 ~ explanation_limit_female
@@ -74,6 +76,7 @@ System: The Robot is questioning your ability based on gender. How do you respon
 - "Maybe something simpler would be better..."
 	do handle_wrong()
 	Robot: SELF-DOUBT CONFIRMED. INTELLECTUAL LIMITATION ACCEPTED.
+	do play_anger_video()
 	=> explanation_doubt_male
 
 - "I'm perfectly capable of understanding this. Don't underestimate me."
@@ -86,6 +89,7 @@ System: The Robot is questioning your ability based on gender. How do you respon
 - "I'm just browsing anyway..."
 	do handle_wrong()
 	Robot: INTELLECTUAL INTEREST MINIMIZED. STEREOTYPE VALIDATED.
+	do play_reject_video()
 	=> explanation_minimize_male
 
 ~ explanation_doubt_male

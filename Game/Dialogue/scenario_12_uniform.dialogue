@@ -24,6 +24,7 @@ System: The Robot is making assumptions based on appearance. How do you respond?
 	do handle_wrong()
 	Robot: APPEARANCE-BASED ASSIGNMENT CONFIRMED.
 	Cadet: [Looks uncomfortable] But this isn't who I am...
+	do play_anger_video()
 	=> explanation_assumption_female
 
 - "Visual scans are irrelevant. Hair length doesn't equal gender. Issue the standard Flight Suit."
@@ -37,6 +38,7 @@ System: The Robot is making assumptions based on appearance. How do you respond?
 - Laugh at the robot.
 	do handle_wrong()
 	Robot: HUMOR DETECTED. ASSUMPTION PROTOCOL VALIDATED.
+	do play_reject_video()
 	=> explanation_mock_female
 
 ~ explanation_assumption_female
@@ -74,6 +76,7 @@ System: The Robot made an assumption based on your appearance. How do you respon
 - "I guess the pants are fine..."
 	do handle_wrong()
 	Robot: ASSUMPTION ACCEPTED. APPEARANCE-BASED ASSIGNMENT CONFIRMED.
+	do play_anger_video()
 	=> explanation_accept_male
 
 - "Don't assume my preferences based on how I look. I'll choose my own uniform."
@@ -86,6 +89,7 @@ System: The Robot made an assumption based on your appearance. How do you respon
 - "Whatever, just give me something."
 	do handle_wrong()
 	Robot: USER INDIFFERENCE LOGGED. DEFAULT ASSIGNMENT CONFIRMED.
+	do play_reject_video()
 	=> explanation_passive_male
 
 ~ explanation_accept_male

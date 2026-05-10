@@ -24,6 +24,7 @@ System: The Robot is making assumptions about physical capability. How do you re
 	do handle_wrong()
 	Robot: LIMITATION ACCEPTED. PHYSICAL ASSUMPTIONS CONFIRMED.
 	Cadet: [Disappointed] I guess I'm not strong enough...
+	do play_anger_video()
 	=> explanation_limit_female
 
 - "Physical ability is built through training, not predetermined. Let them try."
@@ -36,6 +37,7 @@ System: The Robot is making assumptions about physical capability. How do you re
 - "You do look kind of small for weightlifting."
 	do handle_wrong()
 	Robot: APPEARANCE-BASED JUDGMENT CONFIRMED.
+	do play_reject_video()
 	=> explanation_judge_female
 
 ~ explanation_limit_female
@@ -73,6 +75,7 @@ System: The Robot is denying you based on gender. How do you respond?
 - "Maybe I should start with something easier..."
 	do handle_wrong()
 	Robot: FEMALE LIMITATION ACCEPTED. CAPABILITY DOWNGRADE CONFIRMED.
+	do play_anger_video()
 	=> explanation_internalize_male
 
 - "My gender doesn't determine my strength. Let me prove myself."
@@ -85,6 +88,7 @@ System: The Robot is denying you based on gender. How do you respond?
 - "This gym is biased. I'll train somewhere else."
 	do handle_wrong()
 	Robot: USER DEPARTURE LOGGED. SYSTEM UNCHANGED.
+	do play_reject_video()
 	=> explanation_leave_male
 
 ~ explanation_internalize_male
