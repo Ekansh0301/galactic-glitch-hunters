@@ -113,7 +113,8 @@ func _update_bias_display():
 	"""Updates the bias meter display during loading"""
 	if bias_label and has_node("/root/GameManager"):
 		var current_bias = GameManager.bias_meter
-		bias_label.text = "Bias: " + str(int(current_bias)) + "%"
+		var LM = get_node("/root/LanguageManager")
+		bias_label.text = LM.t("bias_label") + ": " + str(int(current_bias)) + "%"
 		
 		# Color code based on bias level
 		if current_bias > 75:

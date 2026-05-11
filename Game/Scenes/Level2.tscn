@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://43wg0mj8cirf"]
+[gd_scene format=3 uid="uid://43wg0mj8cirf"]
 
 [ext_resource type="Script" uid="uid://cfgw8xtifwnlh" path="res://Scripts/Level2.gd" id="1_ycmr1"]
 [ext_resource type="PackedScene" uid="uid://dhss0exco2bdi" path="res://Scenes/HUD.tscn" id="2_5awjf"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cxj64xfi8xlna" path="res://Assets/Nova_male/Blond.png" id="11_62f1r"]
 [ext_resource type="Texture2D" uid="uid://cxkvt6s1bjt3h" path="res://Assets/Nova_male/Smile 1.png" id="12_1je60"]
 [ext_resource type="Texture2D" uid="uid://dqt14lxsiub0a" path="res://Assets/isolated-rocket-transparent.png" id="14_ycmr1"]
-[ext_resource type="Texture2D" uid="uid://drqlg3862bpdp" path="res://icon.svg" id="15_2jwna"]
+[ext_resource type="Texture2D" uid="uid://wq2potkhelkk" path="res://fin.png" id="15_2jwna"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ycmr1"]
 atlas = ExtResource("3_1je60")
@@ -44,10 +44,10 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="Level2" type="Node2D"]
+[node name="Level2" type="Node2D" unique_id=1412980361]
 script = ExtResource("1_ycmr1")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=332879865]
 modulate = Color(0.79, 0.79, 0.79, 1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,7 +60,7 @@ texture = ExtResource("2_n3cqh")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="DustStorm" type="CPUParticles2D" parent="Background"]
+[node name="DustStorm" type="CPUParticles2D" parent="Background" unique_id=1255625368]
 modulate = Color(1.365921, 1.0178245, 1.021687, 1)
 position = Vector2(-50, 283)
 amount = 20
@@ -75,30 +75,30 @@ initial_velocity_min = 100.0
 initial_velocity_max = 200.0
 color = Color(0.95, 0.5035, 0.525825, 0.5058824)
 
-[node name="HUD" parent="." instance=ExtResource("2_5awjf")]
+[node name="HUD" parent="." unique_id=1864708579 instance=ExtResource("2_5awjf")]
 script = ExtResource("3_n3cqh")
 
-[node name="ScoreLabel" type="Label" parent="HUD"]
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=182366878]
 offset_right = 61.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 32
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_xylue")
 
-[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+[node name="ProgressBar" type="ProgressBar" parent="HUD" unique_id=2042445234]
 offset_left = 917.0
 offset_right = 1150.0
 offset_bottom = 27.0
 step = 1.0
 value = 50.0
 
-[node name="Robot" type="Sprite2D" parent="."]
+[node name="Robot" type="Sprite2D" parent="." unique_id=934599161]
 visible = false
 position = Vector2(200, 350)
 scale = Vector2(0.606, 0.6)
 texture = ExtResource("10_ejprb")
 
-[node name="Bubble" type="Label" parent="Robot"]
+[node name="Bubble" type="Label" parent="Robot" unique_id=1539439304]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.9999991, 0.06369112, 0.18433845, 1)
@@ -107,41 +107,41 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_2jwna")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RocketShip" type="Sprite2D" parent="."]
+[node name="RocketShip" type="Sprite2D" parent="." unique_id=993436821]
 position = Vector2(903, -208.00002)
 rotation = 0.009451389
 scale = Vector2(0.28851837, 0.24378727)
 texture = ExtResource("14_ycmr1")
 
-[node name="Nova" type="Node2D" parent="."]
+[node name="Nova" type="Node2D" parent="." unique_id=226639695]
 visible = false
 
-[node name="Nova_Male" type="Sprite2D" parent="Nova"]
+[node name="Nova_Male" type="Sprite2D" parent="Nova" unique_id=349036468]
 scale = Vector2(0.27318072, 0.25223616)
 texture = ExtResource("11_62f1r")
 
-[node name="Expression" type="Sprite2D" parent="Nova/Nova_Male"]
+[node name="Expression" type="Sprite2D" parent="Nova/Nova_Male" unique_id=915715461]
 position = Vector2(1.4435273, -182.3687)
 scale = Vector2(1.0087221, 1.0272484)
 texture = ExtResource("12_1je60")
 
-[node name="Nova_Female" type="Sprite2D" parent="Nova"]
+[node name="Nova_Female" type="Sprite2D" parent="Nova" unique_id=988933520]
 scale = Vector2(0.47255853, 0.3998842)
 texture = ExtResource("5_70df5")
 
-[node name="Eyes" type="Sprite2D" parent="Nova/Nova_Female"]
+[node name="Eyes" type="Sprite2D" parent="Nova/Nova_Female" unique_id=633618955]
 texture = ExtResource("6_ejprb")
 
-[node name="Brow" type="Sprite2D" parent="Nova/Nova_Female"]
+[node name="Brow" type="Sprite2D" parent="Nova/Nova_Female" unique_id=1144332673]
 texture = ExtResource("7_au75x")
 
-[node name="Hair" type="Sprite2D" parent="Nova/Nova_Female"]
+[node name="Hair" type="Sprite2D" parent="Nova/Nova_Female" unique_id=1292416716]
 texture = ExtResource("8_62f1r")
 
-[node name="Mouth" type="Sprite2D" parent="Nova/Nova_Female"]
+[node name="Mouth" type="Sprite2D" parent="Nova/Nova_Female" unique_id=619461010]
 texture = ExtResource("9_1je60")
 
-[node name="Bubble" type="Label" parent="Nova"]
+[node name="Bubble" type="Label" parent="Nova" unique_id=1189028243]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -155,13 +155,13 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sgc6j")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Hero" type="Node2D" parent="."]
+[node name="Hero" type="Node2D" parent="." unique_id=627495555]
 visible = false
 
-[node name="HeroSprite" type="Sprite2D" parent="Hero"]
+[node name="HeroSprite" type="Sprite2D" parent="Hero" unique_id=784860044]
 texture = ExtResource("15_2jwna")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1490259355]
 position = Vector2(899.99994, 324.00003)
 scale = Vector2(0.99999994, 1)
 zoom = Vector2(1.5, 1.5)

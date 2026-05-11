@@ -140,7 +140,7 @@ func _ensure_settings_popup():
 		_on_language_changed("") # Init translations
 
 func _sync_settings_controls():
-		var hub_or_gm = get_node_or_null("/root/GameManager")
+		var _hub_or_gm = get_node_or_null("/root/GameManager")
 		# Load from file to ensure they are synchronized independently
 		var client_settings = { "language": "en", "master_volume_db": 0.0, "fullscreen": false }
 		if FileAccess.file_exists("user://client_settings.json"):

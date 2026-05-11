@@ -471,8 +471,10 @@ func _save_client_settings():
 		file.close()
 
 func _apply_client_settings():
-	var lang_code = str(client_settings.get("language", "en"))
-	LanguageManager.set_language(lang_code)
+	# Honor the language already set by the user in LanguageSelect, unless we want to load a different one
+	# However, since they literally just picked it on launch, we should update our settings to match it.
+	client_settings["language"] = LanguageManager.current_language
+	LanguageManager.set_language(client_settings["language"])
 
 	var db_value = float(client_settings.get("master_volume_db", 0.0))
 	AudioServer.set_bus_volume_db(0, db_value)

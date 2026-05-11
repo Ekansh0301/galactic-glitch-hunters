@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://og1cmlcvc8s5"]
+[gd_scene format=3 uid="uid://og1cmlcvc8s5"]
 
 [ext_resource type="Script" uid="uid://ck1ldal8vusx8" path="res://Scripts/PlanetView.gd" id="1_hjv0e"]
 [ext_resource type="Texture2D" uid="uid://cfth2oc0tvshj" path="res://Assets/Planets/9762374.jpg" id="1_xtoqx"]
@@ -13,7 +13,7 @@ shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.7)
 shadow_offset = Vector2(3, 3)
 
-[node name="PlanetView" type="Control"]
+[node name="PlanetView" type="Control" unique_id=2001788259]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hjv0e")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=666354967]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +33,7 @@ texture = ExtResource("1_xtoqx")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Planet" type="TextureRect" parent="."]
+[node name="Planet" type="TextureRect" parent="." unique_id=1298479399]
 layout_mode = 0
 offset_left = 189.0
 offset_top = -1.0
@@ -44,7 +44,7 @@ texture = ExtResource("2_hjv0e")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="InfoLabel" type="Label" parent="."]
+[node name="InfoLabel" type="Label" parent="." unique_id=35729026]
 layout_mode = 0
 offset_left = 342.0
 offset_top = 364.0

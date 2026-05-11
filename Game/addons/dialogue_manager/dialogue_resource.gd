@@ -1,5 +1,5 @@
 @tool
-@icon("./assets/icon.svg")
+@icon("./assets/fin.png")
 
 ## A collection of dialogue lines for use with [code]DialogueManager[/code].
 class_name DialogueResource extends Resource

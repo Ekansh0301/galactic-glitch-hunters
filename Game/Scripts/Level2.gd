@@ -8,6 +8,8 @@ var texture_landed = preload("res://Assets/nve9_twbd_210520-Photoroom.png")
 var SCALE_ROCKET = Vector2(0.20, 0.20)   
 var SCALE_HUMAN_START = Vector2(0.45, 0.45) 
 var SCALE_HUMAN_END   = Vector2(0.65, 0.65) 
+var SCALE_HERO_START  = Vector2(0.35, 0.35)
+var SCALE_HERO_END    = Vector2(0.50, 0.50)
 var SCALE_ROBOT       = Vector2(0.65, 0.65) 
 
 var LANDING_X = 750
@@ -63,7 +65,7 @@ func _ready():
 
 	# --- 3. APPLY SIZES ---
 	if has_node("RocketShip"): $RocketShip.scale = SCALE_ROCKET
-	if has_node("Hero"):       $Hero.scale = SCALE_HUMAN_START
+	if has_node("Hero"):       $Hero.scale = SCALE_HERO_START
 	if has_node("Nova"):       $Nova.scale = SCALE_HUMAN_START
 	if has_node("Robot"):      $Robot.scale = SCALE_ROBOT
 
@@ -107,7 +109,7 @@ func _on_touchdown():
 func spawn_crew():
 	if has_node("Hero"):
 		$Hero.visible = true
-		$Hero.position = Vector2(LANDING_X, SPAWN_Y) 
+		$Hero.position = Vector2(LANDING_X - 30, SPAWN_Y) 
 	if has_node("Nova"):
 		$Nova.visible = true
 		$Nova.position = Vector2(LANDING_X + 40, SPAWN_Y) 
@@ -131,13 +133,13 @@ func start_confrontation():
 
 	# Actors Move & Grow
 	if has_node("Hero"):
-		tween.tween_property($Hero, "position:x", 650.0, 4.0) 
-		tween.tween_property($Hero, "scale", SCALE_HUMAN_END, 4.0)
+		tween.tween_property($Hero, "position:x", 580.0, 4.0) 
+		tween.tween_property($Hero, "scale", SCALE_HERO_END, 4.0)
 		# Save Tween to variable
 		hero_tween = _animate_walk($Hero) 
 		
 	if has_node("Nova"):
-		tween.tween_property($Nova, "position:x", 720.0, 4.0)
+		tween.tween_property($Nova, "position:x", 740.0, 4.0)
 		tween.tween_property($Nova, "scale", SCALE_HUMAN_END, 4.0)
 		# Save Tween to variable
 		nova_tween = _animate_walk($Nova) 

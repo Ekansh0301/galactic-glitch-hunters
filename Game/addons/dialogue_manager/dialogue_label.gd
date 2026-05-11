@@ -1,4 +1,4 @@
-@icon("./assets/icon.svg")
+@icon("./assets/fin.png")
 
 @tool
 
