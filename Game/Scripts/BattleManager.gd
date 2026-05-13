@@ -225,8 +225,10 @@ func _play_choice_video(video_path: String) -> void:
 
 func handle_correct():
 	was_correct = true
-	GameState.add_score(100)
-	GameState.shift_bias(-20) # Lower bias
+	if has_node("/root/GameState"):
+		GameState.correct_answers_this_run += 1
+		GameState.add_score(100)
+		GameState.shift_bias(-20) # Lower bias
 	update_ui()
 
 func handle_wrong():
@@ -271,8 +273,8 @@ func resolve_battle():
 			# Mission complete
 			await get_tree().create_timer(1.0).timeout
 			
-			# Immediately go to the credits scene after the 3 scenarios of the current run are completed
-			get_tree().change_scene_to_file("res://Scenes/CreditsVideo.tscn")
+			# Go to the lesson scene after the 3 scenarios of the current run are completed
+			get_tree().change_scene_to_file("res://Scenes/LessonScreen.tscn")
 
 # ============================================================
 # Load a language-specific .dialogue file if it exists,

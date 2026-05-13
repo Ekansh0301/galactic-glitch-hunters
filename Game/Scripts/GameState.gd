@@ -3,6 +3,7 @@ extends Node
 # --- VARIABLES (The Game's Long-Term Memory) ---
 var score: int = 0
 var bias_meter: int = 50 # 50 is Neutral. 0 = Pure Logic, 100 = Pure Emotion.
+var correct_answers_this_run: int = 0
 
 # --- SIGNALS (To shout updates to the HUD) ---
 signal score_updated(new_score)
@@ -27,6 +28,7 @@ func shift_bias(amount: int):
 func reset_run(start_bias: int = 50):
 	score = 0
 	bias_meter = clamp(start_bias, 0, 100)
+	correct_answers_this_run = 0
 	print("MEMORY: Run reset. Score: ", score, " Bias: ", bias_meter)
 	score_updated.emit(score)
 	bias_updated.emit(bias_meter)

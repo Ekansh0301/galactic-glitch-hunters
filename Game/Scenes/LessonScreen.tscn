@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cqu2hoegixybf"]
+
+[ext_resource type="Script" uid="uid://oprilj1mlt6i" path="res://Scripts/LessonScreen.gd" id="1_ge653"]
+[ext_resource type="Texture2D" uid="uid://m8e6rr4bdlmt" path="res://Assets/lesson_bg.png" id="1_mncnc"]
+[ext_resource type="Texture2D" uid="uid://bww2ddr8flhuw" path="res://Assets/Nova_Space_Girl_Sprite/Shades/shade2_base.png" id="2_kps8y"]
+[ext_resource type="Texture2D" uid="uid://cjd5xemhojjf4" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/front_eyes_ver1.png" id="3_2uj3i"]
+[ext_resource type="Texture2D" uid="uid://bc80pj8042rrv" path="res://Assets/Nova_Space_Girl_Sprite/eyes&brows/content_brow.png" id="4_ge653"]
+[ext_resource type="Texture2D" uid="uid://d2w1fwo8v4ni7" path="res://Assets/Nova_Space_Girl_Sprite/Hair/short_hair.png" id="5_jx1vu"]
+[ext_resource type="Texture2D" uid="uid://b2icypux0vc46" path="res://Assets/Nova_Space_Girl_Sprite/mouth&extras/teeth_smile.png" id="6_xok0q"]
+
+[node name="LessonScreen" type="Control" unique_id=1534970628]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ge653")
+
+[node name="Background" type="TextureRect" parent="." unique_id=596104460]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1112.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mncnc")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="NovaBody" type="Sprite2D" parent="." unique_id=1493412701]
+position = Vector2(931, 303)
+scale = Vector2(0.5034667, 0.4332755)
+texture = ExtResource("2_kps8y")
+
+[node name="Eyes" type="Sprite2D" parent="NovaBody" unique_id=1449430847]
+texture = ExtResource("3_2uj3i")
+
+[node name="Brow" type="Sprite2D" parent="NovaBody" unique_id=228827097]
+texture = ExtResource("4_ge653")
+
+[node name="Hair" type="Sprite2D" parent="NovaBody" unique_id=1316243958]
+texture = ExtResource("5_jx1vu")
+
+[node name="NovaMouth" type="Sprite2D" parent="NovaBody" unique_id=388393589]
+texture = ExtResource("6_xok0q")
+
+[node name="DialogPanel" type="PanelContainer" parent="." unique_id=241570926]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 505.0
+offset_right = 1109.0
+offset_bottom = 605.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogText" type="RichTextLabel" parent="DialogPanel" unique_id=210036384]
+layout_mode = 2
+bbcode_enabled = true
+text = "Welcome, traveler..."
+autowrap_mode = 2
+
+[node name="MouthTimer" type="Timer" parent="." unique_id=227721233]
+wait_time = 0.5

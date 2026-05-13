@@ -143,7 +143,11 @@ func apply_dialogue_line() -> void:
 	dialogue_label.dialogue_line = dialogue_line
 
 	responses_menu.hide()
-	responses_menu.responses = dialogue_line.responses
+	
+	# Shuffle responses to randomize options
+	var shuffled_responses = dialogue_line.responses.duplicate()
+	shuffled_responses.shuffle()
+	responses_menu.responses = shuffled_responses
 
 	# Show our balloon
 	balloon.show()

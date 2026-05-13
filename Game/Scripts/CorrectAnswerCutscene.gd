@@ -14,4 +14,4 @@ func _on_video_finished():
 	if ScenarioManager.has_more_scenarios():
 		get_tree().change_scene_to_file("res://Scenes/LoadingScreen.tscn")
 	else:
-		get_tree().change_scene_to_file("res://Scenes/CreditsVideo.tscn")
+		get_tree().change_scene_to_file("res://Scenes/LessonScreen.tscn")
