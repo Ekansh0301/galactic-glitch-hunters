@@ -1,10 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dueoet6vlgf4u"]
+[gd_scene format=3 uid="uid://dueoet6vlgf4u"]
 
-[ext_resource type="Script" uid="uid://f837spq8sjnj" path="res://Scripts/Hub.gd" id="1_x21iy"]
+[ext_resource type="Script" uid="uid://p6kwc1ltjf5e" path="res://Scripts/Hub.gd" id="1_x21iy"]
 [ext_resource type="Texture2D" uid="uid://eg3fcyox7ja" path="res://Assets/f5e20728-df27-4b68-9a27-1640a0e34607.jpg" id="2_l5ww0"]
-[ext_resource type="Theme" uid="uid://button_theme" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
-[ext_resource type="Theme" uid="uid://button_secondary" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
-[ext_resource type="Script" path="res://Scripts/SettingsButtonAction.gd" id="setpt1"]
+[ext_resource type="Theme" uid="uid://hvyrr8ejxncm" path="res://Assets/themes/primary_button_theme.tres" id="3_theme"]
+[ext_resource type="Theme" uid="uid://ce26x84aqmlyn" path="res://Assets/themes/secondary_button_theme.tres" id="4_theme"]
+[ext_resource type="Script" uid="uid://b4663rhk24wv2" path="res://Scripts/SettingsButtonAction.gd" id="setpt1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bias"]
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_header"]
 font_size = 32
@@ -13,15 +20,6 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 0.8)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.5)
-shadow_offset = Vector2(2, 2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_score"]
-font_size = 42
-font_color = Color(0.3, 0.9, 1, 1)
-outline_size = 4
-outline_color = Color(0, 0, 0, 0.9)
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 0.6)
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rank"]
@@ -33,14 +31,14 @@ shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.7)
 shadow_offset = Vector2(3, 3)
 
-[sub_resource type="LabelSettings" id="LabelSettings_bias"]
-font_size = 20
-font_color = Color(1, 1, 1, 1)
-outline_size = 3
+[sub_resource type="LabelSettings" id="LabelSettings_score"]
+font_size = 42
+font_color = Color(0.3, 0.9, 1, 1)
+outline_size = 4
 outline_color = Color(0, 0, 0, 0.9)
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_offset = Vector2(1, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
 
 [node name="Hub" type="Control" unique_id=384255111]
 layout_mode = 3
@@ -73,14 +71,14 @@ offset_right = 200.0
 offset_bottom = 80.0
 grow_horizontal = 2
 
-[node name="BiasVBox" type="VBoxContainer" parent="BiasContainer"]
+[node name="BiasVBox" type="VBoxContainer" parent="BiasContainer" unique_id=1642038314]
 layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="BiasLabel" type="Label" parent="BiasContainer/BiasVBox" unique_id=245149954]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_bias")
 text = "Bias Meter"
+label_settings = SubResource("LabelSettings_bias")
 horizontal_alignment = 1
 
 [node name="BiasMeter" type="ProgressBar" parent="BiasContainer/BiasVBox" unique_id=527826593]
@@ -102,8 +100,8 @@ offset_right = 30.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_bias")
 text = "50%"
+label_settings = SubResource("LabelSettings_bias")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -119,11 +117,15 @@ offset_bottom = 75.0
 grow_horizontal = 0
 theme_override_constants/separation = 10
 
-[node name="LeaderboardButton" type="Button" parent="TopRightButtons"]
+[node name="LeaderboardButton" type="Button" parent="TopRightButtons" unique_id=1054714319]
 custom_minimum_size = Vector2(120, 55)
 layout_mode = 2
 theme = ExtResource("4_theme")
 text = "Leaderboard"
+
+[node name="InstructionsButton" type="Button" parent="TopRightButtons" unique_id=1178262852]
+layout_mode = 2
+text = "Instructions"
 
 [node name="MainDisplay" type="CenterContainer" parent="." unique_id=1076255837]
 layout_mode = 1
@@ -146,17 +148,17 @@ theme_override_constants/separation = 25
 
 [node name="PlayerNameLabel" type="Label" parent="MainDisplay/VBoxContainer" unique_id=245149955]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_header")
 text = "Cadet: Uniyal"
+label_settings = SubResource("LabelSettings_header")
 horizontal_alignment = 1
 
 [node name="RankLabel" type="Label" parent="MainDisplay/VBoxContainer" unique_id=1253455154]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_rank")
 text = "Rank: Amateur"
+label_settings = SubResource("LabelSettings_rank")
 horizontal_alignment = 1
 
-[node name="Spacer1" type="Control" parent="MainDisplay/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="MainDisplay/VBoxContainer" unique_id=595229620]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
@@ -166,7 +168,7 @@ text = "Total Data Shards: 0"
 label_settings = SubResource("LabelSettings_score")
 horizontal_alignment = 1
 
-[node name="Spacer2" type="Control" parent="MainDisplay/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="MainDisplay/VBoxContainer" unique_id=1096174384]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
@@ -176,7 +178,7 @@ layout_mode = 2
 theme = ExtResource("3_theme")
 text = "Start Mission"
 
-[node name="SettingsButton" type="Button" parent="."]
+[node name="SettingsButton" type="Button" parent="." unique_id=383136364]
 custom_minimum_size = Vector2(120, 55)
 layout_mode = 1
 anchors_preset = 3

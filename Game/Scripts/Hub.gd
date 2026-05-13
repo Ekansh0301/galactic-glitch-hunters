@@ -8,6 +8,7 @@ extends Control
 @onready var bias_percent_label = $BiasContainer/BiasVBox/BiasMeter/BiasPercentLabel if has_node("BiasContainer/BiasVBox/BiasMeter/BiasPercentLabel") else null
 @onready var settings_button = $TopRightButtons/SettingsButton if has_node("TopRightButtons/SettingsButton") else null
 @onready var leaderboard_button = $TopRightButtons/LeaderboardButton if has_node("TopRightButtons/LeaderboardButton") else null
+@onready var instructions_button = $TopRightButtons/InstructionsButton if has_node("TopRightButtons/InstructionsButton") else null
 
 const CLIENT_SETTINGS_PATH := "user://client_settings.json"
 const CLIENT_DEFAULTS := {
@@ -20,6 +21,7 @@ var client_settings: Dictionary = CLIENT_DEFAULTS.duplicate(true)
 
 var _settings_popup: AcceptDialog
 var _leaderboard_popup: AcceptDialog
+var _instructions_popup: AcceptDialog
 var _leaderboard_text: RichTextLabel
 var _settings_language_label: Label
 var _settings_volume_label: Label
@@ -128,6 +130,8 @@ func _refresh_hub_ui():
 		settings_button.text = LM.t("btn_settings")
 	if leaderboard_button:
 		leaderboard_button.text = LM.t("btn_leaderboard")
+	if instructions_button:
+		instructions_button.text = "Instructions"
 
 func _animate_total_score(target_score: int, prefix: String):
 	if not score_label:
@@ -217,6 +221,8 @@ func _connect_top_buttons():
 		settings_button.pressed.connect(_on_settings_button_pressed)
 	if leaderboard_button and not leaderboard_button.pressed.is_connected(_on_leaderboard_button_pressed):
 		leaderboard_button.pressed.connect(_on_leaderboard_button_pressed)
+	if instructions_button and not instructions_button.pressed.is_connected(_on_instructions_button_pressed):
+		instructions_button.pressed.connect(_on_instructions_button_pressed)
 
 func _on_settings_button_pressed():
 	_ensure_settings_popup()
@@ -231,6 +237,48 @@ func _on_leaderboard_button_pressed():
 	_ensure_leaderboard_popup()
 	_refresh_leaderboard_text()
 	_leaderboard_popup.popup_centered(Vector2i(560, 460))
+
+func _on_instructions_button_pressed():
+	_ensure_instructions_popup()
+	_instructions_popup.popup_centered(Vector2i(600, 400))
+
+func _ensure_instructions_popup():
+	if _instructions_popup:
+		return
+
+	_instructions_popup = AcceptDialog.new()
+	_instructions_popup.title = "How to Play"
+	_instructions_popup.dialog_autowrap = true
+	add_child(_instructions_popup)
+
+	var margin = MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 20)
+	margin.add_theme_constant_override("margin_right", 20)
+	margin.add_theme_constant_override("margin_top", 10)
+	margin.add_theme_constant_override("margin_bottom", 10)
+
+	var v_box = VBoxContainer.new()
+	margin.add_child(v_box)
+
+	var text = RichTextLabel.new()
+	text.bbcode_enabled = true
+	text.custom_minimum_size = Vector2(560, 300)
+	text.text = """
+[center][b][color=#66ccff]Welcome to Galactic Glitch Hunters![/color][/b][/center]
+
+[b]Mission:[/b] Travel across different planets and help your partner Nova debug systems that have been corrupted by a "Bias Glitch".
+
+[b]How to Play:[/b]
+1. Read the dialogue that the Glitch Bot presents to you. 
+2. The Glitch Bot's logic will often be compromised by unfair stereotypes and assumptions.
+3. Choose the response that [b]logically refutes the bias[/b].
+4. Correct answers lower your Bias Meter and increase your Score! 
+
+[b]Tip:[/b] If you act violently or give in to the stereotype, the Bias Meter increases. Stay calm, and trust your logic!
+"""
+	v_box.add_child(text)
+	_instructions_popup.add_child(margin)
+
 
 func _ensure_settings_popup():
 	if _settings_popup:

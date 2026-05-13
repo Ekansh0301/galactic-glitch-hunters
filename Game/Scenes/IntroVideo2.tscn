@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqag03eugjk5s"]
+[gd_scene format=3 uid="uid://dqag03eugjk5s"]
 
-[ext_resource type="Script" path="res://Scripts/IntroVideo2.gd" id="1_script"]
-[ext_resource type="VideoStream" path="res://Assets/videos/introvideo2.ogv" id="2_video"]
+[ext_resource type="Script" uid="uid://q3iu7onw0r6v" path="res://Scripts/IntroVideo2.gd" id="1_script"]
+[ext_resource type="VideoStream" uid="uid://co47lgvdlxsni" path="res://Assets/videos/introvideo2.ogv" id="2_video"]
+[ext_resource type="Script" uid="uid://b4663rhk24wv2" path="res://Scripts/SettingsButtonAction.gd" id="3_qj0rf"]
+[ext_resource type="Script" uid="uid://bsxqmmb51f01q" path="res://Scripts/objective_ui.gd" id="4_trkpt"]
 
-[node name="IntroVideo2" type="Control"]
+[node name="IntroVideo2" type="Control" unique_id=1048544337]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=469884810]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1637851106]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,3 +33,46 @@ grow_vertical = 2
 stream = ExtResource("2_video")
 autoplay = true
 expand = true
+
+[node name="SettingsButton" type="Button" parent="." unique_id=36519352]
+custom_minimum_size = Vector2(120, 55)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -75.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Settings"
+script = ExtResource("3_qj0rf")
+
+[node name="ObjectiveUI" type="Control" parent="." unique_id=4224417]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 80.0
+offset_top = 50.0
+offset_right = -80.0
+offset_bottom = 150.0
+grow_horizontal = 2
+script = ExtResource("4_trkpt")
+
+[node name="ObjectiveLabel" type="Label" parent="ObjectiveUI" unique_id=536961762]
+layout_mode = 0
+offset_right = 996.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(0.7166867, 0.18083608, 0.8698983, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="TextTimer" type="Timer" parent="ObjectiveUI" unique_id=1727122696]
+wait_time = 0.030000000000000002

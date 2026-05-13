@@ -2,8 +2,9 @@
 
 [ext_resource type="VideoStream" uid="uid://dvt0310k7no3m" path="res://Assets/videos/lore_video.ogv" id="1_8hrl7"]
 [ext_resource type="Script" uid="uid://bh1r6k25pqi4v" path="res://Scripts/lore_video.gd" id="1_hfkt7"]
+[ext_resource type="Script" uid="uid://b4663rhk24wv2" path="res://Scripts/SettingsButtonAction.gd" id="3_ryeqw"]
 
-[node name="LoreVideo" type="Control"]
+[node name="LoreVideo" type="Control" unique_id=68050830]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,3 +23,20 @@ grow_vertical = 2
 stream = ExtResource("1_8hrl7")
 autoplay = true
 expand = true
+
+[node name="SettingsButton" type="Button" parent="." unique_id=1674912579]
+custom_minimum_size = Vector2(120, 55)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -75.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Settings"
+script = ExtResource("3_ryeqw")
