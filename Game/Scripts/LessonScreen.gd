@@ -32,11 +32,11 @@ func _ready():
 
     # Dialogue based on score
     if perfect_run:
-        text_to_show = "Perfect run! You have an incredible grasp of equality and fairness. Keep that logic shining!"
+        text_to_show = "Perfect run! You have an incredible grasp of equality and fairness. You consistently recognized that true potential is not defined by gender, appearance, or outdated stereotypes. Always remember that everyone deserves a fair chance based on their own merits rather than assumptions.Keep that logic shining and continue to be a champion for equality out there in the galaxy!"
     elif correct_answers >= 1:
-        text_to_show = "Good job! We squashed some glitches, but there's always more to learn about bias. Keep trying!"
+        text_to_show = "Good job! We squashed some glitches, but there's always more to learn about bias.You spotted some unfair assumptions, but some stereotypes are deeply ingrained and harder to detect. Remember to question assumptions about what roles or hobbies people “should” have based on how they look.Keep trying, and stay vigilant against those unseen biases!"
     else:
-        text_to_show = "That was a rough one. Bias and stereotypes can be tricky to navigate. Try to remember what we learned today!"
+        text_to_show = "That was a rough one. Bias and stereotypes can be tricky to navigate, especially when they disguise themselves as 'common sense'. We ran into the glitches' traps by relying on generalizations instead of seeing individuals for who they truly are. Don't be discouraged! Fairness means looking past the surface and challenging our own assumptions.We'll definitely do better next time!"
 
     dialog_text.text = ""
 

@@ -52,16 +52,25 @@ func _ready():
 
 	# --- 2. GENDER LOGIC ---
 	var nova_gender = "female"
+	var hero_gender_id = 1
 	if has_node("/root/GameManager"):
 		if get_node("/root/GameManager").get("selected_nova"):
 			nova_gender = get_node("/root/GameManager").selected_nova
-	
+		if get_node("/root/GameManager").get("selected_gender_id"):
+			hero_gender_id = get_node("/root/GameManager").selected_gender_id
+
 	if has_node("Nova"):
 		var n = $Nova
 		if n.has_node("Nova_Male"): n.get_node("Nova_Male").visible = false
 		if n.has_node("Nova_Female"): n.get_node("Nova_Female").visible = false
 		if nova_gender == "male" and n.has_node("Nova_Male"): n.get_node("Nova_Male").visible = true
 		elif n.has_node("Nova_Female"): n.get_node("Nova_Female").visible = true
+
+	if has_node("Hero/HeroSprite"):
+		if hero_gender_id == 1:
+			$Hero/HeroSprite.texture = load("res://fin.png")
+		else:
+			$Hero/HeroSprite.texture = load("res://female_main.png")
 
 	# --- 3. APPLY SIZES ---
 	if has_node("RocketShip"): $RocketShip.scale = SCALE_ROCKET

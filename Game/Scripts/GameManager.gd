@@ -40,12 +40,5 @@ func save_player_selection(p_name: String, gender_id: int):
 	selected_gender_id = gender_id
 	selected_avatar_id = gender_id 
 	
-	# LOGIC: Set Nova opposite to Player
-	if gender_id == 1:
-		selected_nova = "female"
-	elif gender_id == 2:
-		selected_nova = "male"
-	else:
-		selected_nova = "female"
-		
-	is_logged_in = true
+	# LOGIC: Nova is always female
+	selected_nova = "female"

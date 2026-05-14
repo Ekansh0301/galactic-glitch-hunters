@@ -18,20 +18,9 @@ func _ready():
 	
 	# --- 2. CHECK THE BRAIN ---
 	# The Brain (GameManager) remembers if you are a Boy or Girl.
-	
-	if GameManager.selected_avatar_id == 1: 
-		# Player is Male (1) -> Show Female Guide
-		if has_node("Nova_Female"): $Nova_Female.visible = true
-		print("Logic: Player is Male. Showing FEMALE Nova.")
-			
-	elif GameManager.selected_avatar_id == 2: 
-		# Player is Female (2) -> Show Male Guide
-		if has_node("Nova_Male"): $Nova_Male.visible = true
-		print("Logic: Player is Female. Showing MALE Nova.")
-		
-	else:
-		# Fallback (Guest) -> Show Female Guide
-		if has_node("Nova_Female"): $Nova_Female.visible = true
+	# Now Nova is always Female!
+	if has_node("Nova_Female"): $Nova_Female.visible = true
+	print("Logic: Showing FEMALE Nova forever.")
 
 func _setup_animations():
 	"""Sets up button hover effects"""

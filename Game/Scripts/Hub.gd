@@ -589,7 +589,7 @@ func _connect_start_button():
 		found_button.pressed.connect(_on_start_mission_button_pressed)
 		print("✓ Button connected successfully!")
 	else:
-		print("ERROR: No button found! Please add a Button node to hub.tscn")
+		print("ERROR: No button found! Please add a Button node to hub_new.tscn")
 
 # Recursively search for any Button node
 func _find_button_recursive(node: Node) -> Button:

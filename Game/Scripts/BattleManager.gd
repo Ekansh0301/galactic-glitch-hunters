@@ -33,7 +33,7 @@ func _ready():
 		push_error("No scenario available! Did you start a mission from the Hub?")
 		push_error("Returning to Hub...")
 		await get_tree().create_timer(2.0).timeout
-		get_tree().change_scene_to_file("res://Scenes/hub.tscn")
+		get_tree().change_scene_to_file("res://Scenes/hub_new.tscn")
 		return
 	
 	print("Current Scenario: ", current_scenario.title)
@@ -66,16 +66,11 @@ func _ready():
 	
 	if has_node("/root/GameState"):
 		update_ui()
-	
+
 	# 5. GENDER LOGIC
-	var chosen_nova = "female"
-	if has_node("/root/GameManager"):
-		chosen_nova = get_node("/root/GameManager").selected_nova
-	
-	print("Nova gender selected: ", chosen_nova)
-	
-	if nova.has_node("Nova_Male"): nova.get_node("Nova_Male").visible = (chosen_nova == "male")
-	if nova.has_node("Nova_Female"): nova.get_node("Nova_Female").visible = (chosen_nova == "female")
+	# Now Nova is always Female!
+	if nova.has_node("Nova_Male"): nova.get_node("Nova_Male").visible = false
+	if nova.has_node("Nova_Female"): nova.get_node("Nova_Female").visible = true
 
 	# 6. START INTRO
 	print("Starting intro sequence...")

@@ -58,4 +58,4 @@ func _on_confirm_pressed():
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.3)
 	await tween.finished
-	get_tree().change_scene_to_file("res://Scenes/hub.tscn")
+	get_tree().change_scene_to_file("res://Scenes/hub_new.tscn")
