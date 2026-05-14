@@ -7,7 +7,7 @@ func _ready():
 
 func _input(event):
 	# Allow players to skip the intro by clicking or pressing any key
-	if (event is InputEventKey and event.pressed) or (event is InputEventMouseButton and event.pressed):
+	if false: # Disabled skipping
 		_on_video_finished()
 
 func _on_video_finished():

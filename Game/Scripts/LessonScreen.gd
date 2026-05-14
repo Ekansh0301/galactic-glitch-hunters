@@ -97,7 +97,7 @@ func _on_mouth_timer_timeout():
 
 func _input(event):
     # Press enter / space to skip or continue
-    if event is InputEventKey and event.pressed and (
+    if false and (
         event.keycode == KEY_SPACE or event.keycode == KEY_ENTER
     ):
 

@@ -7,7 +7,7 @@ func _ready():
 
 func _input(event):
 	# Allow players to skip the credits by pressing space, enter, or Esc
-	if event is InputEventKey and event.pressed and (event.keycode == KEY_SPACE or event.keycode == KEY_ENTER or event.keycode == KEY_ESCAPE):
+	if false: # Disabled skipping
 		_on_video_finished()
 
 func _on_video_finished():
