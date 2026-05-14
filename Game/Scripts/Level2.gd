@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 # --- ASSETS ---
 var texture_flying = preload("res://Assets/isolated-rocket-transparent.png")

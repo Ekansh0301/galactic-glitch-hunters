@@ -74,6 +74,7 @@ var mutation_cooldown: Timer = Timer.new()
 
 
 func _ready() -> void:
+	move_child(responses_menu, -1)
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -201,7 +202,7 @@ func _on_mutated(_mutation: Dictionary) -> void:
 func _on_balloon_gui_input(event: InputEvent) -> void:
 	# See if we need to skip typing of the dialogue
 	if dialogue_label.is_typing:
-		var mouse_was_clicked: bool = false # Disabled skip on click()
+		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
 		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
 		if mouse_was_clicked or skip_button_was_pressed:
 			get_viewport().set_input_as_handled()
@@ -214,7 +215,7 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 	# When there are no response options the balloon itself is the clickable thing
 	get_viewport().set_input_as_handled()
 
-	if false:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		next(dialogue_line.next_id)
 	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)

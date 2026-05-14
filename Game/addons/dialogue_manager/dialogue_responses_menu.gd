@@ -93,6 +93,11 @@ func configure_focus() -> void:
 			item.focus_next = items[i + 1].get_path()
 
 		item.mouse_entered.connect(_on_response_mouse_entered.bind(item))
+		
+		# Buttons consume clicks before gui_input fires, so we connect to "pressed" if available
+		if item is BaseButton:
+			item.pressed.connect(_on_response_button_pressed.bind(item, item.get_meta("response")))
+			
 		item.gui_input.connect(_on_response_gui_input.bind(item, item.get_meta("response")))
 
 	_previously_focused_item = items[0]
@@ -163,6 +168,10 @@ func _on_response_mouse_entered(item: Control) -> void:
 
 	item.grab_focus()
 
+
+func _on_response_button_pressed(item: Control, response) -> void:
+	if "Disallowed" in item.name: return
+	response_selected.emit(response)
 
 func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:
 	if "Disallowed" in item.name: return

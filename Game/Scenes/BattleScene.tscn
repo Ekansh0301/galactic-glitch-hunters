@@ -64,7 +64,13 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="BattleScene" type="Node2D" unique_id=1489904246]
+[node name="BattleScene" type="Control" unique_id=1489904246]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_kwfy1")
 
 [node name="HUD" parent="." unique_id=1667654104 instance=ExtResource("2_1yevk")]
@@ -90,11 +96,14 @@ value = 50.0
 show_percentage = false
 
 [node name="Background" type="TextureRect" parent="." unique_id=1005020532]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1156.0
-offset_bottom = 646.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_2tp6q")

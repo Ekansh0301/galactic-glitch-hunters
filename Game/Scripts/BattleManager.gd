@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 # Dynamic loading - no preload needed
 const BALLOON_SCENE = preload("res://Scenes/GameBalloon.tscn")
